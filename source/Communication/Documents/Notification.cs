@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using ECM.Communication.Areas;
 using ECM.Communication.Elements;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Documents
 {
@@ -15,55 +16,23 @@ namespace ECM.Communication.Documents
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Notification
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
 		#region Properties
+
+		private Header headerField;
 
 		private DocumentType documentField;
 
-		private List<TaskListTypeTask> taskListField;
-
-		private List<AddDocumentsTypeFolder> addDocumentsField;
+		private AcknowledgementType acknowledgementField;
 
 		private ExpansionType expansionField;
 
-		private AcknowledgementType acknowledgementField;
-
-		private string standartField;
-
-		private string versionField;
-
-		private System.DateTime timeField;
-
-		private sbyte msg_typeField;
-
-		private string msg_idField;
-
-		private sbyte msg_acknowField;
-
-		private string from_org_idField;
-
-		private string from_organizationField;
-
-		private string from_departmentField;
-
-		private string from_sys_idField;
-
-		private string from_systemField;
-
-		private string from_system_detailsField;
-
-		private string to_org_idField;
-
-		private string to_organizationField;
-
-		private string to_departmentField;
-
-		private string to_sys_idField;
-
-		private string to_systemField;
-
-		private string to_system_detailsField;
-
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		private List<DocTransfer> docTransferField;
 
 		#endregion
 
@@ -71,19 +40,38 @@ namespace ECM.Communication.Documents
 
 		public Notification()
 		{
+			this.headerField = new Header();
+			this.headerField.msg_type = ((sbyte) HeaderMessageEnumType.notification);
+			this.documentField = new DocumentType();
 			this.acknowledgementField = new AcknowledgementType();
 			this.expansionField = new ExpansionType();
-			this.addDocumentsField = new List<AddDocumentsTypeFolder>();
-			this.taskListField = new List<TaskListTypeTask>();
-			this.documentField = new DocumentType();
-			this.msg_acknowField = ((sbyte) (0));
+			this.docTransferField = new List<DocTransfer>();
 		}
 
 		#endregion
 
 		#region Fields
 
-		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+		/// <summary>
+		/// Заголовок
+		/// </summary>
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 0)]
+		public Header Header
+		{
+			get
+			{
+				return this.headerField;
+			}
+			set
+			{
+				this.headerField = value;
+			}
+		}
+
+		/// <summary>
+		/// Документ
+		/// </summary>
+		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
 		public DocumentType Document
 		{
 			get
@@ -96,34 +84,25 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		[System.Xml.Serialization.XmlArrayAttribute(Order = 1)]
-		[System.Xml.Serialization.XmlArrayItemAttribute("Task", IsNullable = false)]
-		public List<TaskListTypeTask> TaskList
+		/// <summary>
+		/// Уведомление (подтверждение приема)
+		/// </summary>
+		[System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+		public AcknowledgementType Acknowledgement
 		{
 			get
 			{
-				return this.taskListField;
+				return this.acknowledgementField;
 			}
 			set
 			{
-				this.taskListField = value;
+				this.acknowledgementField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlArrayAttribute(Order = 2)]
-		[System.Xml.Serialization.XmlArrayItemAttribute("Folder", IsNullable = false)]
-		public List<AddDocumentsTypeFolder> AddDocuments
-		{
-			get
-			{
-				return this.addDocumentsField;
-			}
-			set
-			{
-				this.addDocumentsField = value;
-			}
-		}
-
+		/// <summary>
+		/// Расширение
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 3)]
 		public ExpansionType Expansion
 		{
@@ -137,251 +116,20 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		[System.Xml.Serialization.XmlElementAttribute(Order = 4)]
-		public AcknowledgementType Acknowledgement
+		/// <summary>
+		/// Для передачи файла в сообщении
+		/// </summary>
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 4)]
+		[System.Xml.Serialization.XmlArrayItemAttribute("DocTransfer", IsNullable = false)]
+		public List<DocTransfer> DocTransfer
 		{
 			get
 			{
-				return this.acknowledgementField;
+				return this.docTransferField;
 			}
 			set
 			{
-				this.acknowledgementField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string standart
-		{
-			get
-			{
-				return this.standartField;
-			}
-			set
-			{
-				this.standartField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string version
-		{
-			get
-			{
-				return this.versionField;
-			}
-			set
-			{
-				this.versionField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public System.DateTime time
-		{
-			get
-			{
-				return this.timeField;
-			}
-			set
-			{
-				this.timeField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public sbyte msg_type
-		{
-			get
-			{
-				return this.msg_typeField;
-			}
-			set
-			{
-				this.msg_typeField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string msg_id
-		{
-			get
-			{
-				return this.msg_idField;
-			}
-			set
-			{
-				this.msg_idField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		[System.ComponentModel.DefaultValueAttribute(typeof(sbyte), "0")]
-		public sbyte msg_acknow
-		{
-			get
-			{
-				return this.msg_acknowField;
-			}
-			set
-			{
-				this.msg_acknowField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string from_org_id
-		{
-			get
-			{
-				return this.from_org_idField;
-			}
-			set
-			{
-				this.from_org_idField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string from_organization
-		{
-			get
-			{
-				return this.from_organizationField;
-			}
-			set
-			{
-				this.from_organizationField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string from_department
-		{
-			get
-			{
-				return this.from_departmentField;
-			}
-			set
-			{
-				this.from_departmentField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string from_sys_id
-		{
-			get
-			{
-				return this.from_sys_idField;
-			}
-			set
-			{
-				this.from_sys_idField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string from_system
-		{
-			get
-			{
-				return this.from_systemField;
-			}
-			set
-			{
-				this.from_systemField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string from_system_details
-		{
-			get
-			{
-				return this.from_system_detailsField;
-			}
-			set
-			{
-				this.from_system_detailsField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string to_org_id
-		{
-			get
-			{
-				return this.to_org_idField;
-			}
-			set
-			{
-				this.to_org_idField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string to_organization
-		{
-			get
-			{
-				return this.to_organizationField;
-			}
-			set
-			{
-				this.to_organizationField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string to_department
-		{
-			get
-			{
-				return this.to_departmentField;
-			}
-			set
-			{
-				this.to_departmentField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string to_sys_id
-		{
-			get
-			{
-				return this.to_sys_idField;
-			}
-			set
-			{
-				this.to_sys_idField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string to_system
-		{
-			get
-			{
-				return this.to_systemField;
-			}
-			set
-			{
-				this.to_systemField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string to_system_details
-		{
-			get
-			{
-				return this.to_system_detailsField;
-			}
-			set
-			{
-				this.to_system_detailsField = value;
+				this.docTransferField = value;
 			}
 		}
 

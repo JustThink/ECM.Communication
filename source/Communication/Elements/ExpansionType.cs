@@ -5,6 +5,14 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Расширение
+	/// </summary>
+	/// <remarks>
+	/// Содержит дополнительные, не стандартизованные в рамках настоящего стандарта, данные из передающей системы.
+	/// Назначение зоны – определение стандартного пути расширения стандарта.
+	/// Состав зоны документируется разработчиком соответствующей системы управления документами.
+	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
