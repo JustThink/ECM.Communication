@@ -6,6 +6,12 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Задания
+	/// </summary>
+	/// <remarks>
+	/// Содержит информацию о выданных заданиях на исполнение и обработку документа (в виде резолюций, поручений, сопроводительных писем, напоминаний и т.д.) – как в объеме стандартизованного набора РКД, так и, возможно, в электронном виде (в виде файла, набора файлов).
+	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

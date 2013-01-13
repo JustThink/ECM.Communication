@@ -50,11 +50,11 @@
     <Compile Include="Documents\Main.cs" />
     <Compile Include="Enums\HeaderAsknowEnumType.cs" />
     <Compile Include="Enums\HeaderMessageEnumType.cs" />
-    <Compile Include="Documents\Request.cs" />
-    <Compile Include="Documents\Request.Supplement.cs" />
+    <Compile Include="Documents\Response.cs" />
+    <Compile Include="Documents\Response.Supplement.cs" />
     <Compile Include="Elements\RegNumber.cs" />
     <Compile Include="Areas\AddDocumentsType.cs" />
-    <Compile Include="Elements\AddDocumentsTypeFolder.cs" />
+    <Compile Include="Areas\AddDocumentsTypeFolder.cs" />
     <Compile Include="Elements\Address.cs" />
     <Compile Include="Elements\Addressee.cs" />
     <Compile Include="Elements\AuthorOrganization.cs" />

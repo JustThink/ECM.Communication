@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Elements;
 
-namespace ECM.Communication.Elements
+namespace ECM.Communication.Areas
 {
+	/// <summary>
+	/// Дополнительные материалы
+	/// </summary>
+	/// <remarks>
+	/// Содержит информацию о дополнительных (справочных) материалах к документу, которые разъясняют отдельные, затронутые в документевопросы (в виде дополнительных документов, писем, справок и пр.).
+	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

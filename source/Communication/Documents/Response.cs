@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using ECM.Communication.Areas;
 using ECM.Communication.Elements;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Documents
 {
@@ -16,8 +17,15 @@ namespace ECM.Communication.Documents
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-	public partial class Request
+	public partial class Response
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private Header headerField;
 
@@ -29,17 +37,23 @@ namespace ECM.Communication.Documents
 
 		private List<DocTransfer> docTransferField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
 
-		public Request()
+		#region Constructor
+
+		public Response()
 		{
 			this.headerField = new Header();
+			this.headerField.msg_type = ((sbyte)HeaderMessageEnumType.response);
 			this.documentField = new DocumentType();
 			this.addDocumentsField = new List<AddDocumentsTypeFolder>();
 			this.expansionField = new ExpansionType();
 			this.docTransferField = new List<DocTransfer>();
 		}
 
+		#endregion
+
+		#region Fields
 
 		/// <summary>
 		/// Заголовок
@@ -107,7 +121,7 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// docTransfer
+		/// Для передачи файла в сообщении
 		/// </summary>
 		[System.Xml.Serialization.XmlArrayAttribute(Order = 4)]
 		[System.Xml.Serialization.XmlArrayItemAttribute("DocTransfer", IsNullable = false)]
@@ -129,11 +143,13 @@ namespace ECM.Communication.Documents
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Request));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Response));
 				}
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>
@@ -180,10 +196,10 @@ namespace ECM.Communication.Documents
 		/// <param name="obj">Output Header object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out Request obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out Response obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(Request);
+			obj = default(Response);
 			try
 			{
 				obj = Deserialize(xml);
@@ -196,19 +212,19 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		public static bool Deserialize(string xml, out Request obj)
+		public static bool Deserialize(string xml, out Response obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static Request Deserialize(string xml)
+		public static Response Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((Request) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((Response) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -276,10 +292,10 @@ namespace ECM.Communication.Documents
 		/// <param name="obj">Output Header object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Request obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Response obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(Request);
+			obj = default(Response);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -292,23 +308,23 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out Request obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out Response obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out Request obj)
+		public static bool LoadFromFile(string fileName, out Response obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static Request LoadFromFile(string fileName)
+		public static Response LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static Request LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static Response LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;

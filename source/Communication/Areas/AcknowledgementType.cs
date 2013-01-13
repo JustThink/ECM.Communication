@@ -7,6 +7,13 @@ using ECM.Communication.Elements;
 
 namespace ECM.Communication.Areas
 {
+	/// <summary>
+	/// Уведомление (подтверждение приема)
+	/// </summary>
+	/// <remarks>
+	/// Содержит ответную информацию о доставке сообщения, об ошибках приема и интерпретации сообщения, о регистрации полученного документа и др.
+	/// Данная зона в сообщении может передаваться только с заголовком сообщения и с зоной Расширение
+	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

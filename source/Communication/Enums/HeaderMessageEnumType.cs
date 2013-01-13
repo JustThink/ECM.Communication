@@ -2,6 +2,9 @@
 
 namespace ECM.Communication.Enums
 {
+	/// <summary>
+	/// Вид сообщения
+	/// </summary>
 	[Serializable()]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
