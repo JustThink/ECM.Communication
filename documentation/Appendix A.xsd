@@ -1,0 +1,636 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--************************************************************************************* -->
+	<!-- ********************** Описание сообщения ***********************************-->
+	<!--************************************************************************************* -->
+	<xs:element name="Header">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Document" type="DocumentType" minOccurs="0"/>
+				<xs:element name="TaskList" type="TaskListType" minOccurs="0"/>
+				<xs:element name="AddDocuments" type="AddDocumentsType" minOccurs="0"/>
+				<xs:element name="Expansion" type="ExpansionType" minOccurs="0"/>
+				<xs:element name="Acknowledgement" type="AcknowledgementType" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="standart" type="xs:string" use="required"/>
+			<xs:attribute name="version" type="xs:string" use="required"/>
+			<xs:attribute name="time" type="xs:dateTime" use="required"/>
+			<xs:attribute name="msg_type" type="HeaderMessageEnumType" use="required"/>
+			<xs:attribute name="msg_id" type="xs:string" use="required"/>
+			<xs:attribute name="msg_acknow" type="HeaderAsknowEnumType" use="optional"
+			default="0"/>
+			<xs:attribute name="from_org_id" type="xs:string" use="required"/>
+			<xs:attribute name="from_organization" type="xs:string" use="required"/>
+			<xs:attribute name="from_department" type="xs:string" use="optional"/>
+			<xs:attribute name="from_sys_id" type="xs:string" use="required"/>
+			<xs:attribute name="from_system" type="xs:string" use="required"/>
+			<xs:attribute name="from_system_details" type="xs:string" use="optional"/>
+			<xs:attribute name="to_org_id" type="xs:string" use="optional"/>
+			<xs:attribute name="to_organization" type="xs:string" use="required"/>
+			<xs:attribute name="to_department" type="xs:string" use="optional"/>
+			<xs:attribute name="to_sys_id" type="xs:string" use="optional"/>
+			<xs:attribute name="to_system" type="xs:string" use="optional"/>
+			<xs:attribute name="to_system_details" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<!-- *********************************** Зона «Документ» *************************** -->
+	<!--************************************************************************************* -->
+	<xs:complexType name="DocumentType">
+		<xs:sequence>
+			<xs:element ref="RegNumber"/>
+			<xs:element ref="Confident"/>
+			<xs:element ref="Referred" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="DocNumber" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Addressee" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="DocTransfer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="RegHistory" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Author" maxOccurs="unbounded"/>
+			<xs:element ref="Validator" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Writer" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="idnumber" type="xs:string" use="required"/>
+		<xs:attribute name="type" type="DocumentEnumType" use="required"/>
+		<xs:attribute name="kind" type="xs:string" use="optional"/>
+		<xs:attribute name="pages" type="xs:unsignedLong" use="optional"/>
+		<xs:attribute name="title" type="xs:string" use="optional"/>
+		<xs:attribute name="annotation" type="xs:string" use="optional"/>
+		<xs:attribute name="collection" type="CollectionEnumType" use="optional"/>
+	</xs:complexType>
+	<!--************************************************************************************* -->
+	<!-- *********************************** Зона «Задания» *************************** -->
+	<!--************************************************************************************* -->
+	<xs:complexType name="TaskListType">
+		<xs:sequence>
+			<xs:element name="Task" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="TaskNumber"/>
+						<xs:element ref="Confident"/>
+						<xs:element ref="Referred" maxOccurs="unbounded"/>
+						<xs:element ref="AuthorOrganization" maxOccurs="unbounded"/>
+						<xs:element ref="DocTransfer" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="Executor" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="idnumber" type="xs:string" use="required"/>
+					<xs:attribute name="task_reg" type="TaskRegistrationEnumType" use="required"/>
+					<xs:attribute name="task_copy" type="TaskCopyEnumType" use="required"/>
+					<xs:attribute name="kind" type="xs:string" use="optional"/>
+					<xs:attribute name="task_text" type="xs:string" use="required"/>
+					<xs:attribute name="deadline" type="xs:date" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--************************************************************************************* -->
+	<!-- ************************** Зона «Дополнительные материалы» ******************* -->
+	<!--************************************************************************************* -->
+	<xs:complexType name="AddDocumentsType">
+		<xs:sequence>
+			<xs:element name="Folder" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="DocTransfer" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="Note" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="Referred" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="add_type" type="FolderAddEnumType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--************************************************************************************* -->
+	<!-- *********************************** Зона «Расширение» *************************** -->
+	<!--************************************************************************************* -->
+	<xs:complexType name="ExpansionType">
+		<xs:sequence>
+			<xs:element ref="Econtact" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AnyData" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any namespace="##any" processContents="lax" minOccurs="0"
+						maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="organization" type="xs:string" use="required"/>
+		<xs:attribute name="exp_ver" type="xs:string" use="required"/>
+	</xs:complexType>
+	<!--************************************************************************************* -->
+	<!-- *********************************** Зона «Уведомление» *************************** -->
+	<!--************************************************************************************* -->
+	<xs:complexType name="AcknowledgementType">
+		<xs:sequence>
+			<xs:element ref="RegNumber" minOccurs="0"/>
+			<xs:element ref="AckResult" maxOccurs="unbounded"/>
+			<xs:element ref="DocTransfer" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="msg_id" type="xs:string" use="required"/>
+		<xs:attribute name="ask_type" type="AcknowledgementEnumType" use="required"/>
+	</xs:complexType>
+	<!--************************************************************************************* -->
+	<!--************************************************************************************ -->
+	<!--*************** Элементы, используемые в зонах сообщения ************  -->
+	<!--************************************************************************************ -->
+	<!--************************************************************************************* -->
+	<xs:element name="AckResult">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="errorcode" type="xs:unsignedLong" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Address">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="street" type="xs:string" use="optional"/>
+					<xs:attribute name="house" type="xs:string" use="optional"/>
+					<xs:attribute name="building" type="xs:string" use="optional"/>
+					<xs:attribute name="flat" type="xs:string" use="optional"/>
+					<xs:attribute name="settlement" type="xs:string" use="optional"/>
+					<xs:attribute name="district" type="xs:string" use="optional"/>
+					<xs:attribute name="region" type="xs:string" use="optional"/>
+					<xs:attribute name="country" type="xs:string" use="optional"/>
+					<xs:attribute name="postсode" type="xs:string" use="optional"/>
+					<xs:attribute name="postbox" type="xs:string" use="optional"/>
+					<xs:attribute name="nontypical" type="xs:string" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Addressee">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="Organization"/>
+					<xs:element ref="Referred" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="PrivatePerson"/>
+					<xs:element ref="Referred" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Author">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="OrganizationWithSign"/>
+					<xs:element ref="OutNumber" minOccurs="0"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="PrivatePersonWithSign"/>
+					<xs:element ref="OutNumber" minOccurs="0"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="AuthorOrganization">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrganizationWithSign"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Confident">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="flag" type="ConfidentEnumType" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="DocNumber">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrganizationOnly"/>
+				<xs:element ref="RegNumber"/>
+			</xs:sequence>
+			<xs:attribute name="kind" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="DocTransfer">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:base64Binary">
+					<xs:attribute name="os" type="xs:string" use="required"/>
+					<xs:attribute name="type" type="xs:string" use="required"/>
+					<xs:attribute name="type_ver" type="xs:string" use="optional"/>
+					<xs:attribute name="char_set" type="xs:string" use="optional"/>
+					<xs:attribute name="description" type="xs:string" use="required"/>
+					<xs:attribute name="transfertype" type="TransferEnumType" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Econtact">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="type" type="EcontactEnumType" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Executor">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Organization"/>
+			</xs:sequence>
+			<xs:attribute name="responsible" type="ExecutorEnumType" use="optional"/>
+			<xs:attribute name="task_specified" type="xs:string" use="optional"/>
+			<xs:attribute name="deadline" type="xs:date" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Name">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="secname" type="xs:string" use="optional"/>
+					<xs:attribute name="firstname" type="xs:string" use="optional"/>
+					<xs:attribute name="fathersname" type="xs:string" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Note">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Official">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="department" type="xs:string" use="optional"/>
+					<xs:attribute name="post" type="xs:string" use="optional"/>
+					<xs:attribute name="separator" type="xs:string" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="OfficialPerson">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Official" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Rank" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Address" minOccurs="0"/>
+				<xs:element
+ref="Econtact" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="OfficialPersonWithSign">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Official" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Rank" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Address" minOccurs="0"/>
+				<xs:element ref="Econtact" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SignDate" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Organization">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Address" minOccurs="0"/>
+				<xs:element ref="Econtact" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="OfficialPerson" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="organization_string" type="xs:string" use="required"/>
+			<xs:attribute name="fullname" type="xs:string" use="optional"/>
+			<xs:attribute name="shortname" type="xs:string" use="optional"/>
+			<xs:attribute name="ownership" type="xs:string" use="optional"/>
+			<xs:attribute name="ogrn" type="xs:unsignedLong" use="optional"/>
+			<xs:attribute name="inn" type="xs:unsignedLong" use="optional"/>
+			<xs:attribute name="kpp" type="xs:unsignedLong" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="OrganizationOnly">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Address" minOccurs="0"/>
+				<xs:element ref="Econtact" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="organization_string" type="xs:string" use="required"/>
+			<xs:attribute name="fullname" type="xs:string" use="optional"/>
+			<xs:attribute name="shortname" type="xs:string" use="optional"/>
+			<xs:attribute name="ownership" type="xs:string" use="optional"/>
+			<xs:attribute name="ogrn" type="xs:unsignedLong" use="optional"/>
+			<xs:attribute name="inn" type="xs:unsignedLong" use="optional"/>
+			<xs:attribute name="kpp" type="xs:unsignedLong" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="OrganizationWithSign">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Address" minOccurs="0"/>
+				<xs:element ref="Econtact" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="OfficialPersonWithSign" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="organization_string" type="xs:string" use="required"/>
+			<xs:attribute name="fullname" type="xs:string" use="optional"/>
+			<xs:attribute name="shortname" type="xs:string" use="optional"/>
+			<xs:attribute name="ownership" type="xs:string" use="optional"/>
+			<xs:attribute name="ogrn" type="xs:unsignedLong" use="optional"/>
+			<xs:attribute name="inn" type="xs:unsignedLong" use="optional"/>
+			<xs:attribute name="kpp" type="xs:unsignedLong" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="OutNumber">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegNumber"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="PrivatePerson">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Rank" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Address" minOccurs="0"/>
+				<xs:element ref="Econtact" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="inn" type="xs:unsignedLong" use="optional"/>
+			<xs:attribute name="doc_kind" type="xs:string" use="optional"/>
+			<xs:attribute name="doc_num" type="xs:string" use="optional"/>
+			<xs:attribute name="doc_org" type="xs:string" use="optional"/>
+			<xs:attribute name="doc_date" type="xs:date" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="PrivatePersonWithSign">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Rank" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Address" minOccurs="0"/>
+				<xs:element ref="Econtact" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SignDate" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="inn" type="xs:unsignedLong" use="optional"/>
+			<xs:attribute name="doc_kind" type="xs:string" use="optional"/>
+			<xs:attribute name="doc_num" type="xs:string" use="optional"/>
+			<xs:attribute name="doc_org" type="xs:string" use="optional"/>
+			<xs:attribute name="doc_date" type="xs:date" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Rank">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Referred">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="RegNumber"/>
+				<xs:element ref="TaskNumber"/>
+			</xs:choice>
+			<xs:attribute name="idnumber" type="xs:string" use="optional"/>
+			<xs:attribute name="retype" type="ReferredEnumType" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="RegHistory">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrganizationOnly"/>
+				<xs:element ref="RegNumber"/>
+			</xs:sequence>
+			<xs:attribute name="idnumber" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="RegNumber">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="regdate" type="xs:date" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="SignDate">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:date"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="TaskNumber">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="taskDate" type="xs:date" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Validator">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="OrganizationWithSign"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="PrivatePersonWithSign"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="DocNumber"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:attribute name="attestation" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<xs:element name="Writer">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="Organization"/>
+				<xs:element ref="PrivatePerson"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<!--************************************************************************************* -->
+	<!--************************************************************************************* -->
+	<!--*************** Используемые перечни допустимых значений ************** -->
+	<!--************************************************************************************* -->
+	<!--************************************************************************************* -->
+	<xs:simpleType name="AcknowledgementEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<!--1 уведомление о доставке и приеме сообщения -->
+			<!--2 уведомление о регистрации документа в системе-получателе -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="CollectionEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<!--0 нет-->
+			<!--1 да-->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="ConfidentEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<!--0 открытый документ -->
+			<!--1 документ с ограниченным доступом -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="DocumentEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<!--0 Исходящий-->
+			<!--1 Входящий-->
+			<!--2 Внутренний-->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="EcontactEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<!--0 прочее -->
+			<!--1 рабочий телефон -->
+			<!--2 домашний телефон -->
+			<!--3 мобильный телефон -->
+			<!--4 факс -->
+			<!--5 адрес электронной почты -->
+			<!--6 адрес сайта -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="ExecutorEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<!--0 соисполнитель -->
+			<!--1 ответственный исполнитель. -->
+			<!--Значение 1 может быть  только у одного из списка исполнителей -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="FolderAddEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<!-- 0 данные материалы являются приложениями документа (его составной частью) -->
+			<!-- 1 материалы носят информационно-справочный характер -->
+			<!-- 2 данные материалы являются ссылками на другие документы -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="HeaderAsknowEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<!-- 0 Нет -->
+			<!-- 1 Только при ошибках -->
+			<!-- 2 Всегда -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="HeaderMessageEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<!-- 0 Уведомление-->
+			<!-- 1 Основной документ  -->
+			<!-- 2 Дополнения к основному документу  -->
+			<!-- 3 Документ-ответ  -->
+			<!-- 4 Дополнения к Документу-ответу  -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="ReferredEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<!--1 ссылка на документ -->
+			<!--2 ссылка на задание -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="TaskCopyEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<!--0 задание из передающей организации -->
+			<!--1 копия  задания, направленного в передающую  организацию -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="TaskRegistrationEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<!--0 задание не зарегистрировано в передающей организации-->
+			<!--1 задание зарегистрировано в передающей организации -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--************************************************************************************* -->
+	<xs:simpleType name="TransferEnumType">
+		<xs:restriction base="xs:byte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<!--0 передается непосредственно сам файл -->
+			<!--1 передается указатель местонахождения файла (ссылка на файл) -->
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
