@@ -1,8 +1,13 @@
-﻿namespace ECM.Communication.Enums
+﻿using System;
+
+namespace ECM.Communication.Enums
 {
 	/// <summary>
 	/// Тип номера (адреса)
 	/// </summary>
+	[Serializable()]
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum EcontactEnumType
 	{
 		//рабочий телефо
