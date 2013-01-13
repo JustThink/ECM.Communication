@@ -1,44 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-using ECM.Communication.Enums;
+using ECM.Communication.Areas;
+using ECM.Communication.Elements;
 
-namespace ECM.Communication.Areas
+namespace ECM.Communication.Documents
 {
-	/// <summary>
-	/// Заголовок
-	/// </summary>
-	/// <remarks>
-	/// Содержит служебную информацию, необходимую для правильной передачи и интерпретации всего сообщения в целом.
-	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-	public partial class Header
+	public partial class Main
 	{
-		#region Const & Static
-
-		private const string StandartFieldDefault = @"Стандарт системы управления документами";
-		private const string VersionFieldDefault = @"1.0";
-
-		#endregion
-
 		#region Properties
+
+		private DocumentType documentField;
+
+		private List<TaskListTypeTask> taskListField;
+
+		private List<AddDocumentsTypeFolder> addDocumentsField;
+
+		private ExpansionType expansionField;
+
+		private AcknowledgementType acknowledgementField;
 
 		private string standartField;
 
 		private string versionField;
 
-		private DateTime timeField;
+		private System.DateTime timeField;
 
-		private HeaderMessageEnumType msg_typeField;
+		private sbyte msg_typeField;
 
 		private string msg_idField;
 
-		private HeaderAsknowEnumType msg_acknowField;
+		private sbyte msg_acknowField;
 
 		private string from_org_idField;
 
@@ -70,28 +69,91 @@ namespace ECM.Communication.Areas
 
 		#region Constructor
 
-		public Header()
+		public Main()
 		{
-			this.standartField = StandartFieldDefault;
-			this.versionField = VersionFieldDefault;
-			this.time = DateTime.UtcNow;
-			this.msg_acknowField = ((sbyte) (HeaderMessageEnumType.notification));
+			this.acknowledgementField = new AcknowledgementType();
+			this.expansionField = new ExpansionType();
+			this.addDocumentsField = new List<AddDocumentsTypeFolder>();
+			this.taskListField = new List<TaskListTypeTask>();
+			this.documentField = new DocumentType();
+			this.msg_acknowField = ((sbyte) (0));
 		}
 
 		#endregion
 
 		#region Fields
 
-		/// <summary>
-		/// Вид стандарта, по которому создано данное сообщение.
-		/// </summary>
-		/// <remarks>
-		/// Допустимое значение: «Стандарт системы управления документами»
-		/// </remarks>
+		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+		public DocumentType Document
+		{
+			get
+			{
+				return this.documentField;
+			}
+			set
+			{
+				this.documentField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 1)]
+		[System.Xml.Serialization.XmlArrayItemAttribute("Task", IsNullable = false)]
+		public List<TaskListTypeTask> TaskList
+		{
+			get
+			{
+				return this.taskListField;
+			}
+			set
+			{
+				this.taskListField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 2)]
+		[System.Xml.Serialization.XmlArrayItemAttribute("Folder", IsNullable = false)]
+		public List<AddDocumentsTypeFolder> AddDocuments
+		{
+			get
+			{
+				return this.addDocumentsField;
+			}
+			set
+			{
+				this.addDocumentsField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+		public ExpansionType Expansion
+		{
+			get
+			{
+				return this.expansionField;
+			}
+			set
+			{
+				this.expansionField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+		public AcknowledgementType Acknowledgement
+		{
+			get
+			{
+				return this.acknowledgementField;
+			}
+			set
+			{
+				this.acknowledgementField = value;
+			}
+		}
+
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string standart
 		{
-			get 
+			get
 			{
 				return this.standartField;
 			}
@@ -101,12 +163,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Версия стандарта
-		/// </summary>
-		/// <remarks>
-		/// Допустимое значение: «1.0»
-		/// </remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string version
 		{
@@ -120,14 +176,8 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Дата и время формирования сообщения
-		/// </summary>
-		/// <remarks>
-		/// Дата и время в системе UTC
-		/// </remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public DateTime time
+		public System.DateTime time
 		{
 			get
 			{
@@ -139,36 +189,19 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Вид сообщения
-		/// Влияет на перечень допустимых элементов (зон) в сообщении
-		/// </summary>
-		/// <remarks>
-		/// 0 - Уведомление,
-		/// 1 - Основной документ,
-		/// 2 - Дополнения к основному документу,
-		/// 3 - Документ-ответ,
-		/// 4 - Дополнения к документу-ответу
-		/// </remarks>
-		/// <seealso cref="HeaderMessageEnumType"/>
-		/// <exception cref="ArgumentNullException"></exception>
-		/// <exception cref="ArgumentException"></exception>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte msg_type
 		{
 			get
 			{
-				return ((sbyte) (this.msg_typeField));
+				return this.msg_typeField;
 			}
 			set
 			{
-				this.msg_typeField = (HeaderMessageEnumType) Enum.ToObject(typeof(HeaderMessageEnumType), value);
+				this.msg_typeField = value;
 			}
 		}
 
-		/// <summary>
-		/// Уникальный служебный идентификационный номер сообщения
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string msg_id
 		{
@@ -182,33 +215,20 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Необходимость посылки уведомления
-		/// </summary>
-		/// <remarks>
-		/// 0- Нет,
-		/// 1- Только при ошибках,
-		/// 2- Всегда.
-		/// По умолчанию 
-		/// (отсутствие атрибута) – 0
-		/// </remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		[System.ComponentModel.DefaultValueAttribute(typeof(sbyte), "0")]
 		public sbyte msg_acknow
 		{
 			get
 			{
-				return ((sbyte) (this.msg_acknowField));
+				return this.msg_acknowField;
 			}
 			set
 			{
-				this.msg_acknowField = (HeaderAsknowEnumType) Enum.ToObject(typeof(HeaderAsknowEnumType), value);
+				this.msg_acknowField = value;
 			}
 		}
 
-		/// <summary>
-		/// Уникальный служебный идентификационный номер отправителя
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string from_org_id
 		{
@@ -222,9 +242,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Организация-отправитель
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string from_organization
 		{
@@ -238,9 +255,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Подразделение-отправитель
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string from_department
 		{
@@ -254,9 +268,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Уникальный служебный идентификационный номер системы отправителя
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string from_sys_id
 		{
@@ -270,9 +281,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Наименование системы управления документами отправителя
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string from_system
 		{
@@ -286,9 +294,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Дополнительные данные о системе управления документами отправителя
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string from_system_details
 		{
@@ -302,9 +307,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Уникальный служебный идентификационный номер получателя
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string to_org_id
 		{
@@ -318,9 +320,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Организация- получатель
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string to_organization
 		{
@@ -334,9 +333,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Подразделение-получатель
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string to_department
 		{
@@ -350,9 +346,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Уникальный служебный идентификационный номер системы получателя
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string to_sys_id
 		{
@@ -366,9 +359,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Наименование системы управления документами получателя
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string to_system
 		{
@@ -382,9 +372,6 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		/// <summary>
-		/// Дополнительные данные о системе управления документами получателя
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string to_system_details
 		{

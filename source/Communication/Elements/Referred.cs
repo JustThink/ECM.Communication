@@ -2,7 +2,6 @@
 using System.Text;
 using System.Xml;
 
-
 namespace ECM.Communication.Elements
 {
 	/// <summary>

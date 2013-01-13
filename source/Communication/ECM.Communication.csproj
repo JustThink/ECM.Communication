@@ -45,6 +45,12 @@
     <Compile Include="Areas\AckResult.cs" />
     <Compile Include="Areas\DocumentType.cs" />
     <Compile Include="Areas\Header.cs" />
+    <Compile Include="Documents\Notification.cs" />
+    <Compile Include="Documents\Main.Supplement.cs" />
+    <Compile Include="Documents\Main.cs" />
+    <Compile Include="Enums\EcontactEnumType.cs" />
+    <Compile Include="Enums\HeaderAsknowEnumType.cs" />
+    <Compile Include="Enums\HeaderMessageEnumType.cs" />
     <Compile Include="Documents\Request.cs" />
     <Compile Include="Documents\Request.Supplement.cs" />
     <Compile Include="Elements\RegNumber.cs" />
@@ -84,11 +90,6 @@
     <Compile Include="Elements\OrganizationWithSign.cs" />
     <Compile Include="Elements\RegHistory.cs" />
     <Compile Include="Elements\SignDate.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="xsd\shema.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

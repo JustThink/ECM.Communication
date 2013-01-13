@@ -2,7 +2,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-
 namespace ECM.Communication.Elements
 {
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
