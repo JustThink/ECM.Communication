@@ -1,0 +1,46 @@
+# local settings #
+##################
+*.user
+
+# compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.cache
+*.suo
+*.user
+*.dat
+
+# Directories #
+###############
+[bB]in/
+[oO]bj/
+[pP]ackages/
+
+# Resharper #
+#############
+/_[Rr]e[Ss]harper.*
+*.[Rr]e[Ss]harper.*
+*.[Rr]e[Ss]harper
+
+# OS generated files #
+######################
+[Tt]humbs.db 
+[Dd]esktop.ini
+
+
+# Source Safe #
+###############
+*.vspcc
+*.vscc
+*.vssscc
+*.vspscc
+*.csproj.vspscc
+
+# Local Source #
+################
+*.DotSettings
