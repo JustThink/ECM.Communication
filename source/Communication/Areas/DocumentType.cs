@@ -4,9 +4,13 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using ECM.Communication.Elements;
+using ECM.Communication.Enums;
 
-namespace ECM.Communication.Documents
+namespace ECM.Communication.Areas
 {
+	/// <summary>
+	/// Основные реквизиты передаваемого документа.
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -36,7 +40,7 @@ namespace ECM.Communication.Documents
 
 		private string idnumberField;
 
-		private sbyte typeField;
+		private DocumentEnumType typeField;
 
 		private string kindField;
 
@@ -198,6 +202,9 @@ namespace ECM.Communication.Documents
 			}
 		}
 
+		/// <summary>
+		/// Уникальный служебный идентификационный номер документа в передающей системе.
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string idnumber
 		{
@@ -211,16 +218,19 @@ namespace ECM.Communication.Documents
 			}
 		}
 
+		/// <summary>
+		/// Тип документа
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte type
 		{
 			get
 			{
-				return this.typeField;
+				return ((sbyte) (this.typeField));
 			}
 			set
 			{
-				this.typeField = value;
+				this.typeField = (DocumentEnumType) Enum.ToObject(typeof(DocumentEnumType), value);
 			}
 		}
 
