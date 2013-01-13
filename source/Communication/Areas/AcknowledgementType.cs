@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using ECM.Communication.Elements;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Areas
 {
@@ -20,6 +21,13 @@ namespace ECM.Communication.Areas
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
 	public partial class AcknowledgementType
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private RegNumber regNumberField;
 
@@ -29,17 +37,26 @@ namespace ECM.Communication.Areas
 
 		private string msg_idField;
 
-		private sbyte ask_typeField;
+		private AcknowledgementEnumType ask_typeField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public AcknowledgementType()
 		{
-			this.docTransferField = new DocTransfer();
-			this.ackResultField = new List<AckResult>();
 			this.regNumberField = new RegNumber();
+			this.ackResultField = new List<AckResult>();
+			this.docTransferField = new DocTransfer();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Регистрационный номер документа.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public RegNumber RegNumber
 		{
@@ -53,6 +70,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Строка, содержащая описания ошибки.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("AckResult", Order = 1)]
 		public List<AckResult> AckResult
 		{
@@ -66,6 +86,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Для передачи файла в сообщении
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 2)]
 		public DocTransfer DocTransfer
 		{
@@ -79,6 +102,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Уникальный служебный идентификационный номер поступившего сообщения
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string msg_id
 		{
@@ -92,16 +118,23 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Вид уведомления
+		/// </summary>
+		/// <remarks>
+		/// 1 - уведомление о доставке и приеме сообщения;
+		/// 2 - уведомление о регистрации документа в системе управления документами получателя
+		/// </remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte ask_type
 		{
 			get
 			{
-				return this.ask_typeField;
+				return ((sbyte)this.ask_typeField);
 			}
 			set
 			{
-				this.ask_typeField = value;
+				this.ask_typeField = (AcknowledgementEnumType) Enum.ToObject(typeof(AcknowledgementEnumType), value);
 			}
 		}
 
@@ -116,6 +149,8 @@ namespace ECM.Communication.Areas
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

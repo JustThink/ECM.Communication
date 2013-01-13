@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-using ECM.Communication.Elements;
 
 namespace ECM.Communication.Areas
 {
@@ -19,15 +18,28 @@ namespace ECM.Communication.Areas
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
 	public partial class AddDocumentsType
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private List<AddDocumentsTypeFolder> folderField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public AddDocumentsType()
 		{
 			this.folderField = new List<AddDocumentsTypeFolder>();
 		}
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlElementAttribute("Folder", Order = 0)]
 		public List<AddDocumentsTypeFolder> Folder
@@ -53,6 +65,8 @@ namespace ECM.Communication.Areas
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>
