@@ -17,8 +17,7 @@
 			<xs:attribute name="time" type="xs:dateTime" use="required"/>
 			<xs:attribute name="msg_type" type="HeaderMessageEnumType" use="required"/>
 			<xs:attribute name="msg_id" type="xs:string" use="required"/>
-			<xs:attribute name="msg_acknow" type="HeaderAsknowEnumType" use="optional"
-			default="0"/>
+			<xs:attribute name="msg_acknow" type="HeaderAsknowEnumType" use="optional" default="0"/>
 			<xs:attribute name="from_org_id" type="xs:string" use="required"/>
 			<xs:attribute name="from_organization" type="xs:string" use="required"/>
 			<xs:attribute name="from_department" type="xs:string" use="optional"/>

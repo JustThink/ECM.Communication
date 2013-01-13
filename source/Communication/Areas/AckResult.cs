@@ -3,32 +3,32 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace ECM.Communication.Documents
+namespace ECM.Communication.Areas
 {
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-	public partial class RegNumber
+	public partial class AckResult
 	{
 
-		private System.DateTime regdateField;
+		private ulong errorcodeField;
 
 		private string valueField;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
-		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
-		public System.DateTime regdate
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public ulong errorcode
 		{
 			get
 			{
-				return this.regdateField;
+				return this.errorcodeField;
 			}
 			set
 			{
-				this.regdateField = value;
+				this.errorcodeField = value;
 			}
 		}
 
@@ -51,7 +51,7 @@ namespace ECM.Communication.Documents
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(RegNumber));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(AckResult));
 				}
 				return serializer;
 			}
@@ -59,7 +59,7 @@ namespace ECM.Communication.Documents
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current RegNumber object into an XML document
+		/// Serializes current AckResult object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -96,16 +96,16 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an RegNumber object
+		/// Deserializes workflow markup into an AckResult object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output RegNumber object</param>
+		/// <param name="obj">Output AckResult object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out RegNumber obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out AckResult obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(RegNumber);
+			obj = default(AckResult);
 			try
 			{
 				obj = Deserialize(xml);
@@ -118,19 +118,19 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		public static bool Deserialize(string xml, out RegNumber obj)
+		public static bool Deserialize(string xml, out AckResult obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static RegNumber Deserialize(string xml)
+		public static AckResult Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((RegNumber) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((AckResult) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -142,7 +142,7 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Serializes current RegNumber object into file
+		/// Serializes current AckResult object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -192,16 +192,16 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an RegNumber object
+		/// Deserializes xml markup from file into an AckResult object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output RegNumber object</param>
+		/// <param name="obj">Output AckResult object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out RegNumber obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out AckResult obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(RegNumber);
+			obj = default(AckResult);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -214,23 +214,23 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out RegNumber obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out AckResult obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out RegNumber obj)
+		public static bool LoadFromFile(string fileName, out AckResult obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static RegNumber LoadFromFile(string fileName)
+		public static AckResult LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static RegNumber LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static AckResult LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;
