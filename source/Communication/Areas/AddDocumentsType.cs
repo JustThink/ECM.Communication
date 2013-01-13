@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using ECM.Communication.Elements;
 
-namespace ECM.Communication.Documents
+namespace ECM.Communication.Areas
 {
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]

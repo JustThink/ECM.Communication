@@ -41,12 +41,17 @@
     <Compile Include="..\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
-    <Compile Include="Documents\AcknowledgementType.cs" />
-    <Compile Include="Documents\AckResult.cs" />
-    <Compile Include="Documents\DocumentType.cs" />
-    <Compile Include="Documents\Header.cs" />
+    <Compile Include="Areas\AcknowledgementType.cs" />
+    <Compile Include="Areas\AckResult.cs" />
+    <Compile Include="Areas\DocumentType.cs" />
+    <Compile Include="Areas\Header.cs" />
+    <Compile Include="Documents\Notification.cs" />
+    <Compile Include="Documents\Main.Supplement.cs" />
+    <Compile Include="Documents\Main.cs" />
+    <Compile Include="Enums\HeaderAsknowEnumType.cs" />
+    <Compile Include="Enums\HeaderMessageEnumType.cs" />
     <Compile Include="Elements\RegNumber.cs" />
-    <Compile Include="Documents\AddDocumentsType.cs" />
+    <Compile Include="Areas\AddDocumentsType.cs" />
     <Compile Include="Elements\AddDocumentsTypeFolder.cs" />
     <Compile Include="Elements\Address.cs" />
     <Compile Include="Elements\Addressee.cs" />
@@ -80,11 +85,6 @@
     <Compile Include="Elements\OrganizationWithSign.cs" />
     <Compile Include="Elements\RegHistory.cs" />
     <Compile Include="Elements\SignDate.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="xsd\shema.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
