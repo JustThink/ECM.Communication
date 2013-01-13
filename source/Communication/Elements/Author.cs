@@ -1,100 +1,39 @@
-﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-using ECM.Communication.Elements;
 
-namespace ECM.Communication.Documents
+namespace ECM.Communication.Elements
 {
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-	[Serializable()]
+	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
-	public partial class AcknowledgementType
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+	public partial class Author
 	{
 
-		private RegNumber regNumberField;
-
-		private List<AckResult> ackResultField;
-
-		private DocTransfer docTransferField;
-
-		private string msg_idField;
-
-		private sbyte ask_typeField;
+		private List<object> itemsField;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
-		public AcknowledgementType()
+		public Author()
 		{
-			this.docTransferField = new DocTransfer();
-			this.ackResultField = new List<AckResult>();
-			this.regNumberField = new RegNumber();
+			this.itemsField = new List<object>();
 		}
 
-		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
-		public RegNumber RegNumber
+		[System.Xml.Serialization.XmlElementAttribute("OrganizationWithSign", typeof(OrganizationWithSign), Order = 0)]
+		[System.Xml.Serialization.XmlElementAttribute("OutNumber", typeof(OutNumber), Order = 0)]
+		[System.Xml.Serialization.XmlElementAttribute("PrivatePersonWithSign", typeof(PrivatePersonWithSign), Order = 0)]
+		public List<object> Items
 		{
 			get
 			{
-				return this.regNumberField;
+				return this.itemsField;
 			}
 			set
 			{
-				this.regNumberField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlElementAttribute("AckResult", Order = 1)]
-		public List<AckResult> AckResult
-		{
-			get
-			{
-				return this.ackResultField;
-			}
-			set
-			{
-				this.ackResultField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlElementAttribute(Order = 2)]
-		public DocTransfer DocTransfer
-		{
-			get
-			{
-				return this.docTransferField;
-			}
-			set
-			{
-				this.docTransferField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string msg_id
-		{
-			get
-			{
-				return this.msg_idField;
-			}
-			set
-			{
-				this.msg_idField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public sbyte ask_type
-		{
-			get
-			{
-				return this.ask_typeField;
-			}
-			set
-			{
-				this.ask_typeField = value;
+				this.itemsField = value;
 			}
 		}
 
@@ -104,7 +43,7 @@ namespace ECM.Communication.Documents
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(AcknowledgementType));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Author));
 				}
 				return serializer;
 			}
@@ -112,7 +51,7 @@ namespace ECM.Communication.Documents
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current AcknowledgementType object into an XML document
+		/// Serializes current Author object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -149,16 +88,16 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an AcknowledgementType object
+		/// Deserializes workflow markup into an Author object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output AcknowledgementType object</param>
+		/// <param name="obj">Output Author object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out AcknowledgementType obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out Author obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(AcknowledgementType);
+			obj = default(Author);
 			try
 			{
 				obj = Deserialize(xml);
@@ -171,19 +110,19 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		public static bool Deserialize(string xml, out AcknowledgementType obj)
+		public static bool Deserialize(string xml, out Author obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static AcknowledgementType Deserialize(string xml)
+		public static Author Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((AcknowledgementType) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((Author) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -195,7 +134,7 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Serializes current AcknowledgementType object into file
+		/// Serializes current Author object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -245,16 +184,16 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an AcknowledgementType object
+		/// Deserializes xml markup from file into an Author object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output AcknowledgementType object</param>
+		/// <param name="obj">Output Author object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out AcknowledgementType obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Author obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(AcknowledgementType);
+			obj = default(Author);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -267,23 +206,23 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out AcknowledgementType obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out Author obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out AcknowledgementType obj)
+		public static bool LoadFromFile(string fileName, out Author obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static AcknowledgementType LoadFromFile(string fileName)
+		public static Author LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static AcknowledgementType LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static Author LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;

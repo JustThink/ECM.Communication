@@ -1,100 +1,117 @@
-﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-using ECM.Communication.Elements;
 
-namespace ECM.Communication.Documents
+namespace ECM.Communication.Elements
 {
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-	[Serializable()]
+	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
-	public partial class AcknowledgementType
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+	public partial class OfficialPersonWithSign
 	{
 
-		private RegNumber regNumberField;
+		private Name nameField;
 
-		private List<AckResult> ackResultField;
+		private List<Official> officialField;
 
-		private DocTransfer docTransferField;
+		private List<Rank> rankField;
 
-		private string msg_idField;
+		private Address addressField;
 
-		private sbyte ask_typeField;
+		private List<Econtact> econtactField;
+
+		private SignDate signDateField;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
-		public AcknowledgementType()
+		public OfficialPersonWithSign()
 		{
-			this.docTransferField = new DocTransfer();
-			this.ackResultField = new List<AckResult>();
-			this.regNumberField = new RegNumber();
+			this.signDateField = new SignDate();
+			this.econtactField = new List<Econtact>();
+			this.addressField = new Address();
+			this.rankField = new List<Rank>();
+			this.officialField = new List<Official>();
+			this.nameField = new Name();
 		}
 
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
-		public RegNumber RegNumber
+		public Name Name
 		{
 			get
 			{
-				return this.regNumberField;
+				return this.nameField;
 			}
 			set
 			{
-				this.regNumberField = value;
+				this.nameField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlElementAttribute("AckResult", Order = 1)]
-		public List<AckResult> AckResult
+		[System.Xml.Serialization.XmlElementAttribute("Official", Order = 1)]
+		public List<Official> Official
 		{
 			get
 			{
-				return this.ackResultField;
+				return this.officialField;
 			}
 			set
 			{
-				this.ackResultField = value;
+				this.officialField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlElementAttribute(Order = 2)]
-		public DocTransfer DocTransfer
+		[System.Xml.Serialization.XmlElementAttribute("Rank", Order = 2)]
+		public List<Rank> Rank
 		{
 			get
 			{
-				return this.docTransferField;
+				return this.rankField;
 			}
 			set
 			{
-				this.docTransferField = value;
+				this.rankField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string msg_id
+		[System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+		public Address Address
 		{
 			get
 			{
-				return this.msg_idField;
+				return this.addressField;
 			}
 			set
 			{
-				this.msg_idField = value;
+				this.addressField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public sbyte ask_type
+		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 4)]
+		public List<Econtact> Econtact
 		{
 			get
 			{
-				return this.ask_typeField;
+				return this.econtactField;
 			}
 			set
 			{
-				this.ask_typeField = value;
+				this.econtactField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+		public SignDate SignDate
+		{
+			get
+			{
+				return this.signDateField;
+			}
+			set
+			{
+				this.signDateField = value;
 			}
 		}
 
@@ -104,7 +121,7 @@ namespace ECM.Communication.Documents
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(AcknowledgementType));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(OfficialPersonWithSign));
 				}
 				return serializer;
 			}
@@ -112,7 +129,7 @@ namespace ECM.Communication.Documents
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current AcknowledgementType object into an XML document
+		/// Serializes current OfficialPersonWithSign object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -149,16 +166,16 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an AcknowledgementType object
+		/// Deserializes workflow markup into an OfficialPersonWithSign object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output AcknowledgementType object</param>
+		/// <param name="obj">Output OfficialPersonWithSign object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out AcknowledgementType obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out OfficialPersonWithSign obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(AcknowledgementType);
+			obj = default(OfficialPersonWithSign);
 			try
 			{
 				obj = Deserialize(xml);
@@ -171,19 +188,19 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		public static bool Deserialize(string xml, out AcknowledgementType obj)
+		public static bool Deserialize(string xml, out OfficialPersonWithSign obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static AcknowledgementType Deserialize(string xml)
+		public static OfficialPersonWithSign Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((AcknowledgementType) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((OfficialPersonWithSign) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -195,7 +212,7 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Serializes current AcknowledgementType object into file
+		/// Serializes current OfficialPersonWithSign object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -245,16 +262,16 @@ namespace ECM.Communication.Documents
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an AcknowledgementType object
+		/// Deserializes xml markup from file into an OfficialPersonWithSign object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output AcknowledgementType object</param>
+		/// <param name="obj">Output OfficialPersonWithSign object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out AcknowledgementType obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out OfficialPersonWithSign obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(AcknowledgementType);
+			obj = default(OfficialPersonWithSign);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -267,23 +284,23 @@ namespace ECM.Communication.Documents
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out AcknowledgementType obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out OfficialPersonWithSign obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out AcknowledgementType obj)
+		public static bool LoadFromFile(string fileName, out OfficialPersonWithSign obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static AcknowledgementType LoadFromFile(string fileName)
+		public static OfficialPersonWithSign LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static AcknowledgementType LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static OfficialPersonWithSign LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;
