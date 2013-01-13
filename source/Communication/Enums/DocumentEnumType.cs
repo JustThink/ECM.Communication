@@ -1,5 +1,8 @@
 ﻿namespace ECM.Communication.Enums
 {
+	/// <summary>
+	/// Тип документа
+	/// </summary>
 	public enum DocumentEnumType : sbyte
 	{
 		/// <summary>

@@ -75,6 +75,7 @@
     <Compile Include="Elements\TaskNumber.cs" />
     <Compile Include="Elements\Validator.cs" />
     <Compile Include="Elements\Writer.cs" />
+    <Compile Include="Enums\CollectionEnumType.cs" />
     <Compile Include="Enums\DocumentEnumType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Elements\Rank.cs" />

@@ -52,7 +52,7 @@ namespace ECM.Communication.Areas
 
 		private string annotationField;
 
-		private sbyte collectionField;
+		private CollectionEnumType collectionField;
 
 		private bool collectionFieldSpecified;
 
@@ -234,6 +234,12 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Вид документа
+		/// <remarks>
+		/// Наименование вида документа (служебная переписка, письма граждан, распорядительный документ: приказ, распоряжение и т.д.)
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string kind
 		{
@@ -247,6 +253,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Количество листов документа
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public ulong pages
 		{
@@ -273,6 +282,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Заголовок к тексту
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string title
 		{
@@ -286,6 +298,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Аннотация
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string annotation
 		{
@@ -299,16 +314,19 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Признак коллективности обращения
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte collection
 		{
 			get
 			{
-				return this.collectionField;
+				return ((sbyte)(this.collectionField));
 			}
 			set
 			{
-				this.collectionField = value;
+				this.collectionField = (CollectionEnumType) Enum.ToObject(typeof(CollectionEnumType), value);
 			}
 		}
 
