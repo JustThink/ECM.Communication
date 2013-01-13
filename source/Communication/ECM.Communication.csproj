@@ -45,8 +45,8 @@
     <Compile Include="Documents\AckResult.cs" />
     <Compile Include="Documents\DocumentType.cs" />
     <Compile Include="Documents\Header.cs" />
-    <Compile Include="Documents\RegNumber.cs" />
-    <Compile Include="Elements\AddDocumentsType.cs" />
+    <Compile Include="Elements\RegNumber.cs" />
+    <Compile Include="Documents\AddDocumentsType.cs" />
     <Compile Include="Elements\AddDocumentsTypeFolder.cs" />
     <Compile Include="Elements\Address.cs" />
     <Compile Include="Elements\Addressee.cs" />
