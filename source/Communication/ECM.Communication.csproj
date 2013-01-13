@@ -41,6 +41,22 @@
     <Compile Include="..\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
+    <Compile Include="Documents\AcknowledgementType.cs" />
+    <Compile Include="Documents\AckResult.cs" />
+    <Compile Include="Documents\DocumentType.cs" />
+    <Compile Include="Documents\Header.cs" />
+    <Compile Include="Documents\RegNumber.cs" />
+    <Compile Include="Elements\AddDocumentsType.cs" />
+    <Compile Include="Elements\AddDocumentsTypeFolder.cs" />
+    <Compile Include="Elements\AuthorOrganization.cs" />
+    <Compile Include="Elements\Executor.cs" />
+    <Compile Include="Elements\Note.cs" />
+    <Compile Include="Elements\OutNumber.cs" />
+    <Compile Include="Elements\PrivatePersonWithSign.cs" />
+    <Compile Include="Elements\TaskListType.cs" />
+    <Compile Include="Elements\TaskListTypeTask.cs" />
+    <Compile Include="Elements\Validator.cs" />
+    <Compile Include="Elements\Writer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="xsd\shema.designer.cs" />
   </ItemGroup>
@@ -49,6 +65,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
