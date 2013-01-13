@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Elements
 {
@@ -8,7 +10,8 @@ namespace ECM.Communication.Elements
 	/// Регистрационный номер и дата документа или задания
 	/// <remarks>
 	/// Регистрационный номер и дата документа или задания, на который дается ссылка, определяются, соответственно, вложенным элементом RegNumber или TaskNumber.
-	///  Если документ (задание) был передан ранее, то допускается передача его идентификатора посредством атрибутов retype и idnumber и вложенные элементы RegNumber или TaskNumber могут не использоваться.
+	///  Если документ (задание) был передан ранее, то допускается передача его идентификатора посредством атрибутов
+	///  retype и idnumber и вложенные элементы RegNumber или TaskNumber могут не использоваться.
 	/// </remarks>
 	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
@@ -23,7 +26,7 @@ namespace ECM.Communication.Elements
 
 		private string idnumberField;
 
-		private sbyte retypeField;
+		private ReferredEnumType retypeField;
 
 		private bool retypeFieldSpecified;
 
@@ -65,22 +68,17 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Определяет вид ссылки
-		/// <remarks>
-		/// 1 – ссылка на документ;
-		/// 2 – ссылка на задание
-		/// Используется только совместно с атрибутом idnumber
-		/// </remarks>
 		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte retype
 		{
 			get
 			{
-				return this.retypeField;
+				return ((sbyte)(this.retypeField));
 			}
 			set
 			{
-				this.retypeField = value;
+				this.retypeField = (ReferredEnumType) Enum.ToObject(typeof(ReferredEnumType), value);
 			}
 		}
 
