@@ -5,6 +5,9 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Исполнитель задания по документу.
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -45,6 +48,14 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Метка ответственного исполнителя
+		/// <remarks>
+		/// 0 – соисполнитель
+		/// 1 – ответственный исполнитель.
+		/// Значение 1 может быть только у одного из списка исполнителей
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte responsible
 		{
@@ -71,6 +82,12 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Уточнение задания для данного исполнителя
+		/// <remarks>
+		/// Например, номера пунктов задания, соответствующие поручения данному исполнителю из общего текста задания, «Для сведения» и т.п.
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string task_specified
 		{
@@ -84,6 +101,12 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Срок исполнения
+		/// <remarks>
+		/// Срок исполнения задания для данного исполнителя
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
 		public System.DateTime deadline
 		{

@@ -1,73 +1,125 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Areas;
+using ECM.Communication.Elements;
 
-namespace ECM.Communication.Elements
+namespace ECM.Communication.Documents
 {
 	/// <summary>
-	/// Номера (адреса) имеющихся средств электросвязи
-	/// <remarks>
-	/// Допускается последовательное перечисление через запятую нескольких номеров (адресов).
-	/// </remarks>
+	/// Документ-ответ
 	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-	[System.SerializableAttribute()]
+	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-	public partial class Econtact
+	public partial class Request
 	{
 
-		private sbyte typeField;
+		private Header headerField;
 
-		private bool typeFieldSpecified;
+		private DocumentType documentField;
 
-		private string valueField;
+		private List<AddDocumentsTypeFolder> addDocumentsField;
+
+		private ExpansionType expansionField;
+
+		private List<DocTransfer> docTransferField;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		public Request()
+		{
+			this.headerField = new Header();
+			this.documentField = new DocumentType();
+			this.addDocumentsField = new List<AddDocumentsTypeFolder>();
+			this.expansionField = new ExpansionType();
+			this.docTransferField = new List<DocTransfer>();
+		}
+
+
 		/// <summary>
-		/// Тип номера (адреса)
-		/// <remarks>
-		/// 1 – рабочий телефон; 2 – домашний телефон; 3– мобильный телефон; 4– факс; 5– адрес электронной почты (email); 6– адрес web-сайта (страницы);0 - прочее
-		/// </remarks>
+		/// Заголовок
 		/// </summary>
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public sbyte type
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 0)]
+		public Header Header
 		{
 			get
 			{
-				return this.typeField;
+				return this.headerField;
 			}
 			set
 			{
-				this.typeField = value;
+				this.headerField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlIgnoreAttribute()]
-		public bool typeSpecified
+		/// <summary>
+		/// Документ
+		/// </summary>
+		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+		public DocumentType Document
 		{
 			get
 			{
-				return this.typeFieldSpecified;
+				return this.documentField;
 			}
 			set
 			{
-				this.typeFieldSpecified = value;
+				this.documentField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlTextAttribute()]
-		public string Value
+		/// <summary>
+		/// Дополнительные материалы
+		/// </summary>
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 2)]
+		[System.Xml.Serialization.XmlArrayItemAttribute("Folder", IsNullable = false)]
+		public List<AddDocumentsTypeFolder> AddDocuments
 		{
 			get
 			{
-				return this.valueField;
+				return this.addDocumentsField;
 			}
 			set
 			{
-				this.valueField = value;
+				this.addDocumentsField = value;
+			}
+		}
+
+		/// <summary>
+		/// Расширение
+		/// </summary>
+		[System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+		public ExpansionType Expansion
+		{
+			get
+			{
+				return this.expansionField;
+			}
+			set
+			{
+				this.expansionField = value;
+			}
+		}
+
+		/// <summary>
+		/// docTransfer
+		/// </summary>
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 4)]
+		[System.Xml.Serialization.XmlArrayItemAttribute("DocTransfer", IsNullable = false)]
+		public List<DocTransfer> DocTransfer
+		{
+			get
+			{
+				return this.docTransferField;
+			}
+			set
+			{
+				this.docTransferField = value;
 			}
 		}
 
@@ -77,7 +129,7 @@ namespace ECM.Communication.Elements
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Econtact));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Request));
 				}
 				return serializer;
 			}
@@ -85,7 +137,7 @@ namespace ECM.Communication.Elements
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current Econtact object into an XML document
+		/// Serializes current Header object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -122,16 +174,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an Econtact object
+		/// Deserializes workflow markup into an Header object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output Econtact object</param>
+		/// <param name="obj">Output Header object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out Econtact obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out Request obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(Econtact);
+			obj = default(Request);
 			try
 			{
 				obj = Deserialize(xml);
@@ -144,19 +196,19 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool Deserialize(string xml, out Econtact obj)
+		public static bool Deserialize(string xml, out Request obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static Econtact Deserialize(string xml)
+		public static Request Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((Econtact) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((Request) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -168,7 +220,7 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Serializes current Econtact object into file
+		/// Serializes current Header object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -218,16 +270,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an Econtact object
+		/// Deserializes xml markup from file into an Header object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output Econtact object</param>
+		/// <param name="obj">Output Header object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Econtact obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Request obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(Econtact);
+			obj = default(Request);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -240,23 +292,23 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out Econtact obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out Request obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out Econtact obj)
+		public static bool LoadFromFile(string fileName, out Request obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static Econtact LoadFromFile(string fileName)
+		public static Request LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static Econtact LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static Request LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;
