@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Elements
 {
@@ -18,7 +20,7 @@ namespace ECM.Communication.Elements
 	public partial class Econtact
 	{
 
-		private sbyte typeField;
+		private EcontactEnumType typeField;
 
 		private bool typeFieldSpecified;
 
@@ -28,20 +30,17 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Тип номера (адреса)
-		/// <remarks>
-		/// 1 – рабочий телефон; 2 – домашний телефон; 3– мобильный телефон; 4– факс; 5– адрес электронной почты (email); 6– адрес web-сайта (страницы);0 - прочее
-		/// </remarks>
 		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte type
 		{
 			get
 			{
-				return this.typeField;
+				return ((sbyte)(this.typeField));
 			}
 			set
 			{
-				this.typeField = value;
+				this.typeField = (EcontactEnumType) Enum.ToObject(typeof(EcontactEnumType), value);
 			}
 		}
 
