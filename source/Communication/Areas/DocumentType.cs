@@ -4,9 +4,13 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using ECM.Communication.Elements;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Areas
 {
+	/// <summary>
+	/// Основные реквизиты передаваемого документа.
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -36,7 +40,7 @@ namespace ECM.Communication.Areas
 
 		private string idnumberField;
 
-		private sbyte typeField;
+		private DocumentEnumType typeField;
 
 		private string kindField;
 
@@ -48,7 +52,7 @@ namespace ECM.Communication.Areas
 
 		private string annotationField;
 
-		private sbyte collectionField;
+		private CollectionEnumType collectionField;
 
 		private bool collectionFieldSpecified;
 
@@ -198,6 +202,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Уникальный служебный идентификационный номер документа в передающей системе.
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string idnumber
 		{
@@ -211,19 +218,28 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Тип документа
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte type
 		{
 			get
 			{
-				return this.typeField;
+				return ((sbyte) (this.typeField));
 			}
 			set
 			{
-				this.typeField = value;
+				this.typeField = (DocumentEnumType) Enum.ToObject(typeof(DocumentEnumType), value);
 			}
 		}
 
+		/// <summary>
+		/// Вид документа
+		/// <remarks>
+		/// Наименование вида документа (служебная переписка, письма граждан, распорядительный документ: приказ, распоряжение и т.д.)
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string kind
 		{
@@ -237,6 +253,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Количество листов документа
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public ulong pages
 		{
@@ -263,6 +282,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Заголовок к тексту
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string title
 		{
@@ -276,6 +298,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Аннотация
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string annotation
 		{
@@ -289,16 +314,19 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Признак коллективности обращения
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte collection
 		{
 			get
 			{
-				return this.collectionField;
+				return ((sbyte)(this.collectionField));
 			}
 			set
 			{
-				this.collectionField = value;
+				this.collectionField = (CollectionEnumType) Enum.ToObject(typeof(CollectionEnumType), value);
 			}
 		}
 

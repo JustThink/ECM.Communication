@@ -4,6 +4,13 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Регистрационный номер и дата документа или задания
+	/// <remarks>
+	/// Регистрационный номер и дата документа или задания, на который дается ссылка, определяются, соответственно, вложенным элементом RegNumber или TaskNumber.
+	///  Если документ (задание) был передан ранее, то допускается передача его идентификатора посредством атрибутов retype и idnumber и вложенные элементы RegNumber или TaskNumber могут не использоваться.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -22,6 +29,7 @@ namespace ECM.Communication.Elements
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+
 		[System.Xml.Serialization.XmlElementAttribute("RegNumber", typeof(RegNumber), Order = 0)]
 		[System.Xml.Serialization.XmlElementAttribute("TaskNumber", typeof(TaskNumber), Order = 0)]
 		public object Item
@@ -36,6 +44,12 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Уникальный служебный идентификационный номер
+		/// <remarks>
+		/// Идентификационный номер документа или задания, на который дается ссылка, в зависимости от значения атрибута retype.
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string idnumber
 		{
@@ -49,6 +63,14 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Определяет вид ссылки
+		/// <remarks>
+		/// 1 – ссылка на документ;
+		/// 2 – ссылка на задание
+		/// Используется только совместно с атрибутом idnumber
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte retype
 		{
@@ -86,6 +108,7 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
 
 		#region Serialize/Deserialize
 		/// <summary>

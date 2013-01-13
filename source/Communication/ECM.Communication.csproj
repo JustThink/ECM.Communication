@@ -50,6 +50,8 @@
     <Compile Include="Documents\Main.cs" />
     <Compile Include="Enums\HeaderAsknowEnumType.cs" />
     <Compile Include="Enums\HeaderMessageEnumType.cs" />
+    <Compile Include="Documents\Request.cs" />
+    <Compile Include="Documents\Request.Supplement.cs" />
     <Compile Include="Elements\RegNumber.cs" />
     <Compile Include="Areas\AddDocumentsType.cs" />
     <Compile Include="Elements\AddDocumentsTypeFolder.cs" />
@@ -78,6 +80,8 @@
     <Compile Include="Elements\TaskNumber.cs" />
     <Compile Include="Elements\Validator.cs" />
     <Compile Include="Elements\Writer.cs" />
+    <Compile Include="Enums\CollectionEnumType.cs" />
+    <Compile Include="Enums\DocumentEnumType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Elements\Rank.cs" />
     <Compile Include="Elements\Author.cs" />

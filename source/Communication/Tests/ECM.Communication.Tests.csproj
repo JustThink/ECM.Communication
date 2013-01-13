@@ -46,6 +46,8 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\HeaderTest.cs" />
+    <Compile Include="Areas\RequestSupplementTest.cs" />
+    <Compile Include="Areas\RequestTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
