@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -6,198 +7,201 @@ using System.Xml;
 namespace ECM.Communication.Elements
 {
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-	[System.SerializableAttribute()]
+	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-	public partial class OrganizationOnly
+	public partial class TaskListTypeTask
 	{
 
-		private Address addressField;
+		private TaskNumber taskNumberField;
 
-		private List<Econtact> econtactField;
+		private Confident confidentField;
 
-		private string organization_stringField;
+		private List<Referred> referredField;
 
-		private string fullnameField;
+		private List<AuthorOrganization> authorOrganizationField;
 
-		private string shortnameField;
+		private List<DocTransfer> docTransferField;
 
-		private string ownershipField;
+		private List<Executor> executorField;
 
-		private ulong ogrnField;
+		private string idnumberField;
 
-		private bool ogrnFieldSpecified;
+		private sbyte task_regField;
 
-		private ulong innField;
+		private sbyte task_copyField;
 
-		private bool innFieldSpecified;
+		private string kindField;
 
-		private ulong kppField;
+		private string task_textField;
 
-		private bool kppFieldSpecified;
+		private System.DateTime deadlineField;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
-		public OrganizationOnly()
+		public TaskListTypeTask()
 		{
-			this.econtactField = new List<Econtact>();
-			this.addressField = new Address();
+			this.executorField = new List<Executor>();
+			this.docTransferField = new List<DocTransfer>();
+			this.authorOrganizationField = new List<AuthorOrganization>();
+			this.referredField = new List<Referred>();
+			this.confidentField = new Confident();
+			this.taskNumberField = new TaskNumber();
 		}
 
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
-		public Address Address
+		public TaskNumber TaskNumber
 		{
 			get
 			{
-				return this.addressField;
+				return this.taskNumberField;
 			}
 			set
 			{
-				this.addressField = value;
+				this.taskNumberField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 1)]
-		public List<Econtact> Econtact
+		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+		public Confident Confident
 		{
 			get
 			{
-				return this.econtactField;
+				return this.confidentField;
 			}
 			set
 			{
-				this.econtactField = value;
+				this.confidentField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string organization_string
+		[System.Xml.Serialization.XmlElementAttribute("Referred", Order = 2)]
+		public List<Referred> Referred
 		{
 			get
 			{
-				return this.organization_stringField;
+				return this.referredField;
 			}
 			set
 			{
-				this.organization_stringField = value;
+				this.referredField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string fullname
+		[System.Xml.Serialization.XmlElementAttribute("AuthorOrganization", Order = 3)]
+		public List<AuthorOrganization> AuthorOrganization
 		{
 			get
 			{
-				return this.fullnameField;
+				return this.authorOrganizationField;
 			}
 			set
 			{
-				this.fullnameField = value;
+				this.authorOrganizationField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string shortname
+		[System.Xml.Serialization.XmlElementAttribute("DocTransfer", Order = 4)]
+		public List<DocTransfer> DocTransfer
 		{
 			get
 			{
-				return this.shortnameField;
+				return this.docTransferField;
 			}
 			set
 			{
-				this.shortnameField = value;
+				this.docTransferField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string ownership
+		[System.Xml.Serialization.XmlElementAttribute("Executor", Order = 5)]
+		public List<Executor> Executor
 		{
 			get
 			{
-				return this.ownershipField;
+				return this.executorField;
 			}
 			set
 			{
-				this.ownershipField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public ulong ogrn
-		{
-			get
-			{
-				return this.ogrnField;
-			}
-			set
-			{
-				this.ogrnField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlIgnoreAttribute()]
-		public bool ogrnSpecified
-		{
-			get
-			{
-				return this.ogrnFieldSpecified;
-			}
-			set
-			{
-				this.ogrnFieldSpecified = value;
+				this.executorField = value;
 			}
 		}
 
 		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public ulong inn
+		public string idnumber
 		{
 			get
 			{
-				return this.innField;
+				return this.idnumberField;
 			}
 			set
 			{
-				this.innField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlIgnoreAttribute()]
-		public bool innSpecified
-		{
-			get
-			{
-				return this.innFieldSpecified;
-			}
-			set
-			{
-				this.innFieldSpecified = value;
+				this.idnumberField = value;
 			}
 		}
 
 		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public ulong kpp
+		public sbyte task_reg
 		{
 			get
 			{
-				return this.kppField;
+				return this.task_regField;
 			}
 			set
 			{
-				this.kppField = value;
+				this.task_regField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlIgnoreAttribute()]
-		public bool kppSpecified
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public sbyte task_copy
 		{
 			get
 			{
-				return this.kppFieldSpecified;
+				return this.task_copyField;
 			}
 			set
 			{
-				this.kppFieldSpecified = value;
+				this.task_copyField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string kind
+		{
+			get
+			{
+				return this.kindField;
+			}
+			set
+			{
+				this.kindField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string task_text
+		{
+			get
+			{
+				return this.task_textField;
+			}
+			set
+			{
+				this.task_textField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
+		public System.DateTime deadline
+		{
+			get
+			{
+				return this.deadlineField;
+			}
+			set
+			{
+				this.deadlineField = value;
 			}
 		}
 
@@ -207,7 +211,7 @@ namespace ECM.Communication.Elements
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(OrganizationOnly));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(TaskListTypeTask));
 				}
 				return serializer;
 			}
@@ -215,7 +219,7 @@ namespace ECM.Communication.Elements
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current OrganizationOnly object into an XML document
+		/// Serializes current TaskListTypeTask object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -252,16 +256,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an OrganizationOnly object
+		/// Deserializes workflow markup into an TaskListTypeTask object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output OrganizationOnly object</param>
+		/// <param name="obj">Output TaskListTypeTask object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out OrganizationOnly obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out TaskListTypeTask obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(OrganizationOnly);
+			obj = default(TaskListTypeTask);
 			try
 			{
 				obj = Deserialize(xml);
@@ -274,19 +278,19 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool Deserialize(string xml, out OrganizationOnly obj)
+		public static bool Deserialize(string xml, out TaskListTypeTask obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static OrganizationOnly Deserialize(string xml)
+		public static TaskListTypeTask Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((OrganizationOnly) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((TaskListTypeTask) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -298,7 +302,7 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Serializes current OrganizationOnly object into file
+		/// Serializes current TaskListTypeTask object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -348,16 +352,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an OrganizationOnly object
+		/// Deserializes xml markup from file into an TaskListTypeTask object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output OrganizationOnly object</param>
+		/// <param name="obj">Output TaskListTypeTask object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out OrganizationOnly obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out TaskListTypeTask obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(OrganizationOnly);
+			obj = default(TaskListTypeTask);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -370,23 +374,23 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out OrganizationOnly obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out TaskListTypeTask obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out OrganizationOnly obj)
+		public static bool LoadFromFile(string fileName, out TaskListTypeTask obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static OrganizationOnly LoadFromFile(string fileName)
+		public static TaskListTypeTask LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static OrganizationOnly LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static TaskListTypeTask LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Documents;
 
 namespace ECM.Communication.Elements
 {

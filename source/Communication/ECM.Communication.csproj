@@ -41,31 +41,44 @@
     <Compile Include="..\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
+    <Compile Include="Documents\AcknowledgementType.cs" />
+    <Compile Include="Documents\AckResult.cs" />
+    <Compile Include="Documents\DocumentType.cs" />
+    <Compile Include="Documents\Header.cs" />
+    <Compile Include="Documents\RegNumber.cs" />
+    <Compile Include="Elements\AddDocumentsType.cs" />
+    <Compile Include="Elements\AddDocumentsTypeFolder.cs" />
     <Compile Include="Elements\Address.cs" />
     <Compile Include="Elements\Addressee.cs" />
+    <Compile Include="Elements\AuthorOrganization.cs" />
     <Compile Include="Elements\Confident.cs" />
     <Compile Include="Elements\DocNumber.cs" />
     <Compile Include="Elements\DocTransfer.cs" />
     <Compile Include="Elements\Econtact.cs" />
+    <Compile Include="Elements\Executor.cs" />
     <Compile Include="Elements\ExpansionType.cs" />
     <Compile Include="Elements\ExpansionTypeAnyData.cs" />
     <Compile Include="Elements\Name.cs" />
+    <Compile Include="Elements\Note.cs" />
     <Compile Include="Elements\Official.cs" />
     <Compile Include="Elements\OfficialPerson.cs" />
     <Compile Include="Elements\Organization.cs" />
     <Compile Include="Elements\OrganizationOnly.cs" />
+    <Compile Include="Elements\OutNumber.cs" />
     <Compile Include="Elements\PrivatePerson.cs" />
+    <Compile Include="Elements\PrivatePersonWithSign.cs" />
     <Compile Include="Elements\Referred.cs" />
+    <Compile Include="Elements\TaskListType.cs" />
+    <Compile Include="Elements\TaskListTypeTask.cs" />
     <Compile Include="Elements\TaskNumber.cs" />
+    <Compile Include="Elements\Validator.cs" />
+    <Compile Include="Elements\Writer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Elements\Rank.cs" />
     <Compile Include="Elements\Author.cs" />
     <Compile Include="Elements\OfficialPersonWithSign.cs" />
     <Compile Include="Elements\OrganizationWithSign.cs" />
-    <Compile Include="Elements\OutNumber.cs" />
-    <Compile Include="Elements\PrivatePersonWithSign.cs" />
     <Compile Include="Elements\RegHistory.cs" />
-    <Compile Include="xsd\shema.designer.cs" />
     <Compile Include="Elements\SignDate.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +86,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

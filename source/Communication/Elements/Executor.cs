@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -6,198 +6,107 @@ using System.Xml;
 namespace ECM.Communication.Elements
 {
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-	[System.SerializableAttribute()]
+	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-	public partial class OrganizationOnly
+	public partial class Executor
 	{
 
-		private Address addressField;
+		private Organization organizationField;
 
-		private List<Econtact> econtactField;
+		private sbyte responsibleField;
 
-		private string organization_stringField;
+		private bool responsibleFieldSpecified;
 
-		private string fullnameField;
+		private string task_specifiedField;
 
-		private string shortnameField;
+		private System.DateTime deadlineField;
 
-		private string ownershipField;
-
-		private ulong ogrnField;
-
-		private bool ogrnFieldSpecified;
-
-		private ulong innField;
-
-		private bool innFieldSpecified;
-
-		private ulong kppField;
-
-		private bool kppFieldSpecified;
+		private bool deadlineFieldSpecified;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
-		public OrganizationOnly()
+		public Executor()
 		{
-			this.econtactField = new List<Econtact>();
-			this.addressField = new Address();
+			this.organizationField = new Organization();
 		}
 
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
-		public Address Address
+		public Organization Organization
 		{
 			get
 			{
-				return this.addressField;
+				return this.organizationField;
 			}
 			set
 			{
-				this.addressField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 1)]
-		public List<Econtact> Econtact
-		{
-			get
-			{
-				return this.econtactField;
-			}
-			set
-			{
-				this.econtactField = value;
+				this.organizationField = value;
 			}
 		}
 
 		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string organization_string
+		public sbyte responsible
 		{
 			get
 			{
-				return this.organization_stringField;
+				return this.responsibleField;
 			}
 			set
 			{
-				this.organization_stringField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string fullname
-		{
-			get
-			{
-				return this.fullnameField;
-			}
-			set
-			{
-				this.fullnameField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string shortname
-		{
-			get
-			{
-				return this.shortnameField;
-			}
-			set
-			{
-				this.shortnameField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string ownership
-		{
-			get
-			{
-				return this.ownershipField;
-			}
-			set
-			{
-				this.ownershipField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public ulong ogrn
-		{
-			get
-			{
-				return this.ogrnField;
-			}
-			set
-			{
-				this.ogrnField = value;
+				this.responsibleField = value;
 			}
 		}
 
 		[System.Xml.Serialization.XmlIgnoreAttribute()]
-		public bool ogrnSpecified
+		public bool responsibleSpecified
 		{
 			get
 			{
-				return this.ogrnFieldSpecified;
+				return this.responsibleFieldSpecified;
 			}
 			set
 			{
-				this.ogrnFieldSpecified = value;
+				this.responsibleFieldSpecified = value;
 			}
 		}
 
 		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public ulong inn
+		public string task_specified
 		{
 			get
 			{
-				return this.innField;
+				return this.task_specifiedField;
 			}
 			set
 			{
-				this.innField = value;
+				this.task_specifiedField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
+		public System.DateTime deadline
+		{
+			get
+			{
+				return this.deadlineField;
+			}
+			set
+			{
+				this.deadlineField = value;
 			}
 		}
 
 		[System.Xml.Serialization.XmlIgnoreAttribute()]
-		public bool innSpecified
+		public bool deadlineSpecified
 		{
 			get
 			{
-				return this.innFieldSpecified;
+				return this.deadlineFieldSpecified;
 			}
 			set
 			{
-				this.innFieldSpecified = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public ulong kpp
-		{
-			get
-			{
-				return this.kppField;
-			}
-			set
-			{
-				this.kppField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlIgnoreAttribute()]
-		public bool kppSpecified
-		{
-			get
-			{
-				return this.kppFieldSpecified;
-			}
-			set
-			{
-				this.kppFieldSpecified = value;
+				this.deadlineFieldSpecified = value;
 			}
 		}
 
@@ -207,7 +116,7 @@ namespace ECM.Communication.Elements
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(OrganizationOnly));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Executor));
 				}
 				return serializer;
 			}
@@ -215,7 +124,7 @@ namespace ECM.Communication.Elements
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current OrganizationOnly object into an XML document
+		/// Serializes current Executor object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -252,16 +161,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an OrganizationOnly object
+		/// Deserializes workflow markup into an Executor object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output OrganizationOnly object</param>
+		/// <param name="obj">Output Executor object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out OrganizationOnly obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out Executor obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(OrganizationOnly);
+			obj = default(Executor);
 			try
 			{
 				obj = Deserialize(xml);
@@ -274,19 +183,19 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool Deserialize(string xml, out OrganizationOnly obj)
+		public static bool Deserialize(string xml, out Executor obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static OrganizationOnly Deserialize(string xml)
+		public static Executor Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((OrganizationOnly) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((Executor) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -298,7 +207,7 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Serializes current OrganizationOnly object into file
+		/// Serializes current Executor object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -348,16 +257,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an OrganizationOnly object
+		/// Deserializes xml markup from file into an Executor object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output OrganizationOnly object</param>
+		/// <param name="obj">Output Executor object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out OrganizationOnly obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Executor obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(OrganizationOnly);
+			obj = default(Executor);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -370,23 +279,23 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out OrganizationOnly obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out Executor obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out OrganizationOnly obj)
+		public static bool LoadFromFile(string fileName, out Executor obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static OrganizationOnly LoadFromFile(string fileName)
+		public static Executor LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static OrganizationOnly LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static Executor LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;
