@@ -8,7 +8,7 @@ namespace ECM.Communication.Tests.Areas
 	public class HeaderTest
 	{
 		[Test]
-		public void TestFieldDefault()
+		public void TestCreate()
 		{
 			var header = new Header();
 			Assert.That(header.standart, Is.EqualTo("Стандарт системы управления документами"));

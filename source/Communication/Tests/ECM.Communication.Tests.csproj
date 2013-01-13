@@ -45,6 +45,9 @@
     <Compile Include="..\..\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
+    <Compile Include="Areas\AcknowledgementTypeTest.cs" />
+    <Compile Include="Areas\AckResultTest.cs" />
+    <Compile Include="Areas\AddDocumentsTypeTest.cs" />
     <Compile Include="Areas\HeaderTest.cs" />
     <Compile Include="Documents\MainTest.cs" />
     <Compile Include="Documents\Main.SupplementTest.cs" />

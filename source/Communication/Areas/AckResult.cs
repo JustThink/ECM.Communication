@@ -5,6 +5,12 @@ using System.Xml;
 
 namespace ECM.Communication.Areas
 {
+	/// <summary>
+	/// Строка, содержащая описания ошибки.
+	/// </summary>
+	/// <remarks>
+	/// Содержательная часть уведомления.
+	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -12,13 +18,29 @@ namespace ECM.Communication.Areas
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class AckResult
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private ulong errorcodeField;
 
 		private string valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
 
+		#region Constructor
+
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Код ошибки
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public ulong errorcode
 		{
@@ -32,6 +54,9 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Описание ошибки
+		/// </summary>
 		[System.Xml.Serialization.XmlTextAttribute()]
 		public string Value
 		{
@@ -56,6 +81,8 @@ namespace ECM.Communication.Areas
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

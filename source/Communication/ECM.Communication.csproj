@@ -48,6 +48,7 @@
     <Compile Include="Documents\Notification.cs" />
     <Compile Include="Documents\Main.Supplement.cs" />
     <Compile Include="Documents\Main.cs" />
+    <Compile Include="Enums\AcknowledgementEnumType.cs" />
     <Compile Include="Enums\EcontactEnumType.cs" />
     <Compile Include="Enums\HeaderAsknowEnumType.cs" />
     <Compile Include="Enums\HeaderMessageEnumType.cs" />
