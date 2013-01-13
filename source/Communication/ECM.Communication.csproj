@@ -41,12 +41,14 @@
     <Compile Include="..\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
-    <Compile Include="Documents\AcknowledgementType.cs" />
-    <Compile Include="Documents\AckResult.cs" />
-    <Compile Include="Documents\DocumentType.cs" />
-    <Compile Include="Documents\Header.cs" />
-    <Compile Include="Documents\RegNumber.cs" />
-    <Compile Include="Elements\AddDocumentsType.cs" />
+    <Compile Include="Areas\AcknowledgementType.cs" />
+    <Compile Include="Areas\AckResult.cs" />
+    <Compile Include="Areas\DocumentType.cs" />
+    <Compile Include="Areas\Header.cs" />
+    <Compile Include="Documents\Request.cs" />
+    <Compile Include="Documents\Request.Supplement.cs" />
+    <Compile Include="Elements\RegNumber.cs" />
+    <Compile Include="Areas\AddDocumentsType.cs" />
     <Compile Include="Elements\AddDocumentsTypeFolder.cs" />
     <Compile Include="Elements\Address.cs" />
     <Compile Include="Elements\Addressee.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="Elements\TaskNumber.cs" />
     <Compile Include="Elements\Validator.cs" />
     <Compile Include="Elements\Writer.cs" />
+    <Compile Include="Enums\CollectionEnumType.cs" />
+    <Compile Include="Enums\DocumentEnumType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Elements\Rank.cs" />
     <Compile Include="Elements\Author.cs" />

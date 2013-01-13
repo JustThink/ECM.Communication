@@ -1,68 +1,124 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Areas;
+using ECM.Communication.Elements;
 
-
-namespace ECM.Communication.Elements
+namespace ECM.Communication.Documents
 {
+	/// <summary>
+	/// Дополнение к документу-ответу
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-	[System.SerializableAttribute()]
+	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-	public partial class DocNumber
+	public partial class RequestSupplement
 	{
 
-		private OrganizationOnly organizationOnlyField;
+		private Header headerField;
 
-		private RegNumber regNumberField;
+		private DocumentType documentField;
 
-		private string kindField;
+		private List<AddDocumentsTypeFolder> addDocumentsField;
+
+		private ExpansionType expansionField;
+
+		private List<DocTransfer> docTransferField;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
-		public DocNumber()
+		public RequestSupplement()
 		{
-			this.regNumberField = new RegNumber();
-			this.organizationOnlyField = new OrganizationOnly();
+			this.headerField = new Header();
+			this.documentField = new DocumentType();
+			this.addDocumentsField = new List<AddDocumentsTypeFolder>();
+			this.expansionField = new ExpansionType();
+			this.docTransferField = new List<DocTransfer>();
 		}
 
-		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
-		public OrganizationOnly OrganizationOnly
+		/// <summary>
+		/// Заголовок
+		/// </summary>
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 0)]
+		public Header Header
 		{
 			get
 			{
-				return this.organizationOnlyField;
+				return this.headerField;
 			}
 			set
 			{
-				this.organizationOnlyField = value;
+				this.headerField = value;
 			}
 		}
 
+		/// <summary>
+		/// Документ
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
-		public RegNumber RegNumber
+		public DocumentType Document
 		{
 			get
 			{
-				return this.regNumberField;
+				return this.documentField;
 			}
 			set
 			{
-				this.regNumberField = value;
+				this.documentField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string kind
+		/// <summary>
+		/// Дополнительные материалы
+		/// </summary>
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 2)]
+		[System.Xml.Serialization.XmlArrayItemAttribute("Folder", IsNullable = false)]
+		public List<AddDocumentsTypeFolder> AddDocuments
 		{
 			get
 			{
-				return this.kindField;
+				return this.addDocumentsField;
 			}
 			set
 			{
-				this.kindField = value;
+				this.addDocumentsField = value;
+			}
+		}
+
+		/// <summary>
+		/// Расширение
+		/// </summary>
+		[System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+		public ExpansionType Expansion
+		{
+			get
+			{
+				return this.expansionField;
+			}
+			set
+			{
+				this.expansionField = value;
+			}
+		}
+
+		/// <summary>
+		/// docTransfer
+		/// </summary>
+		[System.Xml.Serialization.XmlArrayAttribute(Order = 4)]
+		[System.Xml.Serialization.XmlArrayItemAttribute("DocTransfer", IsNullable = false)]
+		public List<DocTransfer> DocTransfer
+		{
+			get
+			{
+				return this.docTransferField;
+			}
+			set
+			{
+				this.docTransferField = value;
 			}
 		}
 
@@ -72,7 +128,7 @@ namespace ECM.Communication.Elements
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(DocNumber));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Request));
 				}
 				return serializer;
 			}
@@ -80,7 +136,7 @@ namespace ECM.Communication.Elements
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current DocNumber object into an XML document
+		/// Serializes current Header object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -117,16 +173,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an DocNumber object
+		/// Deserializes workflow markup into an Header object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output DocNumber object</param>
+		/// <param name="obj">Output Header object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out DocNumber obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out Request obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(DocNumber);
+			obj = default(Request);
 			try
 			{
 				obj = Deserialize(xml);
@@ -139,19 +195,19 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool Deserialize(string xml, out DocNumber obj)
+		public static bool Deserialize(string xml, out Request obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static DocNumber Deserialize(string xml)
+		public static Request Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((DocNumber) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((Request) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -163,7 +219,7 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Serializes current DocNumber object into file
+		/// Serializes current Header object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -213,16 +269,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an DocNumber object
+		/// Deserializes xml markup from file into an Header object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output DocNumber object</param>
+		/// <param name="obj">Output Header object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out DocNumber obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Request obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(DocNumber);
+			obj = default(Request);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -235,23 +291,23 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out DocNumber obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out Request obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out DocNumber obj)
+		public static bool LoadFromFile(string fileName, out Request obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static DocNumber LoadFromFile(string fileName)
+		public static Request LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static DocNumber LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static Request LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;

@@ -4,6 +4,12 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Номера (адреса) имеющихся средств электросвязи
+	/// <remarks>
+	/// Допускается последовательное перечисление через запятую нескольких номеров (адресов).
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -20,6 +26,12 @@ namespace ECM.Communication.Elements
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		/// <summary>
+		/// Тип номера (адреса)
+		/// <remarks>
+		/// 1 – рабочий телефон; 2 – домашний телефон; 3– мобильный телефон; 4– факс; 5– адрес электронной почты (email); 6– адрес web-сайта (страницы);0 - прочее
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte type
 		{
