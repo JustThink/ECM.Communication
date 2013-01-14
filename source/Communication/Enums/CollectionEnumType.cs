@@ -10,9 +10,13 @@ namespace ECM.Communication.Enums
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum CollectionEnumType : sbyte
 	{
-		//нет
+		/// <summary>
+		/// нет
+		/// </summary>
 		no = 0,
-		//да
+		/// <summary>
+		/// да
+		/// </summary>
 		yes = 1,
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace ECM.Communication.Enums
 {
 	/// <summary>
@@ -14,9 +13,13 @@ namespace ECM.Communication.Enums
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum ExecutorEnumType
 	{
-		//соисполнитель
+		/// <summary>
+		/// соисполнитель
+		/// </summary>
 		accessory = 0,
-		//ответственный исполнитель
+		/// <summary>
+		/// ответственный исполнитель
+		/// </summary>
 		executor = 1,
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ECM.Communication.Enums
 {
 	/// <summary>
@@ -9,9 +10,13 @@ namespace ECM.Communication.Enums
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum TransferEnumType
 	{
-		//передается непосредственно сам файл
+		/// <summary>
+		/// передается непосредственно сам файл
+		/// </summary>
 		send_file = 0,
-		//передается указатель местонахождения файла (ссылка на файл).
+		/// <summary>
+		/// передается указатель местонахождения файла (ссылка на файл).
+		/// </summary>
 		send_file_ref = 1
 	}
 }
