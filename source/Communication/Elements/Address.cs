@@ -4,6 +4,10 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Описание почтового адреса.
+	/// <remarks>Единая строка, содержащая все элементы адреса. Используется системами управления документами, не хранящими адрес фрагментарно.</remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -38,6 +42,10 @@ namespace ECM.Communication.Elements
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		/// <summary>
+		/// Название улицы
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string street
 		{
@@ -50,7 +58,10 @@ namespace ECM.Communication.Elements
 				this.streetField = value;
 			}
 		}
-
+		/// <summary>
+		/// Номер дома
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string house
 		{
@@ -63,7 +74,10 @@ namespace ECM.Communication.Elements
 				this.houseField = value;
 			}
 		}
-
+		/// <summary>
+		/// Номер корпуса или строения
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string building
 		{
@@ -76,7 +90,10 @@ namespace ECM.Communication.Elements
 				this.buildingField = value;
 			}
 		}
-
+		/// <summary>
+		/// Номер офиса или квартиры
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string flat
 		{
@@ -89,7 +106,10 @@ namespace ECM.Communication.Elements
 				this.flatField = value;
 			}
 		}
-
+		/// <summary>
+		/// Название населенного пункта (города, поселка и т.п.)
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string settlement
 		{
@@ -102,7 +122,10 @@ namespace ECM.Communication.Elements
 				this.settlementField = value;
 			}
 		}
-
+		/// <summary>
+		/// Название района
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string district
 		{
@@ -115,7 +138,10 @@ namespace ECM.Communication.Elements
 				this.districtField = value;
 			}
 		}
-
+		/// <summary>
+		/// Название региона (республики, края, области, автономного округа, автономной области)
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string region
 		{
@@ -128,7 +154,10 @@ namespace ECM.Communication.Elements
 				this.regionField = value;
 			}
 		}
-
+		/// <summary>
+		/// Название страны
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string country
 		{
@@ -141,7 +170,10 @@ namespace ECM.Communication.Elements
 				this.countryField = value;
 			}
 		}
-
+		/// <summary>
+		/// Почтовый индекс
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string postсode
 		{
@@ -154,7 +186,10 @@ namespace ECM.Communication.Elements
 				this.postсodeField = value;
 			}
 		}
-
+		/// <summary>
+		/// а/я
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string postbox
 		{
@@ -167,7 +202,10 @@ namespace ECM.Communication.Elements
 				this.postboxField = value;
 			}
 		}
-
+		/// <summary>
+		/// Прочие элементы почтового адреса
+		/// <remarks>Фрагмент почтового адреса</remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string nontypical
 		{

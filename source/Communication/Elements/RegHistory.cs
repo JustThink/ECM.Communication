@@ -4,6 +4,13 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// История регистрации документа в разных организациях.
+	/// <remarks>
+	/// Вложенные элементы содержат все присваивавшиеся документу регистрационные номера за исключением последнего, 
+	/// занесенного в элемент RegNumber элемента Document.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -52,6 +59,12 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Уникальный служебный идентификационный номер документа
+		/// <remarks>
+		/// Уникальный идентификатор документа в системе управления документами соответствующей организации (см. вложенные элементы).
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string idnumber
 		{

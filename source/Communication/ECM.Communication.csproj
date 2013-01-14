@@ -48,7 +48,10 @@
     <Compile Include="Documents\Notification.cs" />
     <Compile Include="Documents\Main.Supplement.cs" />
     <Compile Include="Documents\Main.cs" />
+    <Compile Include="Enums\ConfidentEnumType.cs" />
     <Compile Include="Enums\EcontactEnumType.cs" />
+    <Compile Include="Enums\ExecutorEnumType.cs" />
+    <Compile Include="Enums\FolderAddEnumType.cs" />
     <Compile Include="Enums\HeaderAsknowEnumType.cs" />
     <Compile Include="Enums\HeaderMessageEnumType.cs" />
     <Compile Include="Documents\Request.cs" />
@@ -84,6 +87,9 @@
     <Compile Include="Enums\CollectionEnumType.cs" />
     <Compile Include="Enums\DocumentEnumType.cs" />
     <Compile Include="Enums\ReferredEnumType.cs" />
+    <Compile Include="Enums\TaskCopyEnumType.cs" />
+    <Compile Include="Enums\TaskRegistrationEnumType.cs" />
+    <Compile Include="Enums\TransferEnumType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Elements\Rank.cs" />
     <Compile Include="Elements\Author.cs" />

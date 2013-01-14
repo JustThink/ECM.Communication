@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Реквизиты одного задания (поручения) по исполнению документа.
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -27,9 +31,9 @@ namespace ECM.Communication.Elements
 
 		private string idnumberField;
 
-		private sbyte task_regField;
+		private TaskRegistrationEnumType task_regField;
 
-		private sbyte task_copyField;
+		private TaskCopyEnumType task_copyField;
 
 		private string kindField;
 
@@ -127,6 +131,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Уникальный служебный идентификационный номер задания в передающей системе управления документами
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string idnumber
 		{
@@ -140,32 +147,44 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Отметка о регистрации задания
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte task_reg
 		{
 			get
 			{
-				return this.task_regField;
+				return ((sbyte)(this.task_regField));
 			}
 			set
 			{
-				this.task_regField = value;
+				this.task_regField = (TaskRegistrationEnumType) Enum.ToObject(typeof(TaskRegistrationEnumType), value);
 			}
 		}
 
+		/// <summary>
+		/// Отметка о передаче копии задания
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte task_copy
 		{
 			get
 			{
-				return this.task_copyField;
+				return ((sbyte) (this.task_copyField));
 			}
 			set
 			{
-				this.task_copyField = value;
+				this.task_copyField = (TaskCopyEnumType) Enum.ToObject(typeof(TaskCopyEnumType), value);
 			}
 		}
 
+		/// <summary>
+		/// Вид задания
+		/// <remarks>
+		/// Название задания: поручение, сопроводительное письмо и т.д.
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string kind
 		{
@@ -179,6 +198,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Текст задания
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string task_text
 		{
@@ -192,6 +214,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Срок исполнения
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
 		public System.DateTime deadline
 		{

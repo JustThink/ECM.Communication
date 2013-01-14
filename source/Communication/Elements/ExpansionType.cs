@@ -5,6 +5,9 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Определение стандартного пути расширения стандарта.
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -54,6 +57,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Организация-разработчик
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string organization
 		{
@@ -67,6 +73,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Версия зоны «Расширение»
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string exp_ver
 		{

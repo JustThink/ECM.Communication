@@ -4,6 +4,13 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Фамилия, имя, отчество (ФИО).
+	/// <remarks>
+	/// Единая строка, содержащая все элементы ФИО. 
+	/// Заполняется в системах управления документами, не хранящих ФИО фрагментарно или для отдельных сложносоставных имен некоторых народов РФ.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -22,6 +29,9 @@ namespace ECM.Communication.Elements
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		/// <summary>
+		/// Фамилия
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string secname
 		{
@@ -35,6 +45,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Имя
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string firstname
 		{
@@ -48,6 +61,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Отчество
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string fathersname
 		{

@@ -5,6 +5,13 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// ќписание автора документа
+	/// <remarks>
+	/// ƒл€ элемента Author кто €вл€етс€ автором документа Ц организаци€ (юридическое лицо) или гражданин (физическое лицо) определ€етс€ 
+	/// соответствующим вложенным элементом Ц OrganizationWithSign или PrivatePersonWithSign.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

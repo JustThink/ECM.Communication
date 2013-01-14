@@ -5,6 +5,14 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Описание физического лица.
+	/// <remarks>
+	/// Для элемента PrivatePersonWithSign кроме описания физического лица (элементы Name, Rank, Address, Econtact) в 
+	/// качестве вложенного элемента допускается указание даты подписания документа данным лицом (элемент SignDate). 
+	/// В остальном данные элементы идентичны.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -97,6 +105,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Индивидуальный номер налогоплательщика
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public ulong inn
 		{
@@ -123,6 +134,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Вид документа, идентифицирующего физическое лицо (например, паспорт)
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string doc_kind
 		{
@@ -136,6 +150,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Номер документа, идентифицирующего физическое лицо
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string doc_num
 		{
@@ -149,6 +166,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Название организации, выдавшей документ, идентифицирующий физическое лицо
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string doc_org
 		{
@@ -162,6 +182,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Дата выдачи документа, идентифицирующего физическое лицо
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
 		public System.DateTime doc_date
 		{
