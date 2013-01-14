@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using ECM.Communication.Elements;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Areas
 {
@@ -26,7 +27,7 @@ namespace ECM.Communication.Areas
 
 		private List<Referred> referredField;
 
-		private sbyte add_typeField;
+		private FolderAddEnumType add_typeField;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
@@ -76,16 +77,19 @@ namespace ECM.Communication.Areas
 			}
 		}
 
+		/// <summary>
+		/// Вид прилагаемых материалов
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte add_type
 		{
 			get
 			{
-				return this.add_typeField;
+				return ((sbyte)(this.add_typeField));
 			}
 			set
 			{
-				this.add_typeField = value;
+				this.add_typeField = (FolderAddEnumType) Enum.ToObject(typeof(FolderAddEnumType), value);
 			}
 		}
 

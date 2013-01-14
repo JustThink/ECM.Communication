@@ -6,6 +6,9 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Реквизиты заданий (поручений) по исполнению документа.
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

@@ -5,6 +5,13 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Передача дополнительных материалов к документу в виде текста.
+	/// <remarks>
+	/// Текст, являющийся дополнением к документу (комментарием, пояснением, ссылками и т.п.). 
+	/// Может содержать, например, регистрационные данные документа, не содержащегося в системе отправителя, URL ссылку на необходимую информацию и т.п.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

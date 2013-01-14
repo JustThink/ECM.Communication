@@ -4,6 +4,12 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Ученая степень, воинское звание, духовное имя и т.п.
+	/// <remarks>
+	/// Допустимо последовательное указание через запятую нескольких званий или титулов.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

@@ -5,6 +5,13 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Описание адресата
+	/// <remarks>
+	/// Кому адресуется документ – организации (юридическому лицу) или гражданину (физическому лицу) 
+	/// определяется соответствующим вложенным элементом – Organization или PrivatePerson.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

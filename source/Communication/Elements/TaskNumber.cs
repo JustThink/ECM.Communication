@@ -4,6 +4,12 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Номер задания.
+	/// <remarks>
+	/// Номер и дата задания (поручения) по документу
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -18,6 +24,9 @@ namespace ECM.Communication.Elements
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		/// <summary>
+		/// Дата задания (поручения)
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
 		public System.DateTime taskDate
 		{

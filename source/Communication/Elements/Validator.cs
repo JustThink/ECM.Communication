@@ -4,6 +4,14 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Утвердивший или согласовавший данный документ
+	/// <remarks>
+	/// Кто является автором согласования – организация (юридическое лицо) или гражданин (физическое лицо) или 
+	/// документ согласован или утвержден отдельным (другим) документом определяется соответствующим вложенным 
+	/// элементом – OrganizationWithSign или PrivatePersonWithSign или DocNumber.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -33,6 +41,15 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Гриф согласования или утверждения.
+		/// <remarks>
+		/// Согласовано 
+		/// Утверждено
+		/// Согласовано c замечаниями
+		/// Отклонено
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string attestation
 		{
