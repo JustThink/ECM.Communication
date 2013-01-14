@@ -4,6 +4,14 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Информация о документе.
+	/// <remarks>
+	/// Номер и дата документа передаются во вложенных элементах Referred. 
+	/// Элемент рекомендуется использовать для распорядительных документов (постановлений, распоряжений, приказов и т.п.) 
+	/// в тех случаях, когда номер и дата документа отличаются от регистрационного номера и даты документа, присвоенных в организации.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -52,6 +60,12 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Вид документа
+		/// <remarks>
+		/// Наименование вида документа (приказ, распоряжение и т.д.)
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string kind
 		{

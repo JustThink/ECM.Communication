@@ -5,6 +5,16 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Описание организации.
+	/// <remarks>
+	/// Данные элементы различаются только допустимым составом вложенных элементов, в остальном они идентичны: 
+	/// Элемент OrganizationOnly допускает только вложенные элементы Address и Econtact 
+	/// Элемент Organization допускает вложенные элементы Address и Econtact и описание должностного лица этой организации – элемент OfficialPerson 
+	/// Элемент OrganizationWithSign допускает вложенные элементы Address и Econtact и описание должностного лица этой организации с 
+	/// указанием даты подписания документа этим должностным лицом – элемент OfficialPersonWithSign.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -87,6 +97,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Единая строка, содержащая все атрибуты организации.
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string organization_string
 		{
@@ -100,6 +113,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Полное название организации
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string fullname
 		{
@@ -113,6 +129,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Краткое название организации
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string shortname
 		{
@@ -126,6 +145,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Аббревиатура, отражающая организационно-правовую форму (ЗАО, ООО, ГУП)
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string ownership
 		{
@@ -139,6 +161,10 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+
+		/// <summary>
+		/// Основной государственный регистрационный номер
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public ulong ogrn
 		{
@@ -165,6 +191,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Идентификационный номер налогоплательщика (ИНН)
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public ulong inn
 		{
@@ -191,6 +220,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Код причины постановки на учет (КПП)
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public ulong kpp
 		{

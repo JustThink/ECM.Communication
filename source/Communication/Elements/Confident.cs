@@ -1,9 +1,15 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Характеристика ограничений доступа к документу (гриф документа).
+	/// <remarks>Название ограничения (грифа), согласно принятым в организации регламентам.</remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -12,22 +18,25 @@ namespace ECM.Communication.Elements
 	public partial class Confident
 	{
 
-		private sbyte flagField;
+		private ConfidentEnumType flagField;
 
 		private string valueField;
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		/// <summary>
+		/// Признак ограничения доступа к документу
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte flag
 		{
 			get
 			{
-				return this.flagField;
+				return ((sbyte)(this.flagField));
 			}
 			set
 			{
-				this.flagField = value;
+				this.flagField = (ConfidentEnumType) Enum.ToObject(typeof(ConfidentEnumType), value);
 			}
 		}
 

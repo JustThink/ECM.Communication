@@ -5,6 +5,12 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Регистрационный номер документа.
+	/// <remarks>
+	/// Регистрационный номер и дата регистрации документа. Для документов, поступивших от физических лиц, допускается указание только даты.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,6 +25,9 @@ namespace ECM.Communication.Elements
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		/// <summary>
+		/// Дата регистрации
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
 		public System.DateTime regdate
 		{

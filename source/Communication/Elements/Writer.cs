@@ -5,6 +5,13 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Исполнитель (составитель) документа.
+	/// <remarks>
+	/// Кто является исполнителем (составителем) документа – организация (юридическое лицо) или 
+	/// гражданин (физическое лицо) определяется соответствующим вложенным элементом – Organization или PrivatePerson.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

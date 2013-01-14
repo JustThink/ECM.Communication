@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Elements
 {
@@ -18,7 +19,7 @@ namespace ECM.Communication.Elements
 
 		private Organization organizationField;
 
-		private sbyte responsibleField;
+		private ExecutorEnumType responsibleField;
 
 		private bool responsibleFieldSpecified;
 
@@ -50,22 +51,17 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Метка ответственного исполнителя
-		/// <remarks>
-		/// 0 – соисполнитель
-		/// 1 – ответственный исполнитель.
-		/// Значение 1 может быть только у одного из списка исполнителей
-		/// </remarks>
 		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public sbyte responsible
 		{
 			get
 			{
-				return this.responsibleField;
+				return ((sbyte)(this.responsibleField));
 			}
 			set
 			{
-				this.responsibleField = value;
+				this.responsibleField = (ExecutorEnumType) Enum.ToObject(typeof(ExecutorEnumType), value);
 			}
 		}
 

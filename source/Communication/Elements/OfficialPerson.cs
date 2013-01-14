@@ -5,6 +5,14 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Описание должностного лица.
+	/// <remarks>
+	/// Для элемента OfficialPersonWithSign кроме описания должностного лица (элементы Name, Official, Rank, Address, Econtact) 
+	/// в качестве вложенного элемента допускается указание даты подписания документа данным должностным лицом (элемент SignDate). 
+	/// В остальном данные элементы идентичны.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

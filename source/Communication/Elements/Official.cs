@@ -4,6 +4,13 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Описание штатной единицы (подразделение, должность), занимаемой должностным лицом.
+	/// <remarks>
+	/// Единая строка, содержащая все элементы описания штатной единицы. 
+	/// Заполняется в системах управления документами, не хранящих описание фрагментарно.
+	/// </remarks>
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -22,6 +29,12 @@ namespace ECM.Communication.Elements
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		/// <summary>
+		/// Подразделение
+		/// <remarks>
+		/// Допускается указание полного названия в виде цепочки названий подразделений, разделенных символами, указанными в атрибуте separator
+		/// </remarks>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string department
 		{
@@ -35,6 +48,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Должность
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string post
 		{
@@ -48,6 +64,12 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Разделитель фрагментов полного названия структурного подразделения.
+		/// <example>
+		/// Пример: Если в атрибуте department указано «финансовое управление \ департамент кредитов \ отдел выплат», то separator= «\»
+		/// </example>
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string separator
 		{

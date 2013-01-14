@@ -21,7 +21,7 @@ namespace ECM.Communication.Enums
 		//адрес электронной почты (email)
 		email = 5,
 		//адрес web-сайта (страницы)
-		web_site = 6,
+		website = 6,
 		//прочее
 		other = 0,
 

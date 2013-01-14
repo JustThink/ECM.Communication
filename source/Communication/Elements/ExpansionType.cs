@@ -62,6 +62,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Организация-разработчик
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string organization
 		{
@@ -75,6 +78,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Версия зоны «Расширение»
+		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string exp_ver
 		{
