@@ -20,6 +20,9 @@ namespace ECM.Communication.Enums
 		/// <summary>
 		/// ответственный исполнитель
 		/// </summary>
+		/// <remarks>
+		/// Значение 1 может быть только у одного из списка исполнителей
+		/// </remarks>
 		executor = 1,
 	}
 }

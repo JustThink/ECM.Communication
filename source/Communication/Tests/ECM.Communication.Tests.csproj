@@ -54,6 +54,19 @@
     <Compile Include="Documents\NotificationTest.cs" />
     <Compile Include="Documents\Response.SupplementTest.cs" />
     <Compile Include="Documents\ResponseTest.cs" />
+    <Compile Include="Enums\AcknowledgementEnumTypeTest.cs" />
+    <Compile Include="Enums\CollectionEnumTypeTest.cs" />
+    <Compile Include="Enums\ConfidentEnumTypeTest.cs" />
+    <Compile Include="Enums\TransferEnumTypeTest.cs" />
+    <Compile Include="Enums\TaskRegistrationEnumTypeTest.cs" />
+    <Compile Include="Enums\TaskCopyEnumTypeTest.cs" />
+    <Compile Include="Enums\ReferredEnumTypeTest.cs" />
+    <Compile Include="Enums\HeaderMessageEnumTypeTest.cs" />
+    <Compile Include="Enums\HeaderAsknowEnumTypeTest.cs" />
+    <Compile Include="Enums\FolderAddEnumTypeTest.cs" />
+    <Compile Include="Enums\ExecutorEnumTypeTest.cs" />
+    <Compile Include="Enums\EcontactEnumTypeTest.cs" />
+    <Compile Include="Enums\DocumentEnumTypeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
