@@ -9,6 +9,24 @@ namespace ECM.Communication.Tests
 {
 	public abstract class HelperTest
 	{
+		protected static void EqualTo(AckResult source, ErrorReceiptCode target)
+		{
+			Assert.IsNotNull(source);
+			Assert.IsNotNull(target);
+
+			Assert.That(source.errorcode, Is.EqualTo(target.errorcode));
+		}
+
+		protected static void EqualTo(AckResult source, ErrorReceiptCode target, string arg0)
+		{
+			Assert.IsNotNull(source);
+			Assert.IsNotNull(target);
+
+			Assert.That(source.errorcode, Is.EqualTo(target.errorcode));
+			var Value = string.Format(target.Value, arg0);
+			Assert.That(source.Value, Is.EqualTo(Value));
+		}
+
 		protected static void EqualTo(Address source, Address target)
 		{
 			Assert.IsNotNull(source);
@@ -27,7 +45,6 @@ namespace ECM.Communication.Tests
 			Assert.That(source.nontypical, Is.EqualTo(target.nontypical));
 			Assert.That(source.Value, Is.EqualTo(target.Value));
 		}
-
 
 		protected static void EqualTo(AcknowledgementType source, AcknowledgementType target)
 		{

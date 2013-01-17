@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Elements;
 using ECM.Communication.Enums;
 
 namespace ECM.Communication.Areas
@@ -602,5 +604,68 @@ namespace ECM.Communication.Areas
 			}
 		}
 		#endregion
+
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Header header, HeaderMessageEnumType msg_type)
+		{
+			var ackResult = new List<AckResult>();
+
+			if ( header == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, Header.AreaName) });
+				return ackResult;
+			}
+
+			if ( header.standart != Header.StandartFieldDefault )
+			{
+				var ex = ErrorReceiptCode.InvalidAttribute_Standard_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, header.standart) });
+			}
+			if ( header.version != Header.VersionFieldDefault )
+			{
+				var ex = ErrorReceiptCode.InvalidAttribute_Version_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, header.version) });
+			}
+			if ( header.msg_type != ((sbyte) msg_type) )
+			{
+				var ex = ErrorReceiptCode.InvalidAttribute_MsgType_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, header.msg_type) });
+			}
+			if ( string.IsNullOrEmpty(header.msg_id) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "msg_id") });
+			}
+			if ( string.IsNullOrEmpty(header.from_org_id) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "from_org_id") });
+			}
+			if ( string.IsNullOrEmpty(header.from_organization) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "from_organization") });
+			}
+			if ( string.IsNullOrEmpty(header.from_sys_id) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "from_sys_id") });
+			}
+			if ( string.IsNullOrEmpty(header.from_system) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "from_system") });
+			}
+			if ( string.IsNullOrEmpty(header.to_organization) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_in_Header_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "to_organization") });
+			}
+			return ackResult;
+		}
 	}
 }

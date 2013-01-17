@@ -31,53 +31,47 @@ namespace ECM.Communication
 		{
 			OnBeforeValidationRequest(request);
 
-			var msg_acknow = HeaderAsknowEnumTypeDefault;
 			var ackResult = new List<AckResult>();
+			ackResult.AddRange(request.Header.Check(HeaderMessageEnumType.main));
+			
+			
 
-			if ( request.Header == null)
+			if ( request.Document != null)
+			{
+				//this.documentField = new DocumentType();
+			}
+			else
 			{
 				var ex = ErrorReceiptCode.MissingAreas_Format;
-				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Header")});
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, DocumentType.AreaName) });
 			}
 
-			//this.headerField = new Header();
-
-			//this.standartField = StandartFieldDefault;
-			//this.versionField = VersionFieldDefault;
-			//this.time = DateTime.UtcNow;
-			//this.msg_acknowField = ((sbyte) (HeaderMessageEnumType.notification));
-
-
-			//this.headerField.msg_type = ((sbyte) HeaderMessageEnumType.main);
-			//this.documentField = new DocumentType();
-			//this.addDocumentsField = new List<AddDocumentsTypeFolder>();
-			//this.taskListField = new List<TaskListTypeTask>();
-			//this.expansionField = new ExpansionType();
-			//this.docTransferField = new List<DocTransfer>();
-			
-
-			
-			try
+			if ( request.TaskList != null )
 			{
-				msg_acknow = (HeaderAsknowEnumType) Enum.ToObject(typeof(HeaderAsknowEnumType), request.Header.msg_acknow);
+				//this.taskListField = new List<TaskListTypeTask>();
 			}
-			catch (Exception e)
+
+			if ( request.AddDocuments != null )
 			{
-				throw;
+				//this.addDocumentsField = new List<AddDocumentsTypeFolder>();
 			}
 
+			if ( request.Expansion != null )
+			{
+				//this.expansionField = new ExpansionType();
+			}
 
-			
-			
-			
-			
+			if ( request.DocTransfer != null)
+			{
+				//this.docTransferField = new List<DocTransfer>();
+			}
 
-
-			
 			var notification = new Notification();
 
 
 			OnAfterValidationRequest(request, notification);
+
+			var msg_acknow = GetMsgAcknow(request.Header);
 
 			return notification;
 		}
@@ -100,6 +94,22 @@ namespace ECM.Communication
 		public Notification ChangeResponse(Response response)
 		{
 			throw new NotImplementedException();
+		}
+
+		private HeaderAsknowEnumType GetMsgAcknow(Header header)
+		{
+			if ( header == null)
+				return HeaderAsknowEnumTypeDefault;
+
+			try
+			{
+				return (HeaderAsknowEnumType) Enum.ToObject(typeof(HeaderAsknowEnumType), header.msg_acknow);
+			}
+			catch
+			{
+				// TODO: В стандарте отсутствует код ошибки 
+				return HeaderAsknowEnumTypeDefault;
+			}
 		}
 	}
 }
