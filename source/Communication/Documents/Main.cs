@@ -5,7 +5,6 @@ using System.Text;
 using System.Xml;
 using ECM.Communication.Areas;
 using ECM.Communication.Elements;
-using ECM.Communication.Enums;
 
 namespace ECM.Communication.Documents
 {
@@ -43,16 +42,6 @@ namespace ECM.Communication.Documents
 
 		#region Constructor
 
-		public Main()
-		{
-			this.headerField = new Header();
-			this.headerField.msg_type = ((sbyte) HeaderMessageEnumType.main);
-			this.documentField = new DocumentType();
-			this.addDocumentsField = new List<AddDocumentsTypeFolder>();
-			this.taskListField = new List<TaskListTypeTask>();
-			this.expansionField = new ExpansionType();
-			this.docTransferField = new List<DocTransfer>();
-		}
 
 		#endregion
 

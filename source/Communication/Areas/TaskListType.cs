@@ -4,23 +4,21 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using ECM.Communication.Elements;
-using ECM.Communication.Enums;
 
 namespace ECM.Communication.Areas
 {
 	/// <summary>
-	/// Дополнительные материалы
+	/// Реквизиты заданий (поручений) по исполнению документа.
 	/// </summary>
-	/// <remarks>
-	/// Содержит информацию о дополнительных (справочных) материалах к документу, которые разъясняют отдельные, затронутые в документевопросы (в виде дополнительных документов, писем, справок и пр.).
-	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-	public partial class AddDocumentsTypeFolder
+	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
+	public partial class TaskListType
 	{
 		#region Const & Static
+
+		public const string AreaName = "Задания";
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
@@ -28,81 +26,34 @@ namespace ECM.Communication.Areas
 
 		#region Properties
 
-		private List<DocTransfer> docTransferField;
-
-		private List<Note> noteField;
-
-		private List<Referred> referredField;
-
-		private FolderAddEnumType add_typeField;
+		private List<TaskListTypeTask> taskField;
 
 		#endregion
 
 		#region Constructor
 
-		public AddDocumentsTypeFolder()
+		public TaskListType()
 		{
-			this.referredField = new List<Referred>();
-			this.noteField = new List<Note>();
-			this.docTransferField = new List<DocTransfer>();
+			this.taskField = new List<TaskListTypeTask>();
 		}
 
 		#endregion
 
 		#region Fields
 
-		[System.Xml.Serialization.XmlElementAttribute("DocTransfer", Order = 0)]
-		public List<DocTransfer> DocTransfer
-		{
-			get
-			{
-				return this.docTransferField;
-			}
-			set
-			{
-				this.docTransferField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlElementAttribute("Note", Order = 1)]
-		public List<Note> Note
-		{
-			get
-			{
-				return this.noteField;
-			}
-			set
-			{
-				this.noteField = value;
-			}
-		}
-
-		[System.Xml.Serialization.XmlElementAttribute("Referred", Order = 2)]
-		public List<Referred> Referred
-		{
-			get
-			{
-				return this.referredField;
-			}
-			set
-			{
-				this.referredField = value;
-			}
-		}
-
 		/// <summary>
-		/// Вид прилагаемых материалов
+		/// Список заданий
 		/// </summary>
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public sbyte add_type
+		[System.Xml.Serialization.XmlElementAttribute("Task", Order = 0)]
+		public List<TaskListTypeTask> Task
 		{
 			get
 			{
-				return ((sbyte)(this.add_typeField));
+				return this.taskField;
 			}
 			set
 			{
-				this.add_typeField = (FolderAddEnumType) Enum.ToObject(typeof(FolderAddEnumType), value);
+				this.taskField = value;
 			}
 		}
 
@@ -112,7 +63,7 @@ namespace ECM.Communication.Areas
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(AddDocumentsTypeFolder));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(TaskListType));
 				}
 				return serializer;
 			}
@@ -122,7 +73,7 @@ namespace ECM.Communication.Areas
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current AddDocumentsTypeFolder object into an XML document
+		/// Serializes current TaskListType object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -159,16 +110,16 @@ namespace ECM.Communication.Areas
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an AddDocumentsTypeFolder object
+		/// Deserializes workflow markup into an TaskListType object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output AddDocumentsTypeFolder object</param>
+		/// <param name="obj">Output TaskListType object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out AddDocumentsTypeFolder obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out TaskListType obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(AddDocumentsTypeFolder);
+			obj = default(TaskListType);
 			try
 			{
 				obj = Deserialize(xml);
@@ -181,19 +132,19 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		public static bool Deserialize(string xml, out AddDocumentsTypeFolder obj)
+		public static bool Deserialize(string xml, out TaskListType obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static AddDocumentsTypeFolder Deserialize(string xml)
+		public static TaskListType Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((AddDocumentsTypeFolder) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((TaskListType) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -205,7 +156,7 @@ namespace ECM.Communication.Areas
 		}
 
 		/// <summary>
-		/// Serializes current AddDocumentsTypeFolder object into file
+		/// Serializes current TaskListType object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -255,16 +206,16 @@ namespace ECM.Communication.Areas
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an AddDocumentsTypeFolder object
+		/// Deserializes xml markup from file into an TaskListType object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output AddDocumentsTypeFolder object</param>
+		/// <param name="obj">Output TaskListType object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out AddDocumentsTypeFolder obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out TaskListType obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(AddDocumentsTypeFolder);
+			obj = default(TaskListType);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -277,23 +228,23 @@ namespace ECM.Communication.Areas
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out AddDocumentsTypeFolder obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out TaskListType obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out AddDocumentsTypeFolder obj)
+		public static bool LoadFromFile(string fileName, out TaskListType obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static AddDocumentsTypeFolder LoadFromFile(string fileName)
+		public static TaskListType LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static AddDocumentsTypeFolder LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static TaskListType LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;

@@ -46,7 +46,7 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\AcknowledgementTypeTest.cs" />
-    <Compile Include="Areas\AckResultTest.cs" />
+    <Compile Include="Elements\AckResultTest.cs" />
     <Compile Include="Areas\AddDocumentsTypeTest.cs" />
     <Compile Include="Areas\HeaderTest.cs" />
     <Compile Include="Documents\MainTest.cs" />

@@ -11,16 +11,12 @@ namespace ECM.Communication.Tests.Documents
 		public void TestCreate()
 		{
 			var doc = new Main();
-			Assert.IsNotNull(doc.Header);
-			Assert.That(doc.Header.msg_type, Is.EqualTo((sbyte) HeaderMessageEnumType.main));
-			Assert.IsNotNull(doc.Document);
-			Assert.IsNotNull(doc.TaskList);
-			Assert.That(doc.TaskList.Count, Is.EqualTo(0));
-			Assert.IsNotNull(doc.AddDocuments);
-			Assert.That(doc.AddDocuments.Count, Is.EqualTo(0));
-			Assert.IsNotNull(doc.Expansion);
-			Assert.IsNotNull(doc.DocTransfer);
-			Assert.That(doc.DocTransfer.Count, Is.EqualTo(0));
+			Assert.IsNull(doc.Header);
+			Assert.IsNull(doc.Document);
+			Assert.IsNull(doc.TaskList);
+			Assert.IsNull(doc.AddDocuments);
+			Assert.IsNull(doc.Expansion);
+			Assert.IsNull(doc.DocTransfer);
 		}
 	}
 }

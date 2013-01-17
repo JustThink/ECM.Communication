@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ECM.Communication.Areas;
 using ECM.Communication.Documents;
+using ECM.Communication.Elements;
 using ECM.Communication.Enums;
 
 namespace ECM.Communication
@@ -27,13 +29,34 @@ namespace ECM.Communication
 
 		public Notification AddRequest(Main request)
 		{
-			var notification = new Notification();
-
-			OnBeforeBuildNotification(request, notification);
-
 			OnBeforeValidationRequest(request);
 
 			var msg_acknow = HeaderAsknowEnumTypeDefault;
+			var ackResult = new List<AckResult>();
+
+			if ( request.Header == null)
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Header")});
+			}
+
+			//this.headerField = new Header();
+
+			//this.standartField = StandartFieldDefault;
+			//this.versionField = VersionFieldDefault;
+			//this.time = DateTime.UtcNow;
+			//this.msg_acknowField = ((sbyte) (HeaderMessageEnumType.notification));
+
+
+			//this.headerField.msg_type = ((sbyte) HeaderMessageEnumType.main);
+			//this.documentField = new DocumentType();
+			//this.addDocumentsField = new List<AddDocumentsTypeFolder>();
+			//this.taskListField = new List<TaskListTypeTask>();
+			//this.expansionField = new ExpansionType();
+			//this.docTransferField = new List<DocTransfer>();
+			
+
+			
 			try
 			{
 				msg_acknow = (HeaderAsknowEnumType) Enum.ToObject(typeof(HeaderAsknowEnumType), request.Header.msg_acknow);
@@ -42,26 +65,25 @@ namespace ECM.Communication
 			{
 				throw;
 			}
+
+
+			
 			
 			
 			
 
 
-			// TODO: Проверка заполнения полей объекта
-			OnAfterValidationRequest(request);
 			
-			OnAfterBuildNotification(request, notification);
+			var notification = new Notification();
 
+
+			OnAfterValidationRequest(request, notification);
 
 			return notification;
 		}
 
-		partial void OnBeforeBuildNotification(Main request, Notification notification);
-
 		partial void OnBeforeValidationRequest(Main request);
-		partial void OnAfterValidationRequest(Main request);
-		
-		partial void OnAfterBuildNotification(Main request, Notification notification);
+		partial void OnAfterValidationRequest(Main request, Notification notification);
 
 		#endregion
 

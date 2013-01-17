@@ -1,23 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Elements
 {
 	/// <summary>
-	/// Расширение
+	/// Дополнительные материалы
 	/// </summary>
 	/// <remarks>
-	/// Содержит дополнительные, не стандартизованные в рамках настоящего стандарта, данные из передающей системы.
-	/// Назначение зоны – определение стандартного пути расширения стандарта.
-	/// Состав зоны документируется разработчиком соответствующей системы управления документами.
+	/// Содержит информацию о дополнительных (справочных) материалах к документу, которые разъясняют отдельные, затронутые в документевопросы (в виде дополнительных документов, писем, справок и пр.).
 	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-	[System.SerializableAttribute()]
+	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
-	public partial class ExpansionType
+	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+	public partial class AddDocumentsTypeFolder
 	{
 		#region Const & Static
 
@@ -27,86 +27,81 @@ namespace ECM.Communication.Elements
 
 		#region Properties
 
-		private List<Econtact> econtactField;
+		private List<DocTransfer> docTransferField;
 
-		private ExpansionTypeAnyData anyDataField;
+		private List<Note> noteField;
 
-		private string organizationField;
+		private List<Referred> referredField;
 
-		private string exp_verField;
+		private FolderAddEnumType add_typeField;
 
 		#endregion
 
 		#region Constructor
 
-		public ExpansionType()
+		public AddDocumentsTypeFolder()
 		{
-			this.anyDataField = new ExpansionTypeAnyData();
-			this.econtactField = new List<Econtact>();
+			this.referredField = new List<Referred>();
+			this.noteField = new List<Note>();
+			this.docTransferField = new List<DocTransfer>();
 		}
 
 		#endregion
 
 		#region Fields
 
-		/// <summary>
-		/// Список номеров (адресов) имеющихся средств электросвязи
-		/// </summary>
-		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 0)]
-		public List<Econtact> Econtact
+		[System.Xml.Serialization.XmlElementAttribute("DocTransfer", Order = 0)]
+		public List<DocTransfer> DocTransfer
 		{
 			get
 			{
-				return this.econtactField;
+				return this.docTransferField;
 			}
 			set
 			{
-				this.econtactField = value;
+				this.docTransferField = value;
 			}
 		}
 
-		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
-		public ExpansionTypeAnyData AnyData
+		[System.Xml.Serialization.XmlElementAttribute("Note", Order = 1)]
+		public List<Note> Note
 		{
 			get
 			{
-				return this.anyDataField;
+				return this.noteField;
 			}
 			set
 			{
-				this.anyDataField = value;
+				this.noteField = value;
 			}
 		}
 
-		/// <summary>
-		/// Организация-разработчик
-		/// </summary>
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string organization
+		[System.Xml.Serialization.XmlElementAttribute("Referred", Order = 2)]
+		public List<Referred> Referred
 		{
 			get
 			{
-				return this.organizationField;
+				return this.referredField;
 			}
 			set
 			{
-				this.organizationField = value;
+				this.referredField = value;
 			}
 		}
 
 		/// <summary>
-		/// Версия зоны «Расширение»
+		/// Вид прилагаемых материалов
 		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string exp_ver
+		public sbyte add_type
 		{
 			get
 			{
-				return this.exp_verField;
+				return ((sbyte)(this.add_typeField));
 			}
 			set
 			{
-				this.exp_verField = value;
+				this.add_typeField = (FolderAddEnumType) Enum.ToObject(typeof(FolderAddEnumType), value);
 			}
 		}
 
@@ -116,7 +111,7 @@ namespace ECM.Communication.Elements
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(ExpansionType));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(AddDocumentsTypeFolder));
 				}
 				return serializer;
 			}
@@ -126,7 +121,7 @@ namespace ECM.Communication.Elements
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current ExpansionType object into an XML document
+		/// Serializes current AddDocumentsTypeFolder object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -163,16 +158,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an ExpansionType object
+		/// Deserializes workflow markup into an AddDocumentsTypeFolder object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output ExpansionType object</param>
+		/// <param name="obj">Output AddDocumentsTypeFolder object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out ExpansionType obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out AddDocumentsTypeFolder obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(ExpansionType);
+			obj = default(AddDocumentsTypeFolder);
 			try
 			{
 				obj = Deserialize(xml);
@@ -185,19 +180,19 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool Deserialize(string xml, out ExpansionType obj)
+		public static bool Deserialize(string xml, out AddDocumentsTypeFolder obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static ExpansionType Deserialize(string xml)
+		public static AddDocumentsTypeFolder Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((ExpansionType) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((AddDocumentsTypeFolder) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -209,7 +204,7 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Serializes current ExpansionType object into file
+		/// Serializes current AddDocumentsTypeFolder object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -259,16 +254,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an ExpansionType object
+		/// Deserializes xml markup from file into an AddDocumentsTypeFolder object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output ExpansionType object</param>
+		/// <param name="obj">Output AddDocumentsTypeFolder object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out ExpansionType obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out AddDocumentsTypeFolder obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(ExpansionType);
+			obj = default(AddDocumentsTypeFolder);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -281,23 +276,23 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out ExpansionType obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out AddDocumentsTypeFolder obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out ExpansionType obj)
+		public static bool LoadFromFile(string fileName, out AddDocumentsTypeFolder obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static ExpansionType LoadFromFile(string fileName)
+		public static AddDocumentsTypeFolder LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static ExpansionType LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static AddDocumentsTypeFolder LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;

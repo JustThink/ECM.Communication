@@ -23,6 +23,8 @@ namespace ECM.Communication.Areas
 	{
 		#region Const & Static
 
+		public const string AreaName = "Уведомление (подтверждение приема)";
+
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion

@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Elements;
 
-namespace ECM.Communication.Elements
+namespace ECM.Communication.Areas
 {
 	/// <summary>
-	/// Реквизиты заданий (поручений) по исполнению документа.
+	/// Расширение
 	/// </summary>
+	/// <remarks>
+	/// Содержит дополнительные, не стандартизованные в рамках настоящего стандарта, данные из передающей системы.
+	/// Назначение зоны – определение стандартного пути расширения стандарта.
+	/// Состав зоны документируется разработчиком соответствующей системы управления документами.
+	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
-	[Serializable()]
+	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
-	public partial class TaskListType
+	public partial class ExpansionType
 	{
 		#region Const & Static
 
@@ -23,15 +28,22 @@ namespace ECM.Communication.Elements
 
 		#region Properties
 
-		private List<TaskListTypeTask> taskField;
+		private List<Econtact> econtactField;
+
+		private ExpansionTypeAnyData anyDataField;
+
+		private string organizationField;
+
+		private string exp_verField;
 
 		#endregion
 
 		#region Constructor
 
-		public TaskListType()
+		public ExpansionType()
 		{
-			this.taskField = new List<TaskListTypeTask>();
+			this.anyDataField = new ExpansionTypeAnyData();
+			this.econtactField = new List<Econtact>();
 		}
 
 		#endregion
@@ -39,18 +51,63 @@ namespace ECM.Communication.Elements
 		#region Fields
 
 		/// <summary>
-		/// Список заданий
+		/// Список номеров (адресов) имеющихся средств электросвязи
 		/// </summary>
-		[System.Xml.Serialization.XmlElementAttribute("Task", Order = 0)]
-		public List<TaskListTypeTask> Task
+		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 0)]
+		public List<Econtact> Econtact
 		{
 			get
 			{
-				return this.taskField;
+				return this.econtactField;
 			}
 			set
 			{
-				this.taskField = value;
+				this.econtactField = value;
+			}
+		}
+
+		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+		public ExpansionTypeAnyData AnyData
+		{
+			get
+			{
+				return this.anyDataField;
+			}
+			set
+			{
+				this.anyDataField = value;
+			}
+		}
+
+		/// <summary>
+		/// Организация-разработчик
+		/// </summary>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string organization
+		{
+			get
+			{
+				return this.organizationField;
+			}
+			set
+			{
+				this.organizationField = value;
+			}
+		}
+
+		/// <summary>
+		/// Версия зоны «Расширение»
+		/// </summary>
+		[System.Xml.Serialization.XmlAttributeAttribute()]
+		public string exp_ver
+		{
+			get
+			{
+				return this.exp_verField;
+			}
+			set
+			{
+				this.exp_verField = value;
 			}
 		}
 
@@ -60,7 +117,7 @@ namespace ECM.Communication.Elements
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(TaskListType));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(ExpansionType));
 				}
 				return serializer;
 			}
@@ -70,7 +127,7 @@ namespace ECM.Communication.Elements
 
 		#region Serialize/Deserialize
 		/// <summary>
-		/// Serializes current TaskListType object into an XML document
+		/// Serializes current ExpansionType object into an XML document
 		/// </summary>
 		/// <returns>string XML value</returns>
 		public virtual string Serialize(System.Text.Encoding encoding)
@@ -107,16 +164,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes workflow markup into an TaskListType object
+		/// Deserializes workflow markup into an ExpansionType object
 		/// </summary>
 		/// <param name="xml">string workflow markup to deserialize</param>
-		/// <param name="obj">Output TaskListType object</param>
+		/// <param name="obj">Output ExpansionType object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool Deserialize(string xml, out TaskListType obj, out System.Exception exception)
+		public static bool Deserialize(string xml, out ExpansionType obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(TaskListType);
+			obj = default(ExpansionType);
 			try
 			{
 				obj = Deserialize(xml);
@@ -129,19 +186,19 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool Deserialize(string xml, out TaskListType obj)
+		public static bool Deserialize(string xml, out ExpansionType obj)
 		{
 			System.Exception exception = null;
 			return Deserialize(xml, out obj, out exception);
 		}
 
-		public static TaskListType Deserialize(string xml)
+		public static ExpansionType Deserialize(string xml)
 		{
 			System.IO.StringReader stringReader = null;
 			try
 			{
 				stringReader = new System.IO.StringReader(xml);
-				return ((TaskListType) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+				return ((ExpansionType) (Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
 			}
 			finally
 			{
@@ -153,7 +210,7 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Serializes current TaskListType object into file
+		/// Serializes current ExpansionType object into file
 		/// </summary>
 		/// <param name="fileName">full path of outupt xml file</param>
 		/// <param name="exception">output Exception value if failed</param>
@@ -203,16 +260,16 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Deserializes xml markup from file into an TaskListType object
+		/// Deserializes xml markup from file into an ExpansionType object
 		/// </summary>
 		/// <param name="fileName">string xml file to load and deserialize</param>
-		/// <param name="obj">Output TaskListType object</param>
+		/// <param name="obj">Output ExpansionType object</param>
 		/// <param name="exception">output Exception value if deserialize failed</param>
 		/// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out TaskListType obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out ExpansionType obj, out System.Exception exception)
 		{
 			exception = null;
-			obj = default(TaskListType);
+			obj = default(ExpansionType);
 			try
 			{
 				obj = LoadFromFile(fileName, encoding);
@@ -225,23 +282,23 @@ namespace ECM.Communication.Elements
 			}
 		}
 
-		public static bool LoadFromFile(string fileName, out TaskListType obj, out System.Exception exception)
+		public static bool LoadFromFile(string fileName, out ExpansionType obj, out System.Exception exception)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
 		}
 
-		public static bool LoadFromFile(string fileName, out TaskListType obj)
+		public static bool LoadFromFile(string fileName, out ExpansionType obj)
 		{
 			System.Exception exception = null;
 			return LoadFromFile(fileName, out obj, out exception);
 		}
 
-		public static TaskListType LoadFromFile(string fileName)
+		public static ExpansionType LoadFromFile(string fileName)
 		{
 			return LoadFromFile(fileName, Encoding.UTF8);
 		}
 
-		public static TaskListType LoadFromFile(string fileName, System.Text.Encoding encoding)
+		public static ExpansionType LoadFromFile(string fileName, System.Text.Encoding encoding)
 		{
 			System.IO.FileStream file = null;
 			System.IO.StreamReader sr = null;

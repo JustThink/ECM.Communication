@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using ECM.Communication.Elements;
 
 namespace ECM.Communication.Areas
 {
@@ -19,6 +20,8 @@ namespace ECM.Communication.Areas
 	public partial class AddDocumentsType
 	{
 		#region Const & Static
+
+		public const string AreaName = "Дополнительные материалы";
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 

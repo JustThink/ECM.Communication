@@ -42,7 +42,7 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\AcknowledgementType.cs" />
-    <Compile Include="Areas\AckResult.cs" />
+    <Compile Include="Elements\AckResult.cs" />
     <Compile Include="Areas\DocumentType.cs" />
     <Compile Include="Areas\Header.cs" />
     <Compile Include="Documents\Notification.cs" />
@@ -59,7 +59,7 @@
     <Compile Include="Documents\Response.Supplement.cs" />
     <Compile Include="Elements\RegNumber.cs" />
     <Compile Include="Areas\AddDocumentsType.cs" />
-    <Compile Include="Areas\AddDocumentsTypeFolder.cs" />
+    <Compile Include="Elements\AddDocumentsTypeFolder.cs" />
     <Compile Include="Elements\Address.cs" />
     <Compile Include="Elements\Addressee.cs" />
     <Compile Include="Elements\AuthorOrganization.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Elements\DocTransfer.cs" />
     <Compile Include="Elements\Econtact.cs" />
     <Compile Include="Elements\Executor.cs" />
-    <Compile Include="Elements\ExpansionType.cs" />
+    <Compile Include="Areas\ExpansionType.cs" />
     <Compile Include="Elements\ExpansionTypeAnyData.cs" />
     <Compile Include="Elements\Name.cs" />
     <Compile Include="Elements\Note.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="Elements\PrivatePerson.cs" />
     <Compile Include="Elements\PrivatePersonWithSign.cs" />
     <Compile Include="Elements\Referred.cs" />
-    <Compile Include="Elements\TaskListType.cs" />
+    <Compile Include="Areas\TaskListType.cs" />
     <Compile Include="Elements\TaskListTypeTask.cs" />
     <Compile Include="Elements\TaskNumber.cs" />
     <Compile Include="Elements\Validator.cs" />

@@ -52,21 +52,13 @@ namespace ECM.Communication
 
 		#region AddRequest
 
-		partial void OnBeforeBuildNotification(Main request, Notification notification)
-		{
-			// TODO: Добавьте код изменяющий информацию о доставке сообщения
-		}
 		partial void OnBeforeValidationRequest(Main request)
 		{
 			// TODO: Добавьте код выполняемый перед проверкой полей полученного запроса
 		}
-		partial void OnAfterValidationRequest(Main request)
+		partial void OnAfterValidationRequest(Main request, Notification notification)
 		{
 			// TODO: Добавьте код выполняемый после проверки полей полученного запроса
-		}
-		partial void OnAfterBuildNotification(Main request, Notification notification)
-		{
-			// TODO: Добавьте код изменяющий информацию о доставке сообщения прошедшего валидацию
 		}
 
 		#endregion

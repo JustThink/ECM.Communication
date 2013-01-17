@@ -18,8 +18,10 @@ namespace ECM.Communication.Areas
 	{
 		#region Const & Static
 
-		private const string StandartFieldDefault = @"Стандарт системы управления документами";
-		private const string VersionFieldDefault = @"1.0";
+		public const string AreaName = "Заголовок";
+
+		public const string StandartFieldDefault = @"Стандарт системы управления документами";
+		public const string VersionFieldDefault = @"1.0";
 
 		#endregion
 
@@ -66,14 +68,6 @@ namespace ECM.Communication.Areas
 		#endregion
 
 		#region Constructor
-
-		public Header()
-		{
-			this.standartField = StandartFieldDefault;
-			this.versionField = VersionFieldDefault;
-			this.time = DateTime.UtcNow;
-			this.msg_acknowField = ((sbyte) (HeaderMessageEnumType.notification));
-		}
 
 		#endregion
 

@@ -19,6 +19,8 @@ namespace ECM.Communication.Areas
 	{
 		#region Const & Static
 
+		public const string AreaName = "Документ (основнаязона)";
+
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion

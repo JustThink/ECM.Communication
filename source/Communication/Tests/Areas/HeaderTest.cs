@@ -11,8 +11,8 @@ namespace ECM.Communication.Tests.Areas
 		public void TestCreate()
 		{
 			var header = new Header();
-			Assert.That(header.standart, Is.EqualTo("Стандарт системы управления документами"));
-			Assert.That(header.version, Is.EqualTo("1.0"));
+			Assert.IsNullOrEmpty(header.standart);
+			Assert.IsNullOrEmpty(header.version);
 			Assert.That(header.msg_type, Is.EqualTo(((sbyte) (HeaderAsknowEnumType.none))));
 			Assert.That(header.msg_acknow, Is.EqualTo(((sbyte) (HeaderMessageEnumType.notification))));
 		}
