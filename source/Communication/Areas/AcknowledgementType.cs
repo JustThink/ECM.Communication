@@ -55,7 +55,8 @@ namespace ECM.Communication.Areas
 		#region Fields
 
 		/// <summary>
-		/// Регистрационный номер документа.
+		/// Регистрационный номер документа, присвоенный в системе-получателе.
+		/// Кратность = 1 для сообщений об успешной регистрации документа (вид сообщения - «Уведомление о регистрации документа»)
 		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public RegNumber RegNumber
@@ -71,7 +72,7 @@ namespace ECM.Communication.Areas
 		}
 
 		/// <summary>
-		/// Строка, содержащая описания ошибки.
+		/// Содержательная часть уведомления
 		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("AckResult", Order = 1)]
 		public List<AckResult> AckResult
@@ -87,7 +88,7 @@ namespace ECM.Communication.Areas
 		}
 
 		/// <summary>
-		/// Для передачи файла в сообщении
+		/// Файл не разобранного сообщения 
 		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 2)]
 		public DocTransfer DocTransfer
