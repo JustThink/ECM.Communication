@@ -91,6 +91,7 @@
     <Compile Include="Enums\TaskCopyEnumType.cs" />
     <Compile Include="Enums\TaskRegistrationEnumType.cs" />
     <Compile Include="Enums\TransferEnumType.cs" />
+    <Compile Include="ErrorCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Elements\Rank.cs" />
     <Compile Include="Elements\Author.cs" />
@@ -98,8 +99,11 @@
     <Compile Include="Elements\OrganizationWithSign.cs" />
     <Compile Include="Elements\RegHistory.cs" />
     <Compile Include="Elements\SignDate.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="Service.Designer.cs">
+      <DependentUpon>Service.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
