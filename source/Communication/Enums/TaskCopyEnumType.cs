@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ECM.Communication.Enums
 {
 	/// <summary>
@@ -9,9 +10,13 @@ namespace ECM.Communication.Enums
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum TaskCopyEnumType
 	{
-		//задание из передающей организации
+		/// <summary>
+		/// задание из передающей организации
+		/// </summary>
 		direct = 0,
-		//копия задания, направленного в передающую организацию
+		/// <summary>
+		/// копия задания, направленного в передающую организацию
+		/// </summary>
 		copy = 1,
 	}
 }

@@ -10,21 +10,33 @@ namespace ECM.Communication.Enums
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum EcontactEnumType
 	{
-		//рабочий телефо
+		/// <summary>
+		/// рабочий телефон
+		/// </summary>
 		work_phone = 1,
-		//домашний телефон
+		/// <summary>
+		/// домашний телефон
+		/// </summary>
 		home_phone = 2,
-		//мобильный телефон
+		/// <summary>
+		/// мобильный телефон
+		/// </summary>
 		mobile_phone = 3,
-		//факс
+		/// <summary>
+		/// факс
+		/// </summary>
 		fax = 4,
-		//адрес электронной почты (email)
+		/// <summary>
+		/// адрес электронной почты (email)
+		/// </summary>
 		email = 5,
-		//адрес web-сайта (страницы)
+		/// <summary>
+		/// адрес web-сайта (страницы)
+		/// </summary>
 		website = 6,
-		//прочее
+		/// <summary>
+		/// прочее
+		/// </summary>
 		other = 0,
-
-
 	}
 }

@@ -10,9 +10,13 @@ namespace ECM.Communication.Enums
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum ConfidentEnumType
 	{
-		//открытый документ
+		/// <summary>
+		/// открытый документ
+		/// </summary>
 		open_doc = 0,
-		//документ с ограниченным доступом
+		/// <summary>
+		/// документ с ограниченным доступом
+		/// </summary>
 		restrict_doc = 1,
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ECM.Communication.Enums
 {
 	/// <summary>
@@ -12,9 +13,13 @@ namespace ECM.Communication.Enums
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum ReferredEnumType : sbyte
 	{
-		//ссылка на документ;
+		/// <summary>
+		/// ссылка на документ
+		/// </summary>
 		link_to_doc = 1,
-		//ссылка на задание
+		/// <summary>
+		/// ссылка на задание
+		/// </summary>
 		link_to_task = 2,
 	}
 }

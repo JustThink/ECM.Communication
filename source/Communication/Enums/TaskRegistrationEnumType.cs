@@ -10,9 +10,13 @@ namespace ECM.Communication.Enums
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public enum TaskRegistrationEnumType
 	{
-		//задание не зарегистрировано в передающей организации
+		/// <summary>
+		/// задание не зарегистрировано в передающей организации
+		/// </summary>
 		not_registered = 0,
-		//задание зарегистрировано в передающей организации
+		/// <summary>
+		/// задание зарегистрировано в передающей организации
+		/// </summary>
 		registered = 1,
 
 	}
