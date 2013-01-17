@@ -8,10 +8,10 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Номера (адреса) имеющихся средств электросвязи
+	/// </summary>
 	/// <remarks>
 	/// Допускается последовательное перечисление через запятую нескольких номеров (адресов).
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,6 +19,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Econtact
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private EcontactEnumType typeField;
 
@@ -26,7 +33,13 @@ namespace ECM.Communication.Elements
 
 		private string valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		/// <summary>
 		/// Тип номера (адреса)
@@ -81,6 +94,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

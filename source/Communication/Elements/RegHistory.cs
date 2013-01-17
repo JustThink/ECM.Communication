@@ -6,11 +6,11 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// История регистрации документа в разных организациях.
+	/// </summary>
 	/// <remarks>
 	/// Вложенные элементы содержат все присваивавшиеся документу регистрационные номера за исключением последнего, 
 	/// занесенного в элемент RegNumber элемента Document.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -18,6 +18,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class RegHistory
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private OrganizationOnly organizationOnlyField;
 
@@ -25,7 +32,9 @@ namespace ECM.Communication.Elements
 
 		private string idnumberField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion 
+
+		#region Constructor
 
 		public RegHistory()
 		{
@@ -33,6 +42,13 @@ namespace ECM.Communication.Elements
 			this.organizationOnlyField = new OrganizationOnly();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Описание организации.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public OrganizationOnly OrganizationOnly
 		{
@@ -46,6 +62,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Регистрационный номер документа.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
 		public RegNumber RegNumber
 		{
@@ -61,10 +80,10 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Уникальный служебный идентификационный номер документа
+		/// </summary>
 		/// <remarks>
 		/// Уникальный идентификатор документа в системе управления документами соответствующей организации (см. вложенные элементы).
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string idnumber
 		{
@@ -89,6 +108,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

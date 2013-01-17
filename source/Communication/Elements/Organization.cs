@@ -7,6 +7,7 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Описание организации.
+	/// </summary>
 	/// <remarks>
 	/// Данные элементы различаются только допустимым составом вложенных элементов, в остальном они идентичны: 
 	/// Элемент OrganizationOnly допускает только вложенные элементы Address и Econtact 
@@ -14,7 +15,6 @@ namespace ECM.Communication.Elements
 	/// Элемент OrganizationWithSign допускает вложенные элементы Address и Econtact и описание должностного лица этой организации с 
 	/// указанием даты подписания документа этим должностным лицом – элемент OfficialPersonWithSign.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -22,6 +22,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Organization
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private Address addressField;
 
@@ -49,7 +56,9 @@ namespace ECM.Communication.Elements
 
 		private bool kppFieldSpecified;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public Organization()
 		{
@@ -58,6 +67,13 @@ namespace ECM.Communication.Elements
 			this.addressField = new Address();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Описание почтового адреса.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public Address Address
 		{
@@ -71,6 +87,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список номеров (адресов) имеющихся средств электросвязи
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 1)]
 		public List<Econtact> Econtact
 		{
@@ -84,6 +103,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список описания должностных лиц.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("OfficialPerson", Order = 2)]
 		public List<OfficialPerson> OfficialPerson
 		{
@@ -259,6 +281,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

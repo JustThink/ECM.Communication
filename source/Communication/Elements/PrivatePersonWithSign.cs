@@ -7,12 +7,12 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Описание физического лица.
+	/// </summary>
 	/// <remarks>
 	/// Для элемента PrivatePersonWithSign кроме описания физического лица (элементы Name, Rank, Address, Econtact) в 
 	/// качестве вложенного элемента допускается указание даты подписания документа данным лицом (элемент SignDate). 
 	/// В остальном данные элементы идентичны.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -20,6 +20,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class PrivatePersonWithSign
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private Name nameField;
 
@@ -45,7 +52,9 @@ namespace ECM.Communication.Elements
 
 		private bool doc_dateFieldSpecified;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public PrivatePersonWithSign()
 		{
@@ -56,6 +65,13 @@ namespace ECM.Communication.Elements
 			this.nameField = new Name();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Фамилия, имя, отчество (ФИО).
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public Name Name
 		{
@@ -69,6 +85,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список ученых степеньей воинских званий, духовных имен и т.п.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Rank", Order = 1)]
 		public List<Rank> Rank
 		{
@@ -82,6 +101,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Описание почтового адреса.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 2)]
 		public Address Address
 		{
@@ -95,6 +117,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список номеров (адресов) имеющихся средств электросвязи
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 3)]
 		public List<Econtact> Econtact
 		{
@@ -108,6 +133,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Дата подписания.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 4)]
 		public SignDate SignDate
 		{
@@ -238,6 +266,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

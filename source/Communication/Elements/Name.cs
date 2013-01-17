@@ -6,11 +6,11 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Фамилия, имя, отчество (ФИО).
+	/// </summary>
 	/// <remarks>
 	/// Единая строка, содержащая все элементы ФИО. 
 	/// Заполняется в системах управления документами, не хранящих ФИО фрагментарно или для отдельных сложносоставных имен некоторых народов РФ.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -18,6 +18,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Name
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private string secnameField;
 
@@ -27,7 +34,13 @@ namespace ECM.Communication.Elements
 
 		private string valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		/// <summary>
 		/// Фамилия
@@ -101,6 +114,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

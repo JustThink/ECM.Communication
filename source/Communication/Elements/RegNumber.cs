@@ -7,10 +7,10 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Регистрационный номер документа.
+	/// </summary>
 	/// <remarks>
 	/// Регистрационный номер и дата регистрации документа. Для документов, поступивших от физических лиц, допускается указание только даты.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -18,12 +18,25 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class RegNumber
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private System.DateTime regdateField;
 
 		private string valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		/// <summary>
 		/// Дата регистрации
@@ -65,6 +78,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

@@ -7,12 +7,10 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Описание должностного лица.
-	/// <remarks>
-	/// Для элемента OfficialPersonWithSign кроме описания должностного лица (элементы Name, Official, Rank, Address, Econtact) 
-	/// в качестве вложенного элемента допускается указание даты подписания документа данным должностным лицом (элемент SignDate). 
-	/// В остальном данные элементы идентичны.
-	/// </remarks>
 	/// </summary>
+	/// <remarks>
+	/// Для элемента OfficialPersonWithSign кроме описания должностного лица (элементы Name, Official, Rank, Address, Econtact) в качестве вложенного элемента допускается указание даты подписания документа данным должностным лицом (элемент SignDate). В остальном данные элементы идентичны.
+	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -20,6 +18,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class OfficialPersonWithSign
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private Name nameField;
 
@@ -33,7 +38,9 @@ namespace ECM.Communication.Elements
 
 		private SignDate signDateField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public OfficialPersonWithSign()
 		{
@@ -45,6 +52,13 @@ namespace ECM.Communication.Elements
 			this.nameField = new Name();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Фамилия, имя, отчество (ФИО).
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public Name Name
 		{
@@ -58,6 +72,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список описаний штатных единиц (подразделений, должностей), занимаемых должностными лицами.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Official", Order = 1)]
 		public List<Official> Official
 		{
@@ -71,6 +88,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список ученых степеней, воинских званий, духовных имен и т.п.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Rank", Order = 2)]
 		public List<Rank> Rank
 		{
@@ -84,6 +104,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Описание почтового адреса.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 3)]
 		public Address Address
 		{
@@ -97,6 +120,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список номеров (адресов) имеющихся средств электросвязи
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 4)]
 		public List<Econtact> Econtact
 		{
@@ -110,6 +136,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Дата подписания.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 5)]
 		public SignDate SignDate
 		{
@@ -134,6 +163,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

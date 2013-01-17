@@ -7,11 +7,11 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Описание адресата
+	/// </summary>
 	/// <remarks>
 	/// Кому адресуется документ – организации (юридическому лицу) или гражданину (физическому лицу) 
 	/// определяется соответствующим вложенным элементом – Organization или PrivatePerson.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,15 +19,28 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Addressee
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private List<object> itemsField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public Addressee()
 		{
 			this.itemsField = new List<object>();
 		}
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlElementAttribute("Organization", typeof(Organization), Order = 0)]
 		[System.Xml.Serialization.XmlElementAttribute("PrivatePerson", typeof(PrivatePerson), Order = 0)]
@@ -55,6 +68,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

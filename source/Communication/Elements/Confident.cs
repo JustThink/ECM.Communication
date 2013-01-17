@@ -8,8 +8,8 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Характеристика ограничений доступа к документу (гриф документа).
-	/// <remarks>Название ограничения (грифа), согласно принятым в организации регламентам.</remarks>
 	/// </summary>
+	/// <remarks>Название ограничения (грифа), согласно принятым в организации регламентам.</remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -17,12 +17,25 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Confident
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private ConfidentEnumType flagField;
 
 		private string valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		/// <summary>
 		/// Признак ограничения доступа к документу
@@ -64,6 +77,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

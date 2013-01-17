@@ -6,8 +6,8 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Описание почтового адреса.
-	/// <remarks>Единая строка, содержащая все элементы адреса. Используется системами управления документами, не хранящими адрес фрагментарно.</remarks>
 	/// </summary>
+	/// <remarks>Единая строка, содержащая все элементы адреса. Используется системами управления документами, не хранящими адрес фрагментарно.</remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -15,6 +15,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Address
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private string streetField;
 
@@ -40,12 +47,18 @@ namespace ECM.Communication.Elements
 
 		private string valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		/// <summary>
 		/// Название улицы
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string street
 		{
@@ -60,8 +73,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Номер дома
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string house
 		{
@@ -76,8 +89,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Номер корпуса или строения
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string building
 		{
@@ -92,8 +105,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Номер офиса или квартиры
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string flat
 		{
@@ -108,8 +121,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Название населенного пункта (города, поселка и т.п.)
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string settlement
 		{
@@ -124,8 +137,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Название района
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string district
 		{
@@ -140,8 +153,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Название региона (республики, края, области, автономного округа, автономной области)
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string region
 		{
@@ -156,8 +169,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Название страны
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string country
 		{
@@ -172,8 +185,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Почтовый индекс
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string postсode
 		{
@@ -188,8 +201,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// а/я
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string postbox
 		{
@@ -204,8 +217,8 @@ namespace ECM.Communication.Elements
 		}
 		/// <summary>
 		/// Прочие элементы почтового адреса
-		/// <remarks>Фрагмент почтового адреса</remarks>
 		/// </summary>
+		/// <remarks>Фрагмент почтового адреса</remarks>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string nontypical
 		{
@@ -243,6 +256,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

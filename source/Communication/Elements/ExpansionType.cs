@@ -19,6 +19,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
 	public partial class ExpansionType
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private List<Econtact> econtactField;
 
@@ -28,7 +35,9 @@ namespace ECM.Communication.Elements
 
 		private string exp_verField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public ExpansionType()
 		{
@@ -36,6 +45,13 @@ namespace ECM.Communication.Elements
 			this.econtactField = new List<Econtact>();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Список номеров (адресов) имеющихся средств электросвязи
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 0)]
 		public List<Econtact> Econtact
 		{
@@ -105,6 +121,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

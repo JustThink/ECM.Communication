@@ -6,11 +6,11 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Описание штатной единицы (подразделение, должность), занимаемой должностным лицом.
+	/// </summary>
 	/// <remarks>
 	/// Единая строка, содержащая все элементы описания штатной единицы. 
 	/// Заполняется в системах управления документами, не хранящих описание фрагментарно.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -18,6 +18,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Official
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private string departmentField;
 
@@ -27,14 +34,20 @@ namespace ECM.Communication.Elements
 
 		private string valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		/// <summary>
 		/// Подразделение
+		/// </summary>
 		/// <remarks>
 		/// Допускается указание полного названия в виде цепочки названий подразделений, разделенных символами, указанными в атрибуте separator
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string department
 		{
@@ -65,11 +78,11 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Разделитель фрагментов полного названия структурного подразделения.
+		/// Разделитель фрагментов полного названия структурного подразделения.		
+		/// </summary>
 		/// <example>
 		/// Пример: Если в атрибуте department указано «финансовое управление \ департамент кредитов \ отдел выплат», то separator= «\»
 		/// </example>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string separator
 		{
@@ -107,6 +120,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

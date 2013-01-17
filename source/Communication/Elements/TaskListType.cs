@@ -15,16 +15,32 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
 	public partial class TaskListType
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private List<TaskListTypeTask> taskField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public TaskListType()
 		{
 			this.taskField = new List<TaskListTypeTask>();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Список заданий
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Task", Order = 0)]
 		public List<TaskListTypeTask> Task
 		{
@@ -49,6 +65,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

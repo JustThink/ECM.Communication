@@ -7,11 +7,11 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Исполнитель (составитель) документа.
+	/// </summary>
 	/// <remarks>
 	/// Кто является исполнителем (составителем) документа – организация (юридическое лицо) или 
 	/// гражданин (физическое лицо) определяется соответствующим вложенным элементом – Organization или PrivatePerson.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,10 +19,23 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Writer
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private object itemField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlElementAttribute("Organization", typeof(Organization), Order = 0)]
 		[System.Xml.Serialization.XmlElementAttribute("PrivatePerson", typeof(PrivatePerson), Order = 0)]
@@ -49,6 +62,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

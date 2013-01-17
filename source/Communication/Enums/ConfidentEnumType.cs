@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace ECM.Communication.Enums
 {
 	/// <summary>

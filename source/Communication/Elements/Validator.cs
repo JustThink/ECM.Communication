@@ -5,13 +5,11 @@ using System.Xml;
 namespace ECM.Communication.Elements
 {
 	/// <summary>
-	/// Утвердивший или согласовавший данный документ
-	/// <remarks>
-	/// Кто является автором согласования – организация (юридическое лицо) или гражданин (физическое лицо) или 
-	/// документ согласован или утвержден отдельным (другим) документом определяется соответствующим вложенным 
-	/// элементом – OrganizationWithSign или PrivatePersonWithSign или DocNumber.
-	/// </remarks>
+	/// Утвердивший или согласовавший данный документ	
 	/// </summary>
+	/// <remarks>
+	/// Кто является автором согласования – организация (юридическое лицо) или гражданин (физическое лицо) или документ согласован или утвержден отдельным (другим) документом определяется соответствующим вложенным элементом – OrganizationWithSign или PrivatePersonWithSign или DocNumber.
+	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,12 +17,25 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Validator
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private object itemField;
 
 		private string attestationField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlElementAttribute("DocNumber", typeof(DocNumber), Order = 0)]
 		[System.Xml.Serialization.XmlElementAttribute("OrganizationWithSign", typeof(OrganizationWithSign), Order = 0)]
@@ -43,13 +54,13 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Гриф согласования или утверждения.
+		/// </summary>
 		/// <remarks>
 		/// Согласовано 
 		/// Утверждено
 		/// Согласовано c замечаниями
 		/// Отклонено
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string attestation
 		{
@@ -74,6 +85,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

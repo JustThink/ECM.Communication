@@ -19,6 +19,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	public partial class TaskListTypeTask
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private TaskNumber taskNumberField;
 
@@ -44,7 +51,9 @@ namespace ECM.Communication.Elements
 
 		private System.DateTime deadlineField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public TaskListTypeTask()
 		{
@@ -56,6 +65,13 @@ namespace ECM.Communication.Elements
 			this.taskNumberField = new TaskNumber();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Номер задания.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public TaskNumber TaskNumber
 		{
@@ -69,6 +85,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Характеристика ограничений доступа к документу (гриф документа).
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
 		public Confident Confident
 		{
@@ -82,6 +101,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список регистрационных номеров и дата документов или заданий
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Referred", Order = 2)]
 		public List<Referred> Referred
 		{
@@ -95,6 +117,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список описаний авторов документа
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("AuthorOrganization", Order = 3)]
 		public List<AuthorOrganization> AuthorOrganization
 		{
@@ -108,6 +133,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список представлени1 передаваемых файлов документа.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("DocTransfer", Order = 4)]
 		public List<DocTransfer> DocTransfer
 		{
@@ -121,6 +149,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Список исполнителей задания по документу.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Executor", Order = 5)]
 		public List<Executor> Executor
 		{
@@ -184,10 +215,10 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Вид задания
+		/// </summary>
 		/// <remarks>
 		/// Название задания: поручение, сопроводительное письмо и т.д.
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string kind
 		{
@@ -244,6 +275,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

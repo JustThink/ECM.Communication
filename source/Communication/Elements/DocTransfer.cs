@@ -8,10 +8,10 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Представление передаваемого файла документа.
+	/// </summary>
 	/// <remarks>
 	/// Файл в двоичном виде или указатель местонахождения файла (ссылка на файл) в кодировке Base64.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,6 +19,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class DocTransfer
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private string osField;
 
@@ -34,14 +41,20 @@ namespace ECM.Communication.Elements
 
 		private byte[] valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		/// <summary>
 		/// Операционная система, в среде которой определен файл
+		/// </summary>
 		/// <remarks>
 		/// Указывается условное наименование операционной системы, например: Dos, Windows, Solaris, AIX, Linux и т.д.
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string os
 		{
@@ -57,11 +70,11 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Формат файла, определяющий программные средства его обработки (например, визуализации)
+		/// </summary>
 		/// <remarks>
 		/// В качестве типа может использоваться mime тип, расширение файла и т.п.; 
 		/// обеспечивающее просмотр этого файла стандартными процедурами операционной системы.
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string type
 		{
@@ -77,10 +90,10 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Версия формата файла
+		/// </summary>
 		/// <remarks>
 		/// Указывается условное обозначение приложения и/или формата в котором файл был создан.
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string type_ver
 		{
@@ -95,12 +108,12 @@ namespace ECM.Communication.Elements
 		}
 
 		/// <summary>
-		/// Кодировка текста
+		/// Кодировка текст
+		/// </summary>
 		/// <remarks>
 		/// Согласно установленным видам кодировки: win 1251, КОИ – 8 и т.д.
 		/// Указывается в соответствии с международным стандартом именования кодировок.
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string char_set
 		{
@@ -116,10 +129,10 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Описание документа (файла)
+		/// </summary>
 		/// <remarks>
 		/// Текстовое описание содержимого файла (например, наименование соответствующего документа)
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string description
 		{
@@ -173,6 +186,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

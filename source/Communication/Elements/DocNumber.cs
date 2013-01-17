@@ -6,12 +6,11 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Информация о документе.
+	/// </summary>
 	/// <remarks>
 	/// Номер и дата документа передаются во вложенных элементах Referred. 
-	/// Элемент рекомендуется использовать для распорядительных документов (постановлений, распоряжений, приказов и т.п.) 
-	/// в тех случаях, когда номер и дата документа отличаются от регистрационного номера и даты документа, присвоенных в организации.
+	/// Элемент рекомендуется использовать для распорядительных документов (постановлений, распоряжений, приказов и т.п.) в тех случаях, когда номер и дата документа отличаются от регистрационного номера и даты документа, присвоенных в организации.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,6 +18,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class DocNumber
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private OrganizationOnly organizationOnlyField;
 
@@ -26,7 +32,9 @@ namespace ECM.Communication.Elements
 
 		private string kindField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public DocNumber()
 		{
@@ -34,6 +42,13 @@ namespace ECM.Communication.Elements
 			this.organizationOnlyField = new OrganizationOnly();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// Описание организации.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public OrganizationOnly OrganizationOnly
 		{
@@ -47,6 +62,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// Регистрационный номер документа.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
 		public RegNumber RegNumber
 		{
@@ -62,10 +80,10 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Вид документа
+		/// </summary>
 		/// <remarks>
 		/// Наименование вида документа (приказ, распоряжение и т.д.)
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string kind
 		{
@@ -90,6 +108,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

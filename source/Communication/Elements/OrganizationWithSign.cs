@@ -6,7 +6,8 @@ using System.Xml;
 namespace ECM.Communication.Elements
 {
 	/// <summary>
-	/// ќписание организации.
+	/// ќписание организации
+	/// </summary>
 	/// <remarks>
 	/// ƒанные элементы различаютс€ только допустимым составом вложенных элементов, в остальном они идентичны: 
 	/// Ёлемент OrganizationOnly допускает только вложенные элементы Address и Econtact 
@@ -14,7 +15,6 @@ namespace ECM.Communication.Elements
 	/// Ёлемент OrganizationWithSign допускает вложенные элементы Address и Econtact и описание должностного лица этой организации с 
 	/// указанием даты подписани€ документа этим должностным лицом Ц элемент OfficialPersonWithSign.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -22,6 +22,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class OrganizationWithSign
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private Address addressField;
 
@@ -49,7 +56,9 @@ namespace ECM.Communication.Elements
 
 		private bool kppFieldSpecified;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public OrganizationWithSign()
 		{
@@ -58,6 +67,13 @@ namespace ECM.Communication.Elements
 			this.addressField = new Address();
 		}
 
+		#endregion
+
+		#region Fields
+
+		/// <summary>
+		/// ќписание почтового адреса.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public Address Address
 		{
@@ -71,6 +87,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// —писок номеров (адресов) имеющихс€ средств электросв€зи
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("Econtact", Order = 1)]
 		public List<Econtact> Econtact
 		{
@@ -84,6 +103,9 @@ namespace ECM.Communication.Elements
 			}
 		}
 
+		/// <summary>
+		/// —писок описаний должностных лиц.
+		/// </summary>
 		[System.Xml.Serialization.XmlElementAttribute("OfficialPersonWithSign", Order = 2)]
 		public List<OfficialPersonWithSign> OfficialPersonWithSign
 		{
@@ -160,7 +182,6 @@ namespace ECM.Communication.Elements
 				this.ownershipField = value;
 			}
 		}
-
 
 		/// <summary>
 		/// ќсновной государственный регистрационный номер
@@ -260,6 +281,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

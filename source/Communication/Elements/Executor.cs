@@ -16,6 +16,13 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Executor
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private Organization organizationField;
 
@@ -29,12 +36,18 @@ namespace ECM.Communication.Elements
 
 		private bool deadlineFieldSpecified;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public Executor()
 		{
 			this.organizationField = new Organization();
 		}
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public Organization Organization
@@ -80,10 +93,10 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Уточнение задания для данного исполнителя
+		/// </summary>
 		/// <remarks>
 		/// Например, номера пунктов задания, соответствующие поручения данному исполнителю из общего текста задания, «Для сведения» и т.п.
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute()]
 		public string task_specified
 		{
@@ -99,10 +112,10 @@ namespace ECM.Communication.Elements
 
 		/// <summary>
 		/// Срок исполнения
+		/// </summary>
 		/// <remarks>
 		/// Срок исполнения задания для данного исполнителя
 		/// </remarks>
-		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
 		public System.DateTime deadline
 		{
@@ -140,6 +153,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

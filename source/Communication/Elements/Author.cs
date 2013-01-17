@@ -7,11 +7,11 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// ќписание автора документа
+	/// </summary>
 	/// <remarks>
 	/// ƒл€ элемента Author кто €вл€етс€ автором документа Ц организаци€ (юридическое лицо) или гражданин (физическое лицо) определ€етс€ 
 	/// соответствующим вложенным элементом Ц OrganizationWithSign или PrivatePersonWithSign.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,15 +19,28 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Author
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private List<object> itemsField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public Author()
 		{
 			this.itemsField = new List<object>();
 		}
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlElementAttribute("OrganizationWithSign", typeof(OrganizationWithSign), Order = 0)]
 		[System.Xml.Serialization.XmlElementAttribute("OutNumber", typeof(OutNumber), Order = 0)]
@@ -55,6 +68,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

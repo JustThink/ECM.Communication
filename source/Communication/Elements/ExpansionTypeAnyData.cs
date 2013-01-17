@@ -5,21 +5,37 @@ using System.Xml;
 
 namespace ECM.Communication.Elements
 {
+	/// <summary>
+	/// Расширение (дополнительные поля)
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[System.SerializableAttribute()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	public partial class ExpansionTypeAnyData
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private List<System.Xml.XmlElement> anyField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public ExpansionTypeAnyData()
 		{
 			this.anyField = new List<System.Xml.XmlElement>();
 		}
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
 		public List<System.Xml.XmlElement> Any
@@ -45,6 +61,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

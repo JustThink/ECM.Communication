@@ -3,10 +3,10 @@ namespace ECM.Communication.Enums
 {
 	/// <summary>
 	/// Определение вида ссылки
+	/// </summary>
 	/// <remarks>
 	/// Используется только совместно с атрибутом idnumber
 	/// </remarks>
-	/// </summary>
 	[Serializable()]
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]

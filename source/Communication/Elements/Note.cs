@@ -7,11 +7,11 @@ namespace ECM.Communication.Elements
 {
 	/// <summary>
 	/// Передача дополнительных материалов к документу в виде текста.
+	/// </summary>
 	/// <remarks>
 	/// Текст, являющийся дополнением к документу (комментарием, пояснением, ссылками и т.п.). 
 	/// Может содержать, например, регистрационные данные документа, не содержащегося в системе отправителя, URL ссылку на необходимую информацию и т.п.
 	/// </remarks>
-	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19,10 +19,23 @@ namespace ECM.Communication.Elements
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
 	public partial class Note
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private string valueField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlTextAttribute()]
 		public string Value
@@ -48,6 +61,8 @@ namespace ECM.Communication.Elements
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>
