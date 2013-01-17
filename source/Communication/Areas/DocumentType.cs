@@ -17,6 +17,13 @@ namespace ECM.Communication.Areas
 	[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
 	public partial class DocumentType
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private RegNumber regNumberField;
 
@@ -56,7 +63,9 @@ namespace ECM.Communication.Areas
 
 		private bool collectionFieldSpecified;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public DocumentType()
 		{
@@ -71,6 +80,10 @@ namespace ECM.Communication.Areas
 			this.confidentField = new Confident();
 			this.regNumberField = new RegNumber();
 		}
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlElementAttribute(Order = 0)]
 		public RegNumber RegNumber
@@ -354,6 +367,8 @@ namespace ECM.Communication.Areas
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>

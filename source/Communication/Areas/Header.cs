@@ -9,9 +9,6 @@ namespace ECM.Communication.Areas
 	/// <summary>
 	/// Заголовок
 	/// </summary>
-	/// <remarks>
-	/// Содержит служебную информацию, необходимую для правильной передачи и интерпретации всего сообщения в целом.
-	/// </remarks>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

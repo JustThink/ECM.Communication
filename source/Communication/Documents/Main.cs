@@ -9,6 +9,9 @@ using ECM.Communication.Enums;
 
 namespace ECM.Communication.Documents
 {
+	/// <summary>
+	/// Основной документ 
+	/// </summary>
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
 	[Serializable()]
 	[System.ComponentModel.DesignerCategoryAttribute("code")]

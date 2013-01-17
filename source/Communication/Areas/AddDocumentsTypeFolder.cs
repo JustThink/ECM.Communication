@@ -20,6 +20,13 @@ namespace ECM.Communication.Areas
 	[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 	public partial class AddDocumentsTypeFolder
 	{
+		#region Const & Static
+
+		private static System.Xml.Serialization.XmlSerializer serializer;
+
+		#endregion
+
+		#region Properties
 
 		private List<DocTransfer> docTransferField;
 
@@ -29,7 +36,9 @@ namespace ECM.Communication.Areas
 
 		private FolderAddEnumType add_typeField;
 
-		private static System.Xml.Serialization.XmlSerializer serializer;
+		#endregion
+
+		#region Constructor
 
 		public AddDocumentsTypeFolder()
 		{
@@ -37,6 +46,10 @@ namespace ECM.Communication.Areas
 			this.noteField = new List<Note>();
 			this.docTransferField = new List<DocTransfer>();
 		}
+
+		#endregion
+
+		#region Fields
 
 		[System.Xml.Serialization.XmlElementAttribute("DocTransfer", Order = 0)]
 		public List<DocTransfer> DocTransfer
@@ -104,6 +117,8 @@ namespace ECM.Communication.Areas
 				return serializer;
 			}
 		}
+
+		#endregion
 
 		#region Serialize/Deserialize
 		/// <summary>
