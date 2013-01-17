@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -287,5 +288,34 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Validator source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( string.IsNullOrEmpty(source.attestation) )
+			{
+				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "attestation", areaName) });
+			}
+			if (source.Item != null)
+			{
+				if (source.Item is OrganizationWithSign)
+				{
+					ackResult.AddRange(((OrganizationWithSign) source.Item).Check(areaName));
+				}
+				else if ( source.Item is PrivatePersonWithSign)
+				{
+					ackResult.AddRange(((PrivatePersonWithSign) source.Item).Check(areaName));
+				}
+				else if ( source.Item is DocNumber )
+				{
+					ackResult.AddRange(((DocNumber) source.Item).Check(areaName));
+				}
+			}
+			return ackResult;
+		}
 	}
 }

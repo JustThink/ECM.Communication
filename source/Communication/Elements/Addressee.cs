@@ -33,11 +33,6 @@ namespace ECM.Communication.Elements
 
 		#region Constructor
 
-		public Addressee()
-		{
-			this.itemsField = new List<object>();
-		}
-
 		#endregion
 
 		#region Fields
@@ -270,5 +265,14 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Addressee source)
+		{
+			var ackResult = new List<AckResult>();
+			return ackResult;
+		}
 	}
 }

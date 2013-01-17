@@ -20,6 +20,7 @@ namespace ECM.Communication.Elements
 	{
 		#region Const & Static
 
+		public const string ElementName = "OfficialPerson";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -39,15 +40,6 @@ namespace ECM.Communication.Elements
 		#endregion
 
 		#region Constructor
-
-		public OfficialPerson()
-		{
-			this.econtactField = new List<Econtact>();
-			this.addressField = new Address();
-			this.rankField = new List<Rank>();
-			this.officialField = new List<Official>();
-			this.nameField = new Name();
-		}
 
 		#endregion
 
@@ -346,5 +338,48 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this OfficialPerson source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.Name == null )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Name", OfficialPerson.ElementName, areaName) });
+			}
+			else
+			{
+				ackResult.AddRange(source.Name.Check(areaName));
+			}
+			if ( source.Official != null )
+			{
+				foreach ( var official in source.Official )
+				{
+					ackResult.AddRange(official.Check(areaName));
+				}
+			}
+			if ( source.Rank != null )
+			{
+				foreach ( var rank in source.Rank )
+				{
+					ackResult.AddRange(rank.Check(areaName));
+				}
+			}
+			if ( source.Address != null )
+			{
+				source.Address.Check(areaName);
+			}
+			if ( source.Econtact != null )
+			{
+				foreach ( var econtact in source.Econtact )
+				{
+					ackResult.AddRange(econtact.Check(areaName));
+				}
+			}
+			return ackResult;
+		}
 	}
 }

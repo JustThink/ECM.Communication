@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -458,5 +459,14 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Address source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			return ackResult;
+		}
 	}
 }

@@ -27,6 +27,26 @@ namespace ECM.Communication.Tests
 			Assert.That(source.Value, Is.EqualTo(Value));
 		}
 
+		protected static void EqualTo(AckResult source, ErrorReceiptCode target, string arg0, string arg1)
+		{
+			Assert.IsNotNull(source);
+			Assert.IsNotNull(target);
+
+			Assert.That(source.errorcode, Is.EqualTo(target.errorcode));
+			var Value = string.Format(target.Value, arg0, arg1);
+			Assert.That(source.Value, Is.EqualTo(Value));
+		}
+
+		protected static void EqualTo(AckResult source, ErrorReceiptCode target, string arg0, string arg1, string arg2)
+		{
+			Assert.IsNotNull(source);
+			Assert.IsNotNull(target);
+
+			Assert.That(source.errorcode, Is.EqualTo(target.errorcode));
+			var Value = string.Format(target.Value, arg0, arg1, arg2);
+			Assert.That(source.Value, Is.EqualTo(Value));
+		}
+
 		protected static void EqualTo(Address source, Address target)
 		{
 			Assert.IsNotNull(source);

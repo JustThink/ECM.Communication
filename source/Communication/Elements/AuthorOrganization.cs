@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -33,11 +34,6 @@ namespace ECM.Communication.Elements
 		#endregion
 
 		#region Constructor
-
-		public AuthorOrganization()
-		{
-			this.organizationWithSignField = new OrganizationWithSign();
-		}
 
 		#endregion
 
@@ -269,5 +265,19 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this AuthorOrganization source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.OrganizationWithSign == null )
+			{
+				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "OrganizationWithSign", areaName) });
+			}
+			return ackResult;
+		}
 	}
 }

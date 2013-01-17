@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -264,5 +265,25 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Writer source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.Item != null )
+			{
+				if ( source.Item is Organization )
+				{
+					ackResult.AddRange(((Organization) source.Item).Check(areaName));
+				}
+				else if ( source.Item is PrivatePerson )
+				{
+					ackResult.AddRange(((PrivatePerson) source.Item).Check(areaName));
+				}
+			}
+			return ackResult;
+		}
 	}
 }

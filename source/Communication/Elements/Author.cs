@@ -33,11 +33,6 @@ namespace ECM.Communication.Elements
 
 		#region Constructor
 
-		public Author()
-		{
-			this.itemsField = new List<object>();
-		}
-
 		#endregion
 
 		#region Fields
@@ -270,5 +265,19 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Author source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ((source.Items == null) || (source.Items.Count == 0))
+			{
+				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Items", areaName) });
+			}
+			return ackResult;
+		}
 	}
 }

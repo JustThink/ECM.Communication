@@ -465,4 +465,29 @@ namespace ECM.Communication.Elements
 		}
 		#endregion
 	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this OrganizationOnly source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( string.IsNullOrEmpty(source.organization_string) )
+			{
+				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "organization_string", areaName) });
+			}
+			if ( source.Address != null )
+			{
+				ackResult.AddRange(source.Address.Check(areaName));
+			}
+			if ( source.Econtact != null )
+			{
+				foreach ( var econtact in source.Econtact )
+				{
+					ackResult.AddRange(econtact.Check(areaName));
+				}
+			}
+			return ackResult;
+		}
+	}
 }

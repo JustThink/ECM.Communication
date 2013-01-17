@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -20,6 +21,7 @@ namespace ECM.Communication.Elements
 	{
 		#region Const & Static
 
+		public const string ElementName = "DocNumber";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -35,12 +37,6 @@ namespace ECM.Communication.Elements
 		#endregion
 
 		#region Constructor
-
-		public DocNumber()
-		{
-			this.regNumberField = new RegNumber();
-			this.organizationOnlyField = new OrganizationOnly();
-		}
 
 		#endregion
 
@@ -310,5 +306,32 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this DocNumber source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.OrganizationOnly == null )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "OrganizationOnly", DocNumber.ElementName, areaName) });
+			}
+			else
+			{
+				ackResult.AddRange(source.OrganizationOnly.Check(areaName));
+			}
+			if ( source.RegNumber == null )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "RegNumber", DocNumber.ElementName, areaName) });
+			}
+			else
+			{
+				ackResult.AddRange(source.RegNumber.Check(areaName));
+			}
+			return ackResult;
+		}
 	}
 }

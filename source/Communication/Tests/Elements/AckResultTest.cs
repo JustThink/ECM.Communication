@@ -10,8 +10,8 @@ namespace ECM.Communication.Tests.Elements
 		public void TestCreate()
 		{
 			var type = new AckResult();
-			Assert.IsNullOrEmpty(type.Value);
 			Assert.That(type.errorcode, Is.EqualTo((ulong)0));
+			Assert.IsNullOrEmpty(type.Value);
 		}
 	}
 }

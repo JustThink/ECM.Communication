@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -18,6 +19,7 @@ namespace ECM.Communication.Elements
 	{
 		#region Const & Static
 
+		public const string ElementName = "Executor";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -39,11 +41,6 @@ namespace ECM.Communication.Elements
 		#endregion
 
 		#region Constructor
-
-		public Executor()
-		{
-			this.organizationField = new Organization();
-		}
 
 		#endregion
 
@@ -355,5 +352,23 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Executor source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.Organization == null )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Organization", Executor.ElementName, areaName) });
+			}
+			else
+			{
+				ackResult.AddRange(source.Organization.Check(areaName));
+			}
+			return ackResult;
+		}
 	}
 }

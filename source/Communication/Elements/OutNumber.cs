@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -27,11 +28,6 @@ namespace ECM.Communication.Elements
 		#endregion
 
 		#region Constructor
-
-		public OutNumber()
-		{
-			this.regNumberField = new RegNumber();
-		}
 
 		#endregion
 
@@ -266,5 +262,24 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this OutNumber source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.RegNumber == null )
+			{
+				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "RegNumber", areaName) });
+			}
+			else
+			{
+				source.RegNumber.Check(areaName);
+			}
+			return ackResult;
+		}
 	}
 }

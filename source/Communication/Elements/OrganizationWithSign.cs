@@ -24,6 +24,7 @@ namespace ECM.Communication.Elements
 	{
 		#region Const & Static
 
+		public const string ElementName = "OrganizationWithSign";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -59,13 +60,6 @@ namespace ECM.Communication.Elements
 		#endregion
 
 		#region Constructor
-
-		public OrganizationWithSign()
-		{
-			this.officialPersonWithSignField = new List<OfficialPersonWithSign>();
-			this.econtactField = new List<Econtact>();
-			this.addressField = new Address();
-		}
 
 		#endregion
 
@@ -483,5 +477,45 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this OrganizationWithSign source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( string.IsNullOrEmpty(source.organization_string) )
+			{
+				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "organization_string", areaName) });
+			}
+			if ( source.Address != null )
+			{
+				ackResult.AddRange(source.Address.Check(areaName));
+			}
+			if ( source.Econtact != null )
+			{
+				foreach ( var econtact in source.Econtact )
+				{
+					ackResult.AddRange(econtact.Check(areaName));
+				}
+			}
+			if ( source.OfficialPersonWithSign == null)
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "OfficialPersonWithSign", OrganizationWithSign.ElementName, areaName) });
+			}
+			else if ( source.OfficialPersonWithSign.Count == 1)
+			{
+				var data = source.OfficialPersonWithSign[0];
+				data.Check(areaName);
+			}
+			else if ( source.OfficialPersonWithSign.Count > 1 )
+			{
+				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "OfficialPersonWithSign", areaName) });
+			}
+			return ackResult;
+		}
 	}
 }

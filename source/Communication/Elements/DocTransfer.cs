@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -21,6 +22,7 @@ namespace ECM.Communication.Elements
 	{
 		#region Const & Static
 
+		public const string ElementName = "DocTransfer";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -388,5 +390,29 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this DocTransfer source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( string.IsNullOrEmpty(source.os) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "os", DocTransfer.ElementName, areaName) });
+			}
+			if ( string.IsNullOrEmpty(source.type) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "type", DocTransfer.ElementName, areaName) });
+			}
+			if ( string.IsNullOrEmpty(source.description) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "description", DocTransfer.ElementName, areaName) });
+			}
+			return ackResult;
+		}
 	}
 }

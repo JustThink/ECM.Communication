@@ -46,6 +46,19 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\AcknowledgementTypeTest.cs" />
+    <Compile Include="Areas\AuthorOrganizationTest.cs" />
+    <Compile Include="Elements\ValidatorTest.cs" />
+    <Compile Include="Elements\RegHistoryTest.cs" />
+    <Compile Include="Elements\PrivatePersonWithSignTest.cs" />
+    <Compile Include="Elements\PrivatePersonTest.cs" />
+    <Compile Include="Elements\OutNumberTest.cs" />
+    <Compile Include="Elements\OrganizationWithSignTest.cs" />
+    <Compile Include="Elements\ExecutorTest.cs" />
+    <Compile Include="Elements\DocTransferTest.cs" />
+    <Compile Include="Elements\DocNumberTest.cs" />
+    <Compile Include="Elements\OrganizationTest.cs" />
+    <Compile Include="Elements\OfficialPersonWithSignTest.cs" />
+    <Compile Include="Elements\OfficialPersonTest.cs" />
     <Compile Include="Elements\AckResultTest.cs" />
     <Compile Include="Areas\AddDocumentsTypeTest.cs" />
     <Compile Include="Areas\HeaderTest.cs" />
@@ -55,6 +68,8 @@
     <Compile Include="Documents\Response.SupplementTest.cs" />
     <Compile Include="Documents\ResponseTest.cs" />
     <Compile Include="Elements\AddressTest.cs" />
+    <Compile Include="Elements\AuthorTest.cs" />
+    <Compile Include="Elements\OrganizationOnlyTest.cs" />
     <Compile Include="Enums\AcknowledgementEnumTypeTest.cs" />
     <Compile Include="Enums\CollectionEnumTypeTest.cs" />
     <Compile Include="Enums\ConfidentEnumTypeTest.cs" />

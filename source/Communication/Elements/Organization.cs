@@ -60,13 +60,6 @@ namespace ECM.Communication.Elements
 
 		#region Constructor
 
-		public Organization()
-		{
-			this.officialPersonField = new List<OfficialPerson>();
-			this.econtactField = new List<Econtact>();
-			this.addressField = new Address();
-		}
-
 		#endregion
 
 		#region Fields
@@ -483,5 +476,43 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Organization source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( string.IsNullOrEmpty(source.organization_string) )
+			{
+				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "organization_string", areaName) });
+			}
+			if (source.Address != null)
+			{
+				ackResult.AddRange(source.Address.Check(areaName));
+			}
+			if (source.Econtact != null)
+			{
+				foreach ( var econtact in source.Econtact )
+				{
+					ackResult.AddRange(econtact.Check(areaName));
+				}
+			}
+			if ( source.OfficialPerson != null )
+			{
+				if ( source.OfficialPerson.Count == 1)
+				{
+					var officialPerson = source.OfficialPerson[0];
+					ackResult.AddRange(officialPerson.Check(areaName));
+				}
+				else if ( source.OfficialPerson.Count > 1)
+				{
+					var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+					ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "OfficialPerson", areaName) });
+				}
+			}
+			return ackResult;
+		}
 	}
 }
