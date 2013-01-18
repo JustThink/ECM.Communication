@@ -21,6 +21,7 @@ namespace ECM.Communication.Elements
 	{
 		#region Const & Static
 
+		public const string ElementName = "TaskListTypeTask";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -54,16 +55,6 @@ namespace ECM.Communication.Elements
 		#endregion
 
 		#region Constructor
-
-		public TaskListTypeTask()
-		{
-			this.executorField = new List<Executor>();
-			this.docTransferField = new List<DocTransfer>();
-			this.authorOrganizationField = new List<AuthorOrganization>();
-			this.referredField = new List<Referred>();
-			this.confidentField = new Confident();
-			this.taskNumberField = new TaskNumber();
-		}
 
 		#endregion
 
@@ -477,5 +468,72 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this TaskListTypeTask source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+
+			if ( source.TaskNumber == null )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "TaskNumber", TaskListTypeTask.ElementName, areaName) });
+			}
+			else
+			{
+				ackResult.AddRange(source.TaskNumber.Check(areaName));
+			}
+			if ( source.Confident == null )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Confident", TaskListTypeTask.ElementName, areaName) });
+			}
+			else
+			{
+				ackResult.AddRange(source.Confident.Check(areaName));
+			}
+			if ( (source.Referred == null) || (source.Referred.Count < 1) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Referred", TaskListTypeTask.ElementName, areaName) });
+			}
+			else
+			{
+				foreach ( var referred in source.Referred )
+				{
+					ackResult.AddRange(referred.Check(areaName));
+				}
+			}
+			if ( (source.AuthorOrganization == null) || (source.AuthorOrganization.Count < 1) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "AuthorOrganization", TaskListTypeTask.ElementName, areaName) });
+			}
+			else
+			{
+				foreach ( var authorOrganization in source.AuthorOrganization )
+				{
+					ackResult.AddRange(authorOrganization.Check(areaName));
+				}
+			}
+			if ( source.DocTransfer != null )
+			{
+				foreach ( var docTransfer in source.DocTransfer )
+				{
+					ackResult.AddRange(docTransfer.Check(areaName));
+				}
+			}
+			if ( source.Executor != null )
+			{
+				foreach ( var executor in source.Executor )
+				{
+					ackResult.AddRange(executor.Check(areaName));
+				}
+			}
+
+			return ackResult;
+		}
 	}
 }

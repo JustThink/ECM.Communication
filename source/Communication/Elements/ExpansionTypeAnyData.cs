@@ -28,11 +28,6 @@ namespace ECM.Communication.Elements
 
 		#region Constructor
 
-		public ExpansionTypeAnyData()
-		{
-			this.anyField = new List<System.Xml.XmlElement>();
-		}
-
 		#endregion
 
 		#region Fields
@@ -263,5 +258,15 @@ namespace ECM.Communication.Elements
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this ExpansionTypeAnyData source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			// TODO: Добавить проверку полей
+			return ackResult;
+		}
 	}
 }

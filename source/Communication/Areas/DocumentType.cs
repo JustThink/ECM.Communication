@@ -20,6 +20,7 @@ namespace ECM.Communication.Areas
 		#region Const & Static
 
 		public const string AreaName = "Документ (основнаязона)";
+		public const string ElementName = "DocumentType";
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
@@ -68,20 +69,6 @@ namespace ECM.Communication.Areas
 		#endregion
 
 		#region Constructor
-
-		public DocumentType()
-		{
-			this.writerField = new Writer();
-			this.validatorField = new List<Validator>();
-			this.authorField = new List<Author>();
-			this.regHistoryField = new List<RegHistory>();
-			this.docTransferField = new List<DocTransfer>();
-			this.addresseeField = new List<Addressee>();
-			this.docNumberField = new List<DocNumber>();
-			this.referredField = new List<Referred>();
-			this.confidentField = new Confident();
-			this.regNumberField = new RegNumber();
-		}
 
 		#endregion
 
@@ -571,5 +558,105 @@ namespace ECM.Communication.Areas
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this DocumentType source)
+		{
+			const string areaName = DocumentType.AreaName;
+
+			var ackResult = new List<AckResult>();
+
+			if ( source == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, areaName) });
+				return ackResult;
+			}
+
+			if ( source.RegNumber == null )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "RegNumber", DocumentType.ElementName, areaName) });
+			}
+			else
+			{
+				ackResult.AddRange(source.RegNumber.Check(areaName));
+			}
+			if ( source.Confident == null )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Confident", DocumentType.ElementName, areaName) });
+			}
+			else
+			{
+				ackResult.AddRange(source.Confident.Check(areaName));
+			}
+			if ( source.Referred != null)
+			{
+				foreach ( var referred in source.Referred )
+				{
+					ackResult.AddRange(referred.Check(areaName));
+				}
+			}
+			if ( source.DocNumber != null )
+			{
+				foreach ( var docNumber in source.DocNumber )
+				{
+					ackResult.AddRange(docNumber.Check(areaName));
+				}
+			}
+			if ( source.Addressee != null )
+			{
+				foreach ( var addressee in source.Addressee )
+				{
+					ackResult.AddRange(addressee.Check(areaName));
+				}
+			}
+			if (source.DocTransfer != null)
+			{
+				foreach ( var docTransfer in source.DocTransfer )
+				{
+					ackResult.AddRange(docTransfer.Check(areaName));
+				}
+			}
+			if ( source.RegHistory != null)
+			{
+				foreach ( var regHistory in source.RegHistory )
+				{
+					ackResult.AddRange(regHistory.Check(areaName));
+				}
+			}
+			if ( (source.Author == null) || (source.Author.Count < 1) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Author", DocumentType.ElementName, areaName) });
+			}
+			else
+			{
+				foreach ( var author in source.Author )
+				{
+					ackResult.AddRange(author.Check(areaName));
+				}
+			}
+			if ( source.Validator != null )
+			{
+				foreach ( var validator in source.Validator )
+				{
+					ackResult.AddRange(validator.Check(areaName));
+				}
+			}
+			if ( source.Writer != null )
+			{
+				ackResult.AddRange(source.Writer.Check(areaName));
+			}
+			if ( string.IsNullOrEmpty(source.idnumber) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "idnumber", DocumentType.ElementName, areaName) });
+			}
+			return ackResult;
+		}
 	}
 }

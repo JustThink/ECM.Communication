@@ -35,11 +35,6 @@ namespace ECM.Communication.Areas
 
 		#region Constructor
 
-		public AddDocumentsType()
-		{
-			this.folderField = new List<AddDocumentsTypeFolder>();
-		}
-
 		#endregion
 
 		#region Fields
@@ -270,5 +265,38 @@ namespace ECM.Communication.Areas
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this AddDocumentsType source)
+		{
+			const string areaName = AddDocumentsType.AreaName;
+
+			var ackResult = new List<AckResult>();
+
+			if ( source == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, areaName) });
+				return ackResult;
+			}
+
+			if ( source.Folder != null ) 
+			{
+				if ( source.Folder.Count == 1 )
+				{
+					var data = source.Folder[0];
+					ackResult.AddRange(data.Check(areaName));
+				}
+				else if ( source.Folder.Count > 1 )
+				{
+					var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
+					ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Folder", areaName) });
+				}
+			}
+			
+			return ackResult;
+		}
 	}
 }

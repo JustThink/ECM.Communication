@@ -19,6 +19,7 @@ namespace ECM.Communication.Areas
 		#region Const & Static
 
 		public const string AreaName = "Задания";
+		public const string ElementName = "TaskListType";
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
@@ -31,11 +32,6 @@ namespace ECM.Communication.Areas
 		#endregion
 
 		#region Constructor
-
-		public TaskListType()
-		{
-			this.taskField = new List<TaskListTypeTask>();
-		}
 
 		#endregion
 
@@ -270,5 +266,36 @@ namespace ECM.Communication.Areas
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this TaskListType source)
+		{
+			const string areaName = TaskListType.AreaName;
+
+			var ackResult = new List<AckResult>();
+
+			if ( source == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, areaName) });
+				return ackResult;
+			}
+
+			if ( (source.Task == null) || (source.Task.Count < 1) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Task", TaskListType.ElementName, areaName) });
+			}
+			else
+			{
+				foreach ( var task in source.Task )
+				{
+					ackResult.AddRange(task.Check(areaName));
+				}
+			}
+			return ackResult;
+		}
 	}
 }

@@ -319,4 +319,34 @@ namespace ECM.Communication.Elements
 		}
 		#endregion
 	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this AddDocumentsTypeFolder source, string areaName)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.DocTransfer != null )
+			{
+				foreach ( var docTransfer in source.DocTransfer )
+				{
+					ackResult.AddRange(docTransfer.Check(areaName));
+				}
+			}
+			if ( source.Note != null )
+			{
+				foreach ( var note in source.Note )
+				{
+					ackResult.AddRange(note.Check(areaName));
+				}
+			}
+			if ( source.Referred != null )
+			{
+				foreach ( var referred in source.Referred )
+				{
+					ackResult.AddRange(referred.Check(areaName));
+				}
+			}
+			return ackResult;
+		}
+	}
 }

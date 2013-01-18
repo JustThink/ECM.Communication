@@ -277,6 +277,24 @@ namespace ECM.Communication.Elements
 				var ex = ErrorReceiptCode.WrongMultiplicityOfElement_Format;
 				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Items", areaName) });
 			}
+			else
+			{
+				foreach ( var item in source.Items )
+				{
+					if (item is OrganizationWithSign)
+					{
+						ackResult.AddRange(((OrganizationWithSign) item).Check(areaName));
+					}
+					else if ( item is OutNumber )
+					{
+						ackResult.AddRange(((OutNumber) item).Check(areaName));
+					}
+					else if ( item is PrivatePersonWithSign )
+					{
+						ackResult.AddRange(((PrivatePersonWithSign) item).Check(areaName));
+					}
+				}
+			}
 			return ackResult;
 		}
 	}

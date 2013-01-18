@@ -3,7 +3,7 @@ using ECM.Communication.Areas;
 using ECM.Communication.Elements;
 using NUnit.Framework;
 
-namespace ECM.Communication.Tests.Areas
+namespace ECM.Communication.Tests.Elements
 {
 	[TestFixture]
 	public class AuthorOrganizationTest : HelperTest

@@ -98,15 +98,6 @@ namespace ECM.Communication.Tests.Elements
 			var obj = Address.Deserialize(xml);
 			EqualTo(obj, type);
 		}
-
-		[Test]
-		public void Serialize()
-		{
-			var type = new AcknowledgementType();
-			var xml = type.Serialize();
-			Assert.IsNotNullOrEmpty(xml);
-			var obj = AcknowledgementType.Deserialize(xml);
-			EqualTo(obj, type);
-		}
+		
 	}
 }

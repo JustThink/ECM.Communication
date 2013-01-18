@@ -277,7 +277,7 @@ namespace ECM.Communication.Tests.Areas
 			Assert.IsNotNull(ackResult);
 			Assert.That(ackResult.Count, Is.GreaterThanOrEqualTo(1));
 			var ex = ErrorReceiptCode.MissingRequiredAttribute_in_Header_Format;
-			var arg0 = "from_system";
+			var arg0 = "to_organization";
 			var obj = ackResult.FirstOrDefault(p => ((p.errorcode == ex.errorcode) && (p.Value.Contains(arg0))));
 			EqualTo(obj, ex, arg0);
 		}

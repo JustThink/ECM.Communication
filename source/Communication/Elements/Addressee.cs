@@ -269,9 +269,27 @@ namespace ECM.Communication.Elements
 
 	internal static partial class Expansion
 	{
-		public static List<AckResult> Check(this Addressee source)
+		public static List<AckResult> Check(this Addressee source, string areaName)
 		{
 			var ackResult = new List<AckResult>();
+			if (source.Items != null)
+			{
+				foreach ( var item in source.Items )
+				{
+					if (item is Organization)
+					{
+						ackResult.AddRange(((Organization) item).Check(areaName));
+					}
+					if ( item is PrivatePerson )
+					{
+						ackResult.AddRange(((PrivatePerson) item).Check(areaName));
+					}
+					if ( item is Referred )
+					{
+						ackResult.AddRange(((Referred) item).Check(areaName));
+					}
+				}
+			}
 			return ackResult;
 		}
 	}

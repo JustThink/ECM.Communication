@@ -611,12 +611,14 @@ namespace ECM.Communication.Areas
 	{
 		public static List<AckResult> Check(this Header source, HeaderMessageEnumType msg_type)
 		{
+			const string areaName = Header.AreaName;
+
 			var ackResult = new List<AckResult>();
 
 			if ( source == null )
 			{
 				var ex = ErrorReceiptCode.MissingAreas_Format;
-				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, Header.AreaName) });
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, areaName) });
 				return ackResult;
 			}
 

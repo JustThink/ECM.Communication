@@ -508,7 +508,7 @@ namespace ECM.Communication.Elements
 			else if ( source.OfficialPersonWithSign.Count == 1)
 			{
 				var data = source.OfficialPersonWithSign[0];
-				data.Check(areaName);
+				ackResult.AddRange(data.Check(areaName));
 			}
 			else if ( source.OfficialPersonWithSign.Count > 1 )
 			{

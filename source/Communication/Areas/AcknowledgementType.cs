@@ -24,6 +24,7 @@ namespace ECM.Communication.Areas
 		#region Const & Static
 
 		public const string AreaName = "Уведомление (подтверждение приема)";
+		public const string ElementName = "AcknowledgementType";
 
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
@@ -44,13 +45,6 @@ namespace ECM.Communication.Areas
 		#endregion
 
 		#region Constructor
-
-		public AcknowledgementType()
-		{
-			this.regNumberField = new RegNumber();
-			this.ackResultField = new List<AckResult>();
-			this.docTransferField = new DocTransfer();
-		}
 
 		#endregion
 
@@ -354,5 +348,52 @@ namespace ECM.Communication.Areas
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this AcknowledgementType source)
+		{
+			const string areaName = AcknowledgementType.AreaName;
+
+			var ackResult = new List<AckResult>();
+
+			if ( source == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, areaName) });
+				return ackResult;
+			}
+
+			if ( source.RegNumber != null)
+			{
+				ackResult.AddRange(source.RegNumber.Check(areaName));
+			}
+
+			if ( (source.AckResult == null) || (source.AckResult.Count < 1) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "AckResult", AcknowledgementType.ElementName, areaName) });
+			}
+			else
+			{
+				foreach ( var result in source.AckResult )
+				{
+					ackResult.AddRange(result.Check(areaName));
+				}
+			}
+
+			if ( source.DocTransfer != null )
+			{
+				ackResult.AddRange(source.DocTransfer.Check(areaName));
+			}
+
+			if ( string.IsNullOrEmpty(source.msg_id) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "msg_id", AcknowledgementType.ElementName, areaName) });
+			}
+			return ackResult;
+		}
 	}
 }

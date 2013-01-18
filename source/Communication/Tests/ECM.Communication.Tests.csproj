@@ -46,7 +46,11 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="Areas\AcknowledgementTypeTest.cs" />
-    <Compile Include="Areas\AuthorOrganizationTest.cs" />
+    <Compile Include="Areas\DocumentTypeTest.cs" />
+    <Compile Include="Areas\ExpansionTypeTest.cs" />
+    <Compile Include="Areas\TaskListTypeTest.cs" />
+    <Compile Include="Elements\AuthorOrganizationTest.cs" />
+    <Compile Include="Elements\TaskListTypeTaskTest.cs" />
     <Compile Include="Elements\ValidatorTest.cs" />
     <Compile Include="Elements\RegHistoryTest.cs" />
     <Compile Include="Elements\PrivatePersonWithSignTest.cs" />

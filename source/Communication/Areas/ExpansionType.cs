@@ -22,6 +22,9 @@ namespace ECM.Communication.Areas
 	{
 		#region Const & Static
 
+		public const string AreaName = "Расширение";
+		public const string ElementName = "ExpansionType";
+
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -39,12 +42,6 @@ namespace ECM.Communication.Areas
 		#endregion
 
 		#region Constructor
-
-		public ExpansionType()
-		{
-			this.anyDataField = new ExpansionTypeAnyData();
-			this.econtactField = new List<Econtact>();
-		}
 
 		#endregion
 
@@ -324,5 +321,45 @@ namespace ECM.Communication.Areas
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this ExpansionType source)
+		{
+			const string areaName = ExpansionType.AreaName;
+
+			var ackResult = new List<AckResult>();
+
+			if ( source == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, areaName) });
+				return ackResult;
+			}
+
+			if ( source.Econtact != null)
+			{
+				foreach ( var econtact in source.Econtact )
+				{
+					ackResult.AddRange(econtact.Check(areaName));
+				}
+			}
+			if ( source.AnyData != null )
+			{
+				ackResult.AddRange(source.AnyData.Check(areaName));
+			}
+			if ( string.IsNullOrEmpty(source.organization) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "organization", ExpansionType.ElementName, areaName) });
+			}
+			if ( string.IsNullOrEmpty(source.exp_ver) )
+			{
+				var ex = ErrorReceiptCode.MissingRequiredAttribute_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "exp_ver", ExpansionType.ElementName, areaName) });
+			}
+			return ackResult;
+		}
 	}
 }

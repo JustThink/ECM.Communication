@@ -288,7 +288,7 @@ namespace ECM.Communication.Elements
 
 	internal static partial class Expansion
 	{
-		public static List<AckResult> Check(this AckResult source)
+		public static List<AckResult> Check(this AckResult source, string areaName)
 		{
 			var ackResult = new List<AckResult>();
 			return ackResult;
