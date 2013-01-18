@@ -1,4 +1,7 @@
-﻿using ECM.Communication.Documents;
+﻿using System.Collections.Generic;
+using ECM.Communication.Areas;
+using ECM.Communication.Documents;
+using ECM.Communication.Elements;
 using ECM.Communication.Enums;
 
 namespace ECM.Communication
@@ -37,7 +40,7 @@ namespace ECM.Communication
 		/// </summary>
 		/// <param name="response">К ранее направленному документу-ответу направляются дополнительные материалы.</param>
 		/// <returns>Направляется информация о доставке и приеме сообщения, содержащего дополнения к документу-ответу, об ошибках приема и интерпретации сообщения и др.</returns>
-		Notification ChangeResponse(Response response);
+		Notification ChangeResponse(ResponseSupplement response);
 	}
 
 	public partial class Service
@@ -54,11 +57,198 @@ namespace ECM.Communication
 
 		partial void OnBeforeValidationRequest(Main request)
 		{
+			// TODO: Этот метод может быть удален
 			// TODO: Добавьте код выполняемый перед проверкой полей полученного запроса
 		}
-		partial void OnAfterValidationRequest(Main request, Notification notification)
+
+		private Notification CreateNotification(Main request, List<AckResult> ackResult)
 		{
 			// TODO: Добавьте код выполняемый после проверки полей полученного запроса
+
+			// TODO: Возможно, потребуется сохранить запрос в базу данных
+			if (ackResult.Count == 0)
+			{
+				ackResult.AddRange(SaveToDb(request));
+			}
+
+			var notification = Notification.Init();
+
+			// TODO: Необходимо сформировать ответ
+
+			// Добавляем сообщения об ошибках (при необходимости часть можно поправить)
+			notification.Acknowledgement.AckResult = ackResult;
+
+
+			return notification;
+		}
+
+		private List<AckResult> SaveToDb(Main data)
+		{
+			return new List<AckResult>();
+		}
+
+		#endregion
+
+		#region ChangeRequest
+
+		partial void OnBeforeValidationRequest(MainSupplement request)
+		{
+			// TODO: Этот метод может быть удален
+			// TODO: Добавьте код выполняемый перед проверкой полей полученного запроса
+		}
+
+		private Notification CreateNotification(MainSupplement request, List<AckResult> ackResult)
+		{
+			// TODO: Добавьте код выполняемый после проверки полей полученного запроса
+
+			// TODO: Возможно, потребуется сохранить запрос в базу данных
+			if ( ackResult.Count == 0 )
+			{
+				ackResult.AddRange(SaveToDb(request));
+			}
+
+			var notification = Notification.Init();
+
+			// TODO: Необходимо сформировать ответ
+
+			// Добавляем сообщения об ошибках (при необходимости часть можно поправить)
+			notification.Acknowledgement.AckResult = ackResult;
+
+
+			return notification;
+		}
+
+		private List<AckResult> SaveToDb(MainSupplement data)
+		{
+			return new List<AckResult>();
+		}
+
+		#endregion
+
+		#region GetResponse
+
+		partial void OnBeforeValidationRequest(Response request)
+		{
+			// TODO: Этот метод может быть удален
+			// TODO: Добавьте код выполняемый перед проверкой полей полученного запроса
+		}
+
+		private Notification CreateNotification(Response response, List<AckResult> ackResult)
+		{
+			// TODO: Добавьте код выполняемый после проверки полей полученного запроса
+
+			// TODO: Возможно, потребуется сохранить запрос в базу данных
+			if ( ackResult.Count == 0 )
+			{
+				ackResult.AddRange(SaveToDb(response));
+			}
+
+			Main main = null;
+			var result = LoadFromDb(response, out main);
+			if ( result.Count == 0)
+			{
+				// TODO: Обрабатываем документ main
+			}
+			ackResult.AddRange(result);
+
+			List<MainSupplement> supplements = null;
+			result = LoadFromDb(response, out supplements);
+			if ( result.Count == 0 )
+			{
+				// TODO: Обрабатываем документы supplements
+			}
+			ackResult.AddRange(result);
+
+			var notification = Notification.Init();
+
+			// TODO: Необходимо сформировать ответ
+
+			// Добавляем сообщения об ошибках (при необходимости часть можно поправить)
+			notification.Acknowledgement.AckResult = ackResult;
+
+
+			return notification;
+		}
+
+		private List<AckResult> SaveToDb(Response data)
+		{
+			return new List<AckResult>();
+		}
+
+		private List<AckResult> LoadFromDb(Response data, out Main source)
+		{
+			source = new Main();
+			return new List<AckResult>();
+		}
+
+		private List<AckResult> LoadFromDb(Response data, out List<MainSupplement> source)
+		{
+			source = new List<MainSupplement>();
+			return new List<AckResult>();
+		}
+
+		#endregion
+
+		#region ChangeResponse
+
+		partial void OnBeforeValidationRequest(ResponseSupplement request)
+		{
+			// TODO: Этот метод может быть удален
+			// TODO: Добавьте код выполняемый перед проверкой полей полученного запроса
+		}
+
+		private Notification CreateNotification(ResponseSupplement response, List<AckResult> ackResult)
+		{
+			// TODO: Добавьте код выполняемый после проверки полей полученного запроса
+
+			// TODO: Возможно, потребуется сохранить запрос в базу данных
+			if ( ackResult.Count == 0 )
+			{
+				ackResult.AddRange(SaveToDb(response));
+			}
+
+			Main main = null;
+			var result = LoadFromDb(response, out main);
+			if ( result.Count == 0 )
+			{
+				// TODO: Обрабатываем документ main
+			}
+			ackResult.AddRange(result);
+
+			List<MainSupplement> supplements = null;
+			result = LoadFromDb(response, out supplements);
+			if ( result.Count == 0 )
+			{
+				// TODO: Обрабатываем документы supplements
+			}
+			ackResult.AddRange(result);
+
+			var notification = Notification.Init();
+
+			// TODO: Необходимо сформировать ответ
+
+			// Добавляем сообщения об ошибках (при необходимости часть можно поправить)
+			notification.Acknowledgement.AckResult = ackResult;
+
+
+			return notification;
+		}
+
+		private List<AckResult> SaveToDb(ResponseSupplement data)
+		{
+			return new List<AckResult>();
+		}
+
+		private List<AckResult> LoadFromDb(ResponseSupplement data, out Main source)
+		{
+			source = new Main();
+			return new List<AckResult>();
+		}
+
+		private List<AckResult> LoadFromDb(ResponseSupplement data, out List<MainSupplement> source)
+		{
+			source = new List<MainSupplement>();
+			return new List<AckResult>();
 		}
 
 		#endregion

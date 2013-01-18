@@ -25,6 +25,16 @@ namespace ECM.Communication.Areas
 		public const string StandartFieldDefault = @"Стандарт системы управления документами";
 		public const string VersionFieldDefault = @"1.0";
 
+		public static Header Init()
+		{
+			var data = new Header();
+			data.standart = StandartFieldDefault;
+			data.version = VersionFieldDefault;
+			data.time = DateTime.UtcNow;
+			// TODO: Можно заполнить некоторые поля
+			return data;
+		}
+
 		#endregion
 
 		#region Properties
@@ -71,6 +81,7 @@ namespace ECM.Communication.Areas
 
 		#region Constructor
 
+		
 		#endregion
 
 		#region Fields

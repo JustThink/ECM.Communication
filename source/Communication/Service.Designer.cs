@@ -30,44 +30,81 @@ namespace ECM.Communication
 		public Notification AddRequest(Main request)
 		{
 			OnBeforeValidationRequest(request);
-
-			var ackResult = new List<AckResult>();
-			ackResult.AddRange(request.Check());
-
-			var notification = new Notification();
-
-			// TODO: Сформировать ответ
-
-			OnAfterValidationRequest(request, notification);
-
-			var msg_acknow = GetMsgAcknow(request.Header);
-
-			return notification;
+			var ackResult = request.Check();
+			var notification = CreateNotification(request, ackResult);
+			return ReturnNotification(request.Header, notification);
 		}
 
 		partial void OnBeforeValidationRequest(Main request);
-		partial void OnAfterValidationRequest(Main request, Notification notification);
 
 		#endregion
 
+		#region ChangeRequest
+
 		public Notification ChangeRequest(MainSupplement request)
 		{
-			throw new NotImplementedException();
+			OnBeforeValidationRequest(request);
+			var ackResult = request.Check();
+			var notification = CreateNotification(request, ackResult);
+			return ReturnNotification(request.Header, notification);
 		}
+
+		partial void OnBeforeValidationRequest(MainSupplement request);
+
+		#endregion
+
+		#region GetResponse
 
 		public Notification GetResponse(Response response)
 		{
-			throw new NotImplementedException();
+			OnBeforeValidationRequest(response);
+			var ackResult = response.Check();
+			var notification = CreateNotification(response, ackResult);
+			return ReturnNotification(response.Header, notification);
 		}
 
-		public Notification ChangeResponse(Response response)
+		partial void OnBeforeValidationRequest(Response response);
+
+		#endregion
+
+		#region ChangeResponse
+
+		public Notification ChangeResponse(ResponseSupplement response)
 		{
-			throw new NotImplementedException();
+			OnBeforeValidationRequest(response);
+			var ackResult = response.Check();
+			var notification = CreateNotification(response, ackResult);
+			return ReturnNotification(response.Header, notification);
+		}
+
+		partial void OnBeforeValidationRequest(ResponseSupplement response);
+
+		#endregion
+
+		private Notification ReturnNotification(Header header, Notification notification)
+		{
+			var msg_acknow = GetMsgAcknow(header);
+
+			switch ( msg_acknow )
+			{
+				case HeaderAsknowEnumType.none:
+					return null;
+				case HeaderAsknowEnumType.always:
+					return notification;
+				case HeaderAsknowEnumType.only_when_errors:
+					if ( (notification.Acknowledgement.AckResult == null) || (notification.Acknowledgement.AckResult.Count < 1) )
+						return null;
+					else
+					{
+						return notification;
+					}
+			}
+			throw new ArgumentOutOfRangeException("msg_acknow", msg_acknow, "Unknown value");
 		}
 
 		private HeaderAsknowEnumType GetMsgAcknow(Header header)
 		{
-			if ( header == null)
+			if ( header == null )
 				return HeaderAsknowEnumTypeDefault;
 
 			try

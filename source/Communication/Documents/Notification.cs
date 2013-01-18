@@ -24,6 +24,17 @@ namespace ECM.Communication.Documents
 		public const string AreaName = "Notification";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
+		public static Notification Init()
+		{
+			var data = new Notification();
+			data.Header = Header.Init();
+			data.Header.msg_type = ((sbyte) HeaderMessageEnumType.notification);
+
+			data.Acknowledgement = new AcknowledgementType();
+
+			return data;
+		}
+
 		#endregion
 
 		#region Properties
