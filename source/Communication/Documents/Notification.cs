@@ -21,6 +21,7 @@ namespace ECM.Communication.Documents
 	{
 		#region Const & Static
 
+		public const string AreaName = "Notification";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -28,8 +29,6 @@ namespace ECM.Communication.Documents
 		#region Properties
 
 		private Header headerField;
-
-		private DocumentType documentField;
 
 		private AcknowledgementType acknowledgementField;
 
@@ -40,16 +39,6 @@ namespace ECM.Communication.Documents
 		#endregion
 
 		#region Constructor
-
-		public Notification()
-		{
-			this.headerField = new Header();
-			this.headerField.msg_type = ((sbyte) HeaderMessageEnumType.notification);
-			this.documentField = new DocumentType();
-			this.acknowledgementField = new AcknowledgementType();
-			this.expansionField = new ExpansionType();
-			this.docTransferField = new List<DocTransfer>();
-		}
 
 		#endregion
 
@@ -68,22 +57,6 @@ namespace ECM.Communication.Documents
 			set
 			{
 				this.headerField = value;
-			}
-		}
-
-		/// <summary>
-		/// Документ
-		/// </summary>
-		[System.Xml.Serialization.XmlElementAttribute(Order = 1)]
-		public DocumentType Document
-		{
-			get
-			{
-				return this.documentField;
-			}
-			set
-			{
-				this.documentField = value;
 			}
 		}
 
@@ -142,7 +115,7 @@ namespace ECM.Communication.Documents
 			{
 				if ( (serializer == null) )
 				{
-					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Header));
+					serializer = new System.Xml.Serialization.XmlSerializer(typeof(Notification));
 				}
 				return serializer;
 			}
@@ -349,5 +322,43 @@ namespace ECM.Communication.Documents
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Notification source)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.Header == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Header") });
+			}
+			else
+			{
+				ackResult.AddRange(source.Header.Check(HeaderMessageEnumType.notification));
+			}
+			if ( source.Acknowledgement == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Acknowledgement") });
+			}
+			else
+			{
+				ackResult.AddRange(source.Acknowledgement.Check());
+			}
+			if ( source.Expansion != null )
+			{
+				ackResult.AddRange(source.Expansion.Check());
+			}
+			if ( source.DocTransfer != null )
+			{
+				foreach ( var docTransfer in source.DocTransfer )
+				{
+					ackResult.AddRange(docTransfer.Check(ResponseSupplement.AreaName));
+				}
+			}
+			return ackResult;
+		}
 	}
 }

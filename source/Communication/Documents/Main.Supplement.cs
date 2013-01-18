@@ -21,6 +21,7 @@ namespace ECM.Communication.Documents
 	{
 		#region Const & Static
 
+		public const string AreaName = "MainSupplement";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -42,17 +43,6 @@ namespace ECM.Communication.Documents
 		#endregion
 
 		#region Constructor
-
-		public MainSupplement()
-		{
-			this.headerField = new Header();
-			this.headerField.msg_type = ((sbyte) HeaderMessageEnumType.main_supplement);
-			this.documentField = new DocumentType();
-			this.taskListField = new List<TaskListTypeTask>();
-			this.addDocumentsField = new List<AddDocumentsTypeFolder>();
-			this.expansionField = new ExpansionType();
-			this.docTransferField = new List<DocTransfer>();
-		}
 
 		#endregion
 
@@ -370,5 +360,62 @@ namespace ECM.Communication.Documents
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this MainSupplement source)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.Header == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Header") });
+			}
+			else
+			{
+				ackResult.AddRange(source.Header.Check(HeaderMessageEnumType.main_supplement));
+			}
+			if ( source.Document == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Document") });
+			}
+			else
+			{
+				ackResult.AddRange(source.Document.Check());
+			}
+			if ( (source.TaskList == null) && (source.AddDocuments == null) )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "TaskList or AddDocuments") });
+			}
+			if ( source.TaskList != null )
+			{
+				foreach ( var task in source.TaskList )
+				{
+					ackResult.AddRange(task.Check(TaskListType.AreaName));
+				}
+			}
+			if ( source.AddDocuments != null )
+			{
+				foreach ( var task in source.AddDocuments )
+				{
+					ackResult.AddRange(task.Check(AddDocumentsType.AreaName));
+				}
+			}
+			if ( source.Expansion != null )
+			{
+				ackResult.AddRange(source.Expansion.Check());
+			}
+			if ( source.DocTransfer != null )
+			{
+				foreach ( var docTransfer in source.DocTransfer )
+				{
+					ackResult.AddRange(docTransfer.Check(MainSupplement.AreaName));
+				}
+			}
+			return ackResult;
+		}
 	}
 }

@@ -21,6 +21,7 @@ namespace ECM.Communication.Documents
 	{
 		#region Const & Static
 
+		public const string AreaName = "Response";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -41,15 +42,6 @@ namespace ECM.Communication.Documents
 
 		#region Constructor
 
-		public Response()
-		{
-			this.headerField = new Header();
-			this.headerField.msg_type = ((sbyte)HeaderMessageEnumType.response);
-			this.documentField = new DocumentType();
-			this.addDocumentsField = new List<AddDocumentsTypeFolder>();
-			this.expansionField = new ExpansionType();
-			this.docTransferField = new List<DocTransfer>();
-		}
 
 		#endregion
 
@@ -350,5 +342,50 @@ namespace ECM.Communication.Documents
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Response source)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.Header == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Header") });
+			}
+			else
+			{
+				ackResult.AddRange(source.Header.Check(HeaderMessageEnumType.response));
+			}
+			if ( source.Document == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Document") });
+			}
+			else
+			{
+				ackResult.AddRange(source.Document.Check());
+			}
+			if ( source.AddDocuments != null )
+			{
+				foreach ( var task in source.AddDocuments )
+				{
+					ackResult.AddRange(task.Check(AddDocumentsType.AreaName));
+				}
+			}
+			if ( source.Expansion != null )
+			{
+				ackResult.AddRange(source.Expansion.Check());
+			}
+			if ( source.DocTransfer != null )
+			{
+				foreach ( var docTransfer in source.DocTransfer )
+				{
+					ackResult.AddRange(docTransfer.Check(Response.AreaName));
+				}
+			}
+			return ackResult;
+		}
 	}
 }

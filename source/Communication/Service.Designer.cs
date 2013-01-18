@@ -32,42 +32,11 @@ namespace ECM.Communication
 			OnBeforeValidationRequest(request);
 
 			var ackResult = new List<AckResult>();
-			ackResult.AddRange(request.Header.Check(HeaderMessageEnumType.main));
-			
-			
-
-			if ( request.Document != null)
-			{
-				//this.documentField = new DocumentType();
-			}
-			else
-			{
-				var ex = ErrorReceiptCode.MissingAreas_Format;
-				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, DocumentType.AreaName) });
-			}
-
-			if ( request.TaskList != null )
-			{
-				//this.taskListField = new List<TaskListTypeTask>();
-			}
-
-			if ( request.AddDocuments != null )
-			{
-				//this.addDocumentsField = new List<AddDocumentsTypeFolder>();
-			}
-
-			if ( request.Expansion != null )
-			{
-				//this.expansionField = new ExpansionType();
-			}
-
-			if ( request.DocTransfer != null)
-			{
-				//this.docTransferField = new List<DocTransfer>();
-			}
+			ackResult.AddRange(request.Check());
 
 			var notification = new Notification();
 
+			// TODO: Сформировать ответ
 
 			OnAfterValidationRequest(request, notification);
 

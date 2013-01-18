@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using ECM.Communication.Areas;
 using ECM.Communication.Elements;
+using ECM.Communication.Enums;
 
 namespace ECM.Communication.Documents
 {
@@ -20,6 +21,7 @@ namespace ECM.Communication.Documents
 	{
 		#region Const & Static
 
+		public const string AreaName = "Main";
 		private static System.Xml.Serialization.XmlSerializer serializer;
 
 		#endregion
@@ -359,5 +361,57 @@ namespace ECM.Communication.Documents
 			}
 		}
 		#endregion
+	}
+
+	internal static partial class Expansion
+	{
+		public static List<AckResult> Check(this Main source)
+		{
+			var ackResult = new List<AckResult>();
+			if ( source.Header == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Header") });
+			}
+			else
+			{
+				ackResult.AddRange(source.Header.Check(HeaderMessageEnumType.main));
+			}
+			if ( source.Document == null )
+			{
+				var ex = ErrorReceiptCode.MissingAreas_Format;
+				ackResult.Add(new AckResult() { errorcode = ex.errorcode, Value = string.Format(ex.Value, "Document") });
+			}
+			else
+			{
+				ackResult.AddRange(source.Document.Check());
+			}
+			if ( source.TaskList != null )
+			{
+				foreach ( var task in source.TaskList )
+				{
+					ackResult.AddRange(task.Check(TaskListType.AreaName));
+				}
+			}
+			if ( source.AddDocuments != null )
+			{
+				foreach ( var task in source.AddDocuments )
+				{
+					ackResult.AddRange(task.Check(AddDocumentsType.AreaName));
+				}
+			}
+			if ( source.Expansion != null)
+			{
+				ackResult.AddRange(source.Expansion.Check());
+			}
+			if ( source.DocTransfer != null)
+			{
+				foreach ( var docTransfer in source.DocTransfer )
+				{
+					ackResult.AddRange(docTransfer.Check(Main.AreaName));
+				}
+			}
+			return ackResult;
+		}
 	}
 }
